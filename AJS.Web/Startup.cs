@@ -1,4 +1,5 @@
 using System;
+using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,6 +36,8 @@ namespace AJS.Web
 
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<AJSDbContext>();
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllersWithViews();
             services.AddRazorPages();
