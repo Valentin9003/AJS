@@ -14,6 +14,7 @@ using AJS.Data.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using AJS.Web.Infrastructure.Extensions;
 
 namespace AJS.Web
 {
@@ -29,8 +30,7 @@ namespace AJS.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
-            services.AddDbContext<AJSDbContext>(options =>
+             services.AddDbContext<AJSDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
@@ -41,6 +41,8 @@ namespace AJS.Web
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddDomainServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
