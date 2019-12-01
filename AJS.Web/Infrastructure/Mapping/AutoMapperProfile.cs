@@ -8,7 +8,7 @@ namespace AJS.Web.Infrastructure.Mapping
     public class AutoMapperProfile : Profile
     {
         /// <summary>
-        /// This method maps Source and Destination and create an Entity
+        /// This method maps Source and Destination and create an еntity
         /// </summary>
         public AutoMapperProfile()
         {
