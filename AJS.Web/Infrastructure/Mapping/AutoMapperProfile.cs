@@ -7,12 +7,15 @@ namespace AJS.Web.Infrastructure.Mapping
 {
     public class AutoMapperProfile : Profile
     {
+        /// <summary>
+        /// This method maps Source and Destination and create an Entity
+        /// </summary>
         public AutoMapperProfile()
         {
             var AllTypes = AppDomain
                 .CurrentDomain.
                 GetAssemblies()
-                .Where(a => a.GetName().Name.Contains("MeetMe"))
+                .Where(a => a.GetName().Name.Contains("AJS"))
                 .SelectMany(a => a.GetTypes());
 
             AllTypes
