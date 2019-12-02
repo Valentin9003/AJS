@@ -1,2 +1,2 @@
 # A.J.S.
-Site for Ads, Jobs and Services
+Ads, Jobs and Services WebSite
