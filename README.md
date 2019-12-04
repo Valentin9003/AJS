@@ -7,5 +7,4 @@ Ads, Jobs, Services and News WebSite.
 - [ ] task list items
 - [ ] list syntax required
 - [ ] normal **formatting**, @mentions, #1234 refs
-- [ ] incomplete
 
