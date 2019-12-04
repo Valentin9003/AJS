@@ -8,4 +8,4 @@ Ads, Jobs, Services and News WebSite.
 - [ ] list syntax required
 - [ ] normal **formatting**, @mentions, #1234 refs
 - [ ] incomplete
-- [x] completed
+
