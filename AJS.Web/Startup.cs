@@ -30,15 +30,22 @@ namespace AJS.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-             services.AddDbContext<AJSDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AJSDbContext>(options =>
+               options.UseSqlServer(
+                   Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<AJSDbContext>();
+            services.AddDefaultIdentity<User>(options =>
+             {
+                 options.SignIn.RequireConfirmedAccount = true;
+                 options.Password.RequireDigit = false;
+                 options.Password.RequireLowercase = false;
+                 options.Password.RequireUppercase = false;
+                 options.Password.RequireNonAlphanumeric = false;
+             })
+             .AddRoles<IdentityRole>()
+             .AddEntityFrameworkStores<AJSDbContext>();
 
             services.AddAutoMapper(typeof(Startup));
-
             services.AddControllersWithViews();
             services.AddRazorPages();
 
