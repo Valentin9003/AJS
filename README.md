@@ -2,7 +2,8 @@
 
 # Project Title
 
-# A.J.S.   **Multilingual Website for Ads, Jobs, Services and News.**
+# A.J.S.  
+**Multilingual Website for Ads, Jobs, Services and News.**
 
 ## Getting Started
 
