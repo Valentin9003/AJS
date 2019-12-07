@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using AJS.Web.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 using AJS.Data;
 using AJS.Data.Models;
@@ -15,6 +16,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AJS.Web.Infrastructure.Extensions;
+using Microsoft.AspNetCore.Mvc.Razor;
+
 
 namespace AJS.Web
 {
@@ -45,11 +48,19 @@ namespace AJS.Web
              .AddRoles<IdentityRole>()
              .AddEntityFrameworkStores<AJSDbContext>();
 
+            services.AddLocalization(opts => { opts.ResourcesPath = "AJS.Language.Resurces/Resources"; });
+
+            services.AddMvc()
+                .AddViewLocalization(
+                    LanguageViewLocationExpanderFormat.Suffix,
+                    options => { options.ResourcesPath = "Resources"; })
+                .AddDataAnnotationsLocalization();
+
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
             services.AddRazorPages();
-
             services.AddDomainServices();
+            services.GetRequestLocalization();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,6 +85,7 @@ namespace AJS.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.CongiguAndUseRequestLocalization();
 
             app.UseEndpoints(endpoints =>
             {
