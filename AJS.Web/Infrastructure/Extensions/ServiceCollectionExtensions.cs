@@ -3,6 +3,10 @@ using AJS.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Reflection;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Builder;
 
 namespace AJS.Web.Infrastructure.Extensions
 {
@@ -26,6 +30,29 @@ namespace AJS.Web.Infrastructure.Extensions
                 })
                 .ToList()
                 .ForEach(s => services.AddTransient(s.Interface, s.Implementation));
+
+            return services;
+        }
+
+        public static IServiceCollection GetRequestLocalization(this IServiceCollection services)
+        {
+            services.Configure<RequestLocalizationOptions>(opts =>
+            {
+                  var supportedCultures = new List<CultureInfo>
+                  {
+                      new CultureInfo("en-GB"),
+                      new CultureInfo("en-US"),
+                      new CultureInfo("en"),
+                      new CultureInfo("bg-BG"),
+                      new CultureInfo("bg"),
+                  };
+                 
+                  opts.DefaultRequestCulture = new RequestCulture("bg-BG");
+                  // Formatting numbers, dates, etc.
+                  opts.SupportedCultures = supportedCultures;
+                  // UI strings that we have localized.
+                  opts.SupportedUICultures = supportedCultures;
+            });
 
             return services;
         }
