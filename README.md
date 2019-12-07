@@ -1,7 +1,6 @@
 # A.J.S.  
 [![version](https://img.shields.io/badge/version-1.0-green.svg)](https://github.com/Valentin9003/AJS) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Open Source Love](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![Build status](https://ci.appveyor.com/api/projects/status/d66j6arfqptthvna?svg=true)](https://ci.appveyor.com/project/Valentin9003/ajs)
-[![Build status](https://ci.appveyor.com/api/projects/status/d66j6arfqptthvna/branch/master?svg=true)](https://ci.appveyor.com/project/Valentin9003/ajs/branch/master)
 
 # Project Title
 **Multilingual Website for Ads, Jobs, Services and News.**
