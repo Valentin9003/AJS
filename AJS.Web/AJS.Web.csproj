@@ -5,6 +5,14 @@
     <UserSecretsId>aspnet-AJS.Web-D9B45BF7-1DBD-459C-960F-AD65937F0F4D</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet />
+  </PropertyGroup>
+
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
@@ -27,6 +35,11 @@
     <ProjectReference Include="..\AJS.Data\AJS.Data.csproj" />
     <ProjectReference Include="..\AJS.Language.Resources\AJS.Language.Resources.csproj" />
     <ProjectReference Include="..\AJS.Services\AJS.Services.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Infrastructure\Middlewares\" />
   </ItemGroup>
 
 </Project>
