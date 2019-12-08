@@ -34,21 +34,26 @@ namespace AJS.Web.Infrastructure.Extensions
             return services;
         }
 
+        /// <summary>
+        /// This method receive request localization and set Default Allowed Cultures
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection GetRequestLocalization(this IServiceCollection services)
         {
             services.Configure<RequestLocalizationOptions>(opts =>
             {
-                  var supportedCultures = new List<CultureInfo>
+                var supportedCultures = new List<CultureInfo>
                   {
+                    new CultureInfo("bg"),
                       new CultureInfo("en"),
-                      new CultureInfo("bg"),
                   };
-                 
-                  opts.DefaultRequestCulture = new RequestCulture("en");
-                  // Formatting numbers, dates, etc.
-                  opts.SupportedCultures = supportedCultures;
-                  // UI strings that we have localized.
-                  opts.SupportedUICultures = supportedCultures;
+
+                opts.DefaultRequestCulture = new RequestCulture("bg");
+                // Formatting numbers, dates, etc.
+                opts.SupportedCultures = supportedCultures;
+                // UI strings that we have localized.
+                opts.SupportedUICultures = supportedCultures;
             });
 
             return services;
