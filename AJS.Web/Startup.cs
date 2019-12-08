@@ -15,9 +15,11 @@ using AJS.Data.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AJS.Web.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Mvc.Razor;
-
+using AJS.Language.Resources;
+using Microsoft.Extensions.Options;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace AJS.Web
 {
@@ -48,19 +50,21 @@ namespace AJS.Web
              .AddRoles<IdentityRole>()
              .AddEntityFrameworkStores<AJSDbContext>();
 
-            services.AddLocalization(opts => { opts.ResourcesPath = "AJS.Language.Resurces/Resources"; });
+            services.AddLocalization(opts => { opts.ResourcesPath = "Resources"; });
 
-            services.AddMvc()
+              services.AddControllersWithViews()
                 .AddViewLocalization(
                     LanguageViewLocationExpanderFormat.Suffix,
-                    options => { options.ResourcesPath = "Resources"; })
+                    options => { options.ResourcesPath = "Resources"; }
+                    )
                 .AddDataAnnotationsLocalization();
 
             services.AddAutoMapper(typeof(Startup));
-            services.AddControllersWithViews();
-            services.AddRazorPages();
+          //  services.AddControllersWithViews();
+           // services.AddRazorPages();
             services.AddDomainServices();
             services.GetRequestLocalization();
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,7 +81,7 @@ namespace AJS.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+           
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -85,15 +89,18 @@ namespace AJS.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
-            app.CongiguAndUseRequestLocalization();
+            
+            app.CongiguAndUseRequestLocalization(); //NameError
+           
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=home}/{action=index}/{id?}");
                 endpoints.MapRazorPages();
             });
-        }
-    }
+           
+
+        } }
 }

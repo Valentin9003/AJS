@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <ApplicationIcon />
+    <Win32Resource />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -13,7 +15,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <EmbeddedResource Remove="Properties\Resources.bg.resx" />
+    <EmbeddedResource Remove="Resources.bg.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Properties\Resources.bg.resx" />
+    <Resource Include="Resources.bg.resx" />
   </ItemGroup>
 
 </Project>

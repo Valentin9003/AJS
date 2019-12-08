@@ -40,14 +40,11 @@ namespace AJS.Web.Infrastructure.Extensions
             {
                   var supportedCultures = new List<CultureInfo>
                   {
-                      new CultureInfo("en-GB"),
-                      new CultureInfo("en-US"),
                       new CultureInfo("en"),
-                      new CultureInfo("bg-BG"),
                       new CultureInfo("bg"),
                   };
                  
-                  opts.DefaultRequestCulture = new RequestCulture("bg-BG");
+                  opts.DefaultRequestCulture = new RequestCulture("en");
                   // Formatting numbers, dates, etc.
                   opts.SupportedCultures = supportedCultures;
                   // UI strings that we have localized.

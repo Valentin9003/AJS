@@ -1,8 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-AJS.Web-D9B45BF7-1DBD-459C-960F-AD65937F0F4D</UserSecretsId>
+    <ApplicationIcon />
+    <Win32Resource />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -12,6 +14,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <CodeAnalysisRuleSet />
   </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Resources.bg.resx" />
+  </ItemGroup>
 
 
   <ItemGroup>

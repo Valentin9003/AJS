@@ -16,10 +16,9 @@ namespace AJS.Web.Infrastructure.Extensions
             {
                 var options = serviceScope
                     .ServiceProvider
-                    .GetRequiredService<IOptions<RequestLocalizationOptions>>()
-                    .Value;
-
-                app.UseRequestLocalization(options);
+                    .GetRequiredService<IOptions<RequestLocalizationOptions>>();
+                    
+             app.UseRequestLocalization(options.Value);
             }
             return app;
         }

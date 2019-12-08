@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AJS.Tests", "AJS.Tests\AJS.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AJS.Common", "AJS.Common\AJS.Common.csproj", "{B8A02896-3B29-4090-8A03-78A0DBC41278}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AJS.Language.Resources", "AJS.Language.Resources\AJS.Language.Resources.csproj", "{6B8758D6-9DC3-4A8A-8F29-BF74BEF86DD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AJS.Language.Resources", "AJS.Language.Resources\AJS.Language.Resources.csproj", "{6B8758D6-9DC3-4A8A-8F29-BF74BEF86DD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
