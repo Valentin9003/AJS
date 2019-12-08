@@ -7,5 +7,6 @@ namespace AJS.Web
 {
     public static class ProjectConstants
     {
+        public const string LanguageResourcesPath = "Resources";
     }
 }
