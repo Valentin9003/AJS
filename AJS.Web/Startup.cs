@@ -39,7 +39,7 @@ namespace AJS.Web
              })
              .AddRoles<IdentityRole>()
              .AddEntityFrameworkStores<AJSDbContext>();
-
+            
             services.AddLocalization(option => option.ResourcesPath = ProjectConstants.LanguageResourcesPath);
 
             services.AddControllersWithViews()
@@ -69,14 +69,14 @@ namespace AJS.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseRequestLocalizationExtension();
-            app.SetLocalizationCoockie();
+            app.SetLocalizationCoockie();  //TODO: Unfinished
 
             app.UseEndpoints(endpoints =>
             {
@@ -85,8 +85,6 @@ namespace AJS.Web
                     pattern: "{controller=home}/{action=index}/{id?}");
                 endpoints.MapRazorPages();
             });
-
-
         }
     }
 }

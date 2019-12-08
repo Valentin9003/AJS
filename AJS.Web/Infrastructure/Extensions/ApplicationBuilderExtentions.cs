@@ -25,6 +25,11 @@ namespace AJS.Web.Infrastructure.Extensions
             return app;
         }
 
+        /// <summary>
+        /// This method set localization information Coockie
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
         public static IApplicationBuilder SetLocalizationCoockie(this IApplicationBuilder app)
         {
             var supportedCultures = new List<CultureInfo>
