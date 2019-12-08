@@ -2,6 +2,7 @@
 @inject IViewLocalizer Localizer
 
 @{
+    ViewData["Value"] = Localizer["value"];
     ViewData["Title"] = "Home Page";
 }
 
@@ -9,6 +10,9 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
-@TempData["Example"]
-<br />
-@Localizer["value"]
+<div
+     <div>Test IViewLocalizer and IStringLocalizer</div>
+    @TempData["Example"]
+    <br />
+   @ViewData["Value"]
+</div>
