@@ -1,25 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AJS.Web.Models;
+using Microsoft.Extensions.Localization;
+using Microsoft.AspNetCore.Mvc.Localization;
 
 namespace AJS.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ILogger<HomeController> Logger;
+        private readonly IStringLocalizer<HomeController> StringLocalizer;
+        private readonly IViewLocalizer ViewLocalizer;
+       
+        public HomeController(ILogger<HomeController> logger, IStringLocalizer<HomeController> stringLocalizer, IViewLocalizer viewLocalizer)
         {
-            _logger = logger;
+            Logger = logger;
+            StringLocalizer = stringLocalizer;
+            ViewLocalizer = viewLocalizer;
         }
 
         public IActionResult Index()
         {
+            TempData["Example"] = StringLocalizer.GetString("value");
+          
             return View();
         }
 

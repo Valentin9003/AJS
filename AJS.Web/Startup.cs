@@ -1,20 +1,15 @@
-using System;
 using AutoMapper;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using AJS.Web.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 using AJS.Data;
 using AJS.Data.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AJS.Web.Infrastructure.Extensions;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace AJS.Web
 {
@@ -44,12 +39,20 @@ namespace AJS.Web
              })
              .AddRoles<IdentityRole>()
              .AddEntityFrameworkStores<AJSDbContext>();
+            
+            services.AddLocalization(option => option.ResourcesPath = ProjectConstants.LanguageResourcesPath);
+
+            services.AddControllersWithViews()
+                .AddViewLocalization(
+                    LanguageViewLocationExpanderFormat.Suffix,
+                    option => option.ResourcesPath = ProjectConstants.LanguageResourcesPath)
+                .AddDataAnnotationsLocalization();
 
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
             services.AddRazorPages();
-
             services.AddDomainServices();
+            services.GetRequestLocalization();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,20 +69,20 @@ namespace AJS.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseRequestLocalizationExtension();
+            app.SetLocalizationCoockie();  //TODO: Unfinished
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=home}/{action=index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
