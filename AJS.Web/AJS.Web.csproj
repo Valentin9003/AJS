@@ -39,7 +39,6 @@
   <ItemGroup>
     <ProjectReference Include="..\AJS.Common\AJS.Common.csproj" />
     <ProjectReference Include="..\AJS.Data\AJS.Data.csproj" />
-    <ProjectReference Include="..\AJS.Language.Resources\AJS.Language.Resources.csproj" />
     <ProjectReference Include="..\AJS.Services\AJS.Services.csproj" />
   </ItemGroup>
 
