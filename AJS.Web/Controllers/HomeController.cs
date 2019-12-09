@@ -4,6 +4,9 @@ using Microsoft.Extensions.Logging;
 using AJS.Web.Models;
 using Microsoft.Extensions.Localization;
 using Microsoft.AspNetCore.Mvc.Localization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Http;
+using System;
 
 namespace AJS.Web.Controllers
 {
@@ -25,6 +28,17 @@ namespace AJS.Web.Controllers
             TempData["Example"] = StringLocalizer.GetString("value");
           
             return View();
+        }
+
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
+
+            return LocalRedirect(returnUrl);
         }
 
         public IActionResult Privacy()

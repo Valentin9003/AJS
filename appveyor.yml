@@ -1,8 +1,27 @@
 version: 1.0.{build}
 image: Visual Studio 2019
-configuration: Release
-init: 
-- sh: dotnet restore
+configuration: Debug
 platform: Any CPU
+init:
+- sh: dotnet restore
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  version_prefix: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+nuget:
+  account_feed: true
+  project_feed: true
+before_build:
+- cmd: dotnet restore
 build:
+  publish_wap: true
+  publish_nuget: true
+  publish_nuget_symbols: true
+  include_nuget_references: true
+  publish_aspnet_core: true
   verbosity: minimal
