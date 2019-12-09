@@ -84,7 +84,7 @@ namespace AJS.Web
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseRequestLocalizationExtension();
-            app.SetLocalizationCoockie();  //TODO: Unfinished
+            app.SetLocalizationCookie();  //TODO: Unfinished
 
             app.UseEndpoints(endpoints =>
             {

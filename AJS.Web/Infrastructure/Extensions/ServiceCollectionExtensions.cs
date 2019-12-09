@@ -56,7 +56,7 @@ namespace AJS.Web.Infrastructure.Extensions
                 opts.SupportedUICultures = supportedCultures;
             });
 
-            return services; //TODO: Unfinished
+            return services;
         }
     }
 }
