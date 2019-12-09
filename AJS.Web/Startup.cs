@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Http;
 
 namespace AJS.Web
 {
@@ -30,16 +31,23 @@ namespace AJS.Web
                    Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<User>(options =>
-             {
-                 options.SignIn.RequireConfirmedAccount = true;
-                 options.Password.RequireDigit = false;
-                 options.Password.RequireLowercase = false;
-                 options.Password.RequireUppercase = false;
-                 options.Password.RequireNonAlphanumeric = false;
-             })
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+            })
              .AddRoles<IdentityRole>()
              .AddEntityFrameworkStores<AJSDbContext>();
-            
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             services.AddLocalization(option => option.ResourcesPath = ProjectConstants.LanguageResourcesPath);
 
             services.AddControllersWithViews()
@@ -69,14 +77,14 @@ namespace AJS.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseRequestLocalizationExtension();
-            app.SetLocalizationCoockie();  //TODO: Unfinished
+            app.SetLocalizationCookie();  //TODO: Unfinished
 
             app.UseEndpoints(endpoints =>
             {

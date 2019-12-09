@@ -30,7 +30,7 @@ namespace AJS.Web.Infrastructure.Extensions
         /// </summary>
         /// <param name="app"></param>
         /// <returns></returns>
-        public static IApplicationBuilder SetLocalizationCoockie(this IApplicationBuilder app)
+        public static IApplicationBuilder SetLocalizationCookie(this IApplicationBuilder app)
         {
             var supportedCultures = new List<CultureInfo>
             {
@@ -52,7 +52,7 @@ namespace AJS.Web.Infrastructure.Extensions
 
             // Set the new cookie name
             cookieProvider.CookieName = CookieRequestCultureProvider.DefaultCookieName;
-
+            
             app.UseRequestLocalization(localizationOptions);
 
             return app;
