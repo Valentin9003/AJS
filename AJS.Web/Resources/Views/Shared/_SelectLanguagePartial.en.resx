@@ -121,4 +121,7 @@
     <value>Language</value>
     <comment>Language for choose at SetLanguage Partial View</comment>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>
