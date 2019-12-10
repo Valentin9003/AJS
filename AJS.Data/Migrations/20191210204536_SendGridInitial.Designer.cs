@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AJS.Data.Migrations
 {
     [DbContext(typeof(AJSDbContext))]
-    [Migration("20191205221754_Initial")]
-    partial class Initial
+    [Migration("20191210204536_SendGridInitial")]
+    partial class SendGridInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
