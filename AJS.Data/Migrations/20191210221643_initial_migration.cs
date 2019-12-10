@@ -2,7 +2,7 @@
 
 namespace AJS.Data.Migrations
 {
-    public partial class SendGridInitial : Migration
+    public partial class initial_migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
