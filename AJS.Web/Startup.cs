@@ -11,7 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Http;
-
+using Microsoft.AspNetCore.Identity.UI.Services;
+using AJS.Web.Infrastructure.EmailSender;
 namespace AJS.Web
 {
     public class Startup
@@ -29,6 +30,11 @@ namespace AJS.Web
             services.AddDbContext<AJSDbContext>(options =>
                options.UseSqlServer(
                    Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
+
+
 
             services.AddDefaultIdentity<User>(options =>
             {
