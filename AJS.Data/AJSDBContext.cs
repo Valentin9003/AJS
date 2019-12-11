@@ -5,7 +5,7 @@ using System;
 
 namespace AJS.Data
 {
-    public class AJSDbContext : IdentityDbContext
+    public class AJSDbContext : IdentityDbContext<User>
     {
         public AJSDbContext(DbContextOptions<AJSDbContext> options) : base(options)
         {
