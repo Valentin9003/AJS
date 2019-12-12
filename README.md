@@ -85,3 +85,4 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 ## Changelog
 
 * Added Email Sender Provider
+* Migrate project to .net core 3.1
