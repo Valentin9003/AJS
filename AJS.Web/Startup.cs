@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using AJS.Web.Infrastructure.EmailSender;
+using System;
+
 namespace AJS.Web
 {
     public class Startup
@@ -27,13 +29,12 @@ namespace AJS.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AJSDbContext>(options =>
-               options.UseSqlServer(
+          services.AddDbContext<AJSDbContext>(options =>
+               options.UseSqlServer( 
                    Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<IEmailSender, EmailSender>();
-            services.Configure<AuthMessageSenderOptions>(Configuration);
-
+            services.Configure<AuthMessageSenderOptions>(Configuration.GetSection("SendGrid"));
 
 
             services.AddDefaultIdentity<User>(options =>
@@ -74,6 +75,7 @@ namespace AJS.Web
         {
             if (env.IsDevelopment())
             {
+                
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
