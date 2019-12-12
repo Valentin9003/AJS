@@ -18,7 +18,7 @@ namespace AJS.Web.Infrastructure.EmailSender
 
         public Task SendEmailAsync(string email, string subject, string message)
         {
-            return Execute(Options.SendGridUser, subject, message, email);
+            return Execute(Options.SendGridIdValue, subject, message, email);
         }
 
         public Task Execute(string apiKey, string subject, string message, string email)
