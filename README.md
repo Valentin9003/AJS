@@ -83,3 +83,5 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 ## Acknowledgments
 
 ## Changelog
+
+* Added Email Sender Provider
