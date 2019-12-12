@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AJS.Web.Infrastructure.EmailSender
 {
-    public class EmailSender :IEmailSender
+    public class EmailSender : IEmailSender
     {
         public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor)
         {
@@ -18,23 +18,24 @@ namespace AJS.Web.Infrastructure.EmailSender
 
         public Task SendEmailAsync(string email, string subject, string message)
         {
-            return Execute(Options.SendGridKey, subject, message, email);
+            return Execute(Options.SendGridUser, subject, message, email);
         }
 
         public Task Execute(string apiKey, string subject, string message, string email)
         {
             var client = new SendGridClient(apiKey);
+
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("ajs.support", Options.SendGridUser),
+                From = new EmailAddress("ajs@support.com", Options.SendGridUser),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message
             };
+
             msg.AddTo(new EmailAddress(email));
 
             // Disable click tracking.
-            // See https://sendgrid.com/docs/User_Guide/Settings/tracking.html
             msg.SetClickTracking(false, false);
 
             return client.SendEmailAsync(msg);
