@@ -53,7 +53,7 @@ Will be added additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [.NET 3.0](https://dotnet.microsoft.com/download/dotnet-core/3.0) - The web framework used
+* [.NET 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.0) - The web framework used
 
 ## Contributing
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
@@ -75,4 +75,4 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 ## Changelog
 
 * [2019.12.12] Added Email Sender Provider
-* [2019.12.12] Migrated project to .net core 3.1
+* [2019.12.12] Migrated project to .Net Core 3.1
