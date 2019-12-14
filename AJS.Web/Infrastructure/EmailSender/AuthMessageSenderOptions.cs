@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace AJS.Web.Infrastructure.EmailSender
+{
+    public class AuthMessageSenderOptions
+    { 
+        public string SendGridUser { get; set; }
+        public string SendGridIdValue { get; set; }
+    }
+}
