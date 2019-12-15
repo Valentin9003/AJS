@@ -14,6 +14,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using AJS.Web.Infrastructure.EmailSender;
 using System;
+using System.IO;
+using NLog;
+using AJS.Common.Logger;
 
 namespace AJS.Web
 {
@@ -21,6 +24,7 @@ namespace AJS.Web
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 
@@ -32,10 +36,9 @@ namespace AJS.Web
           services.AddDbContext<AJSDbContext>(options =>
                options.UseSqlServer( 
                    Configuration.GetConnectionString("DefaultConnection")));
-
+            services.AddSingleton<ILoggerManager, LoggerManager>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration.GetSection("SendGrid"));
-
 
             services.AddDefaultIdentity<User>(options =>
             {
@@ -62,12 +65,13 @@ namespace AJS.Web
                     LanguageViewLocationExpanderFormat.Suffix,
                     option => option.ResourcesPath = ProjectConstants.LanguageResourcesPath)
                 .AddDataAnnotationsLocalization();
-
+            
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddDomainServices();
             services.GetRequestLocalization();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,17 +79,15 @@ namespace AJS.Web
         {
             if (env.IsDevelopment())
             {
-                
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.CustomExceptionMiddleware();
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
