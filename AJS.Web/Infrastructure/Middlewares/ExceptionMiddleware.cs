@@ -34,7 +34,7 @@ namespace AJS.Web.Infrastructure.Middlewares
 
         private Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            context.Response.ContentType = ProjectConstants.ContentTypeJson;
+            context.Response.ContentType = ProjectConstants.ContentTypeTextOrHTML;
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
             return context.Response.WriteAsync(new ErrorViewModel()

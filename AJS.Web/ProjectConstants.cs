@@ -10,7 +10,7 @@ namespace AJS.Web
         public const string LanguageResourcesPath = "Resources";
         public const string ErrorLogTitle = "Something went wrong: ";
         public const string ContactAdministratorMessage = "Contact your administrator for more information!";
-        public const string ContentTypeJson = "application/json";
+        public const string ContentTypeTextOrHTML = "text/HTML";
         public const string InternalServerError = "Internal Server Error";
         public const string ErrorMessage = "Error Message:";
     }
