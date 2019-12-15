@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
+using AJS.Web.Infrastructure.Middlewares;
 
 namespace AJS.Web.Infrastructure.Extensions
 {
@@ -57,6 +58,9 @@ namespace AJS.Web.Infrastructure.Extensions
 
             return app;
         }
-
+        public static void CustomExceptionMiddleware(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<ExceptionMiddleware>();
+        }
     }
 }
