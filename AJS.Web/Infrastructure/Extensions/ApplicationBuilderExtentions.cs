@@ -58,7 +58,12 @@ namespace AJS.Web.Infrastructure.Extensions
 
             return app;
         }
-        public static void CustomExceptionMiddleware(this IApplicationBuilder app)
+
+        /// <summary>
+        /// Custom Global Exception Middleware that shows only the error and writes full error information to a log file.
+        /// </summary>
+        /// <param name="app"></param>
+        public static void UseExceptionMiddleware(this IApplicationBuilder app)
         {
             app.UseMiddleware<ExceptionMiddleware>();
         }

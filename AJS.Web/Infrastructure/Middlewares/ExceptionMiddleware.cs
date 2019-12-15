@@ -37,10 +37,12 @@ namespace AJS.Web.Infrastructure.Middlewares
             context.Response.ContentType = ProjectConstants.ContentTypeJson;
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            return context.Response.WriteAsync(new ErrorViewDetails()
+            return context.Response.WriteAsync(new ErrorViewModel()
             {
                 StatusCode = context.Response.StatusCode,
-                Message = ProjectConstants.InternalServerErrorMessage
+                ErrorMessage = $"{ProjectConstants.ErrorMessage} {exception.Message}",
+                StatusMessage = ProjectConstants.InternalServerError,
+                InformationMessage = ProjectConstants.ContactAdministratorMessage
             }.ToString());
         }
     }
