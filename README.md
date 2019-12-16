@@ -76,3 +76,4 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 
 * [2019.12.12] Added Email Sender Provider
 * [2019.12.12] Migrated project to .Net Core 3.1
+* [2019.16.12] Added Global Error Handling and Error Logging
