@@ -73,7 +73,7 @@ See also the list of [contributors](https://github.com/Valentin9003/AJS/contribu
 This project is licensed under the Apache License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Changelog
-
+* [2019.01.12] Creation of the project
 * [2019.12.12] Added Email Sender Provider
 * [2019.12.12] Migrated project to .Net Core 3.1
 * [2019.16.12] Added Global Error Handling and Error Logging
