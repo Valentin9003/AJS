@@ -51,6 +51,14 @@ namespace AJS.Web
              .AddRoles<IdentityRole>()
              .AddEntityFrameworkStores<AJSDbContext>();
 
+            services.AddAuthentication().AddFacebook(option =>
+            {
+                option.AppSecret = Configuration
+                      .GetValue<string>(ProjectConstants.FacebookAppSecret);
+                option.AppId = Configuration
+                      .GetValue<string>(ProjectConstants.FacebookAppId);
+            });
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -61,10 +69,10 @@ namespace AJS.Web
             services.AddLocalization(option => option.ResourcesPath = ProjectConstants.LanguageResourcesPath);
 
             services.AddControllersWithViews()
-                .AddViewLocalization(
-                    LanguageViewLocationExpanderFormat.Suffix,
-                    option => option.ResourcesPath = ProjectConstants.LanguageResourcesPath)
-                .AddDataAnnotationsLocalization();
+                    .AddViewLocalization(
+                        LanguageViewLocationExpanderFormat.Suffix,
+                          option => option.ResourcesPath = ProjectConstants.LanguageResourcesPath)
+                    .AddDataAnnotationsLocalization();
 
             services.AddSession();
             services.AddAutoMapper(typeof(Startup));
