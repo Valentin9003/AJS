@@ -1,17 +1,21 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Options;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
+using AJS.Web.Infrastructure.Middlewares;
 
 namespace AJS.Web.Infrastructure.Extensions
 {
     public static class ApplicationBuilderExtentions
     {
+        /// <summary>
+        ///  This extension set culture information for requests based on information provided by the client like invoked "UseRequestLocalization" and set "RequestLocalizationOptions"
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
         public static IApplicationBuilder UseRequestLocalizationExtension(this IApplicationBuilder app)
         {
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
@@ -52,11 +56,19 @@ namespace AJS.Web.Infrastructure.Extensions
 
             // Set the new cookie name
             cookieProvider.CookieName = CookieRequestCultureProvider.DefaultCookieName;
-            
+
             app.UseRequestLocalization(localizationOptions);
 
             return app;
         }
 
+        /// <summary>
+        /// Log middleware that writes full error information to a log file.
+        /// </summary>
+        /// <param name="app"></param>
+        public static void UseLogger(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<LoggerMiddleware>();
+        }
     }
 }

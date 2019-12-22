@@ -13,7 +13,9 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using AJS.Web.Infrastructure.EmailSender;
-using System;
+using System.IO;
+using NLog;
+using AJS.Common.Logger;
 
 namespace AJS.Web
 {
@@ -21,6 +23,7 @@ namespace AJS.Web
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), ProjectConstants.NLogConfigFileDirectory));
             Configuration = configuration;
         }
 
@@ -29,13 +32,13 @@ namespace AJS.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-          services.AddDbContext<AJSDbContext>(options =>
-               options.UseSqlServer( 
-                   Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AJSDbContext>(options =>
+                 options.UseSqlServer(
+                     Configuration.GetConnectionString(ProjectConstants.DefaultConnection)));
 
+            services.AddSingleton<ILoggerManager, LoggerManager>();
             services.AddTransient<IEmailSender, EmailSender>();
-            services.Configure<AuthMessageSenderOptions>(Configuration.GetSection("SendGrid"));
-
+            services.Configure<AuthMessageSenderOptions>(Configuration.GetSection(ProjectConstants.SendGridConfigSection));
 
             services.AddDefaultIdentity<User>(options =>
             {
@@ -63,11 +66,13 @@ namespace AJS.Web
                     option => option.ResourcesPath = ProjectConstants.LanguageResourcesPath)
                 .AddDataAnnotationsLocalization();
 
+            services.AddSession();
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddDomainServices();
             services.GetRequestLocalization();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,17 +80,17 @@ namespace AJS.Web
         {
             if (env.IsDevelopment())
             {
-                
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseExceptionHandler(ProjectConstants.ErrorControllerPath);
                 app.UseHsts();
+                app.UseLogger();
             }
 
+            app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
