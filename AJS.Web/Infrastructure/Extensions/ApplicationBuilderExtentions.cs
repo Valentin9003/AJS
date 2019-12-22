@@ -6,11 +6,27 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 using AJS.Web.Infrastructure.Middlewares;
+using AJS.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace AJS.Web.Infrastructure.Extensions
 {
     public static class ApplicationBuilderExtentions
     {
+        /// <summary>
+        /// Extention method that migrate Database
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
+        public static IApplicationBuilder UseDatabaseMigration(this IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                serviceScope.ServiceProvider.GetService<AJSDbContext>().Database.Migrate();
+            }
+            return app;
+        }
+
         /// <summary>
         ///  This extension set culture information for requests based on information provided by the client like invoked "UseRequestLocalization" and set "RequestLocalizationOptions"
         /// </summary>

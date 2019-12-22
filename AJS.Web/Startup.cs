@@ -91,6 +91,7 @@ namespace AJS.Web
                 app.UseLogger();
             }
 
+            app.UseDatabaseMigration();
             app.UseCors();
             app.UseSession();
             app.UseHttpsRedirection();
