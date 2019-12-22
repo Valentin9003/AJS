@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using AJS.Web.Infrastructure.EmailSender;
-using System;
 using System.IO;
 using NLog;
 using AJS.Common.Logger;
@@ -24,7 +23,7 @@ namespace AJS.Web
     {
         public Startup(IConfiguration configuration)
         {
-            LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
+            LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), ProjectConstants.NLogConfigFileDirectory));
             Configuration = configuration;
         }
 
@@ -35,11 +34,11 @@ namespace AJS.Web
         {
             services.AddDbContext<AJSDbContext>(options =>
                  options.UseSqlServer(
-                     Configuration.GetConnectionString("DefaultConnection")));
+                     Configuration.GetConnectionString(ProjectConstants.DefaultConnection)));
 
             services.AddSingleton<ILoggerManager, LoggerManager>();
             services.AddTransient<IEmailSender, EmailSender>();
-            services.Configure<AuthMessageSenderOptions>(Configuration.GetSection("SendGrid"));
+            services.Configure<AuthMessageSenderOptions>(Configuration.GetSection(ProjectConstants.SendGridConfigSection));
 
             services.AddDefaultIdentity<User>(options =>
             {
@@ -67,6 +66,7 @@ namespace AJS.Web
                     option => option.ResourcesPath = ProjectConstants.LanguageResourcesPath)
                 .AddDataAnnotationsLocalization();
 
+            services.AddSession();
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -85,10 +85,12 @@ namespace AJS.Web
             }
             else
             {
-                app.UseExceptionMiddleware();
+                app.UseExceptionHandler(ProjectConstants.ErrorControllerPath);
                 app.UseHsts();
+                app.UseLogger();
             }
 
+            app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
