@@ -13,5 +13,7 @@ namespace AJS.Web
         public const string DefaultConnection = "DefaultConnection";
         public const string SendGridConfigSection = "SendGrid";
         public const string ErrorControllerPath = "/Home/Error";
+        public const string FacebookAppId = "FacebookAutentication:FacebookAppId";
+        public const string FacebookAppSecret = "FacebookAutentication:FacebookAppSecret";
     }
 }
