@@ -66,6 +66,7 @@ namespace AJS.Web
                     option => option.ResourcesPath = ProjectConstants.LanguageResourcesPath)
                 .AddDataAnnotationsLocalization();
 
+            services.AddCors();
             services.AddSession();
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
@@ -90,6 +91,7 @@ namespace AJS.Web
                 app.UseLogger();
             }
 
+            app.UseCors();
             app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
