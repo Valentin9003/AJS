@@ -13,7 +13,6 @@ namespace AJS.Web.Infrastructure.Middlewares
         {
             _logger = logger;
             _next = next;
-
         }
 
         public async Task InvokeAsync(HttpContext httpContext)
