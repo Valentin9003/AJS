@@ -117,16 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
-    <comment>Home View Link</comment>
+  <data name="Accept" xml:space="preserve">
+    <value>Accept</value>
+    <comment>Accept</comment>
   </data>
-  <data name="Logout" xml:space="preserve">
-    <value>Logout</value>
-    <comment>Logout Button</comment>
+  <data name="Learn More" xml:space="preserve">
+    <value>Learn More</value>
+    <comment>Learn More</comment>
   </data>
-  <data name="Privacy" xml:space="preserve">
-    <value>Privacy</value>
-    <comment>Privacy View Link</comment>
+  <data name="Use this space to summarize your privacy and cookie use policy" xml:space="preserve">
+    <value>Use this space to summarize your privacy and cookie use policy</value>
+    <comment>Summarize Cookie Policy</comment>
   </data>
 </root>

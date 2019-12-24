@@ -121,6 +121,10 @@
     <value>Начало</value>
     <comment>Home View Link</comment>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Излизане</value>
+    <comment>Logout Button</comment>
+  </data>
   <data name="Privacy" xml:space="preserve">
     <value>Поверителност</value>
     <comment>Privacy View Link</comment>

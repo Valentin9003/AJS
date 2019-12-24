@@ -45,9 +45,4 @@
     <ProjectReference Include="..\AJS.Services\AJS.Services.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Resources\Areas\Identity\Pages\" />
-  </ItemGroup>
-
 </Project>

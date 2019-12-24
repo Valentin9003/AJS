@@ -117,16 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
-    <comment>Home View Link</comment>
+  <data name="Don't have access to your authenticator device? You can" xml:space="preserve">
+    <value>Нямате достъп до устройството си за удостоверяване? Можете</value>
+    <comment>Don't have access to your authenticator device? You can</comment>
   </data>
-  <data name="Logout" xml:space="preserve">
-    <value>Logout</value>
-    <comment>Logout Button</comment>
+  <data name="Log in" xml:space="preserve">
+    <value>Влизане</value>
+    <comment>Log in</comment>
   </data>
-  <data name="Privacy" xml:space="preserve">
-    <value>Privacy</value>
-    <comment>Privacy View Link</comment>
+  <data name="log in with a recovery code" xml:space="preserve">
+    <value>влезете с код за въстановяване</value>
+    <comment>log in with a recovery code</comment>
+  </data>
+  <data name="Two-factor authentication" xml:space="preserve">
+    <value>Двуфакторна автентификация</value>
+    <comment>Two-factor authentication</comment>
+  </data>
+  <data name="Your login is protected with an authenticator app. Enter your authenticator code below" xml:space="preserve">
+    <value>Входът ви е защитен с приложение за удостоверяване. Въведете по-долу вашия код за удостоверяване</value>
+    <comment>Your login is protected with an authenticator app. Enter your authenticator code below</comment>
   </data>
 </root>

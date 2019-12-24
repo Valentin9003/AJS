@@ -117,16 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
-    <comment>Home View Link</comment>
-  </data>
-  <data name="Logout" xml:space="preserve">
-    <value>Logout</value>
-    <comment>Logout Button</comment>
-  </data>
-  <data name="Privacy" xml:space="preserve">
-    <value>Privacy</value>
-    <comment>Privacy View Link</comment>
+  <data name="Confirm email change" xml:space="preserve">
+    <value>Потвърдете промяната на имейла</value>
+    <comment>Confirm email change</comment>
   </data>
 </root>

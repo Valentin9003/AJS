@@ -117,16 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
-    <comment>Home View Link</comment>
+  <data name="account" xml:space="preserve">
+    <value>акаунт</value>
+    <comment>account</comment>
   </data>
-  <data name="Logout" xml:space="preserve">
-    <value>Logout</value>
-    <comment>Logout Button</comment>
+  <data name="Associate your" xml:space="preserve">
+    <value>Свържете вашият</value>
+    <comment>Associate your</comment>
   </data>
-  <data name="Privacy" xml:space="preserve">
-    <value>Privacy</value>
-    <comment>Privacy View Link</comment>
+  <data name="Please enter an email address for this site below and click the Register button to finish logging in" xml:space="preserve">
+    <value>Моля, въведете имейл адрес за сайта по-долу и щракнете върху бутона Регистрация, за да завършите влизането</value>
+    <comment>Please enter an email address for this site below and click the Register button to finish logging in</comment>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Регистрация</value>
+    <comment>Register</comment>
+  </data>
+  <data name="You've successfully authenticated with" xml:space="preserve">
+    <value>Успешно се удостоверихте с</value>
+    <comment>You've successfully authenticated with</comment>
   </data>
 </root>

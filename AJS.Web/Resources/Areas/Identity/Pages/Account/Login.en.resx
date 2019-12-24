@@ -117,16 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
-    <comment>Home View Link</comment>
+  <data name="account" xml:space="preserve">
+    <value>account</value>
+    <comment>account</comment>
   </data>
-  <data name="Logout" xml:space="preserve">
-    <value>Logout</value>
-    <comment>Logout Button</comment>
+  <data name="for details on setting up this ASP.NET application to support logging in via external services" xml:space="preserve">
+    <value>for details on setting up this ASP.NET application to support logging in via external services</value>
+    <comment>for details on setting up this ASP.NET application to support logging in via external services</comment>
   </data>
-  <data name="Privacy" xml:space="preserve">
-    <value>Privacy</value>
-    <comment>Privacy View Link</comment>
+  <data name="Forgot your password?" xml:space="preserve">
+    <value>Forgot your password?</value>
+    <comment>Forgot your password?</comment>
+  </data>
+  <data name="Log in" xml:space="preserve">
+    <value>Log in</value>
+    <comment>Log in</comment>
+  </data>
+  <data name="Log in Title" xml:space="preserve">
+    <value>Log In</value>
+    <comment>Log In</comment>
+  </data>
+  <data name="Log in using your" xml:space="preserve">
+    <value>Log in using your</value>
+    <comment>Log in using your</comment>
+  </data>
+  <data name="Register as a new user" xml:space="preserve">
+    <value>Register as a new user</value>
+    <comment>Register as a new user</comment>
+  </data>
+  <data name="Resend email confirmation" xml:space="preserve">
+    <value>Resend email confirmation</value>
+    <comment>Resend email confirmation</comment>
+  </data>
+  <data name="There are no external authentication services configured. See" xml:space="preserve">
+    <value>There are no external authentication services configured. See</value>
+    <comment>There are no external authentication services configured. See</comment>
+  </data>
+  <data name="this article" xml:space="preserve">
+    <value>this article</value>
+    <comment>this article</comment>
+  </data>
+  <data name="Use a local account to log in" xml:space="preserve">
+    <value>Use a local account to log in</value>
+    <comment>Use a local account to log in</comment>
+  </data>
+  <data name="Use another service to log in" xml:space="preserve">
+    <value>Use another service to log in</value>
+    <comment>Use another service to log in</comment>
   </data>
 </root>
