@@ -1,5 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
+﻿@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Privacy Policy"];
 }
 <h1>@ViewData["Title"]</h1>
 

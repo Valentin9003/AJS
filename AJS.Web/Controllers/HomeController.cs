@@ -12,21 +12,15 @@ namespace AJS.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> Logger;
         private readonly IStringLocalizer<HomeController> StringLocalizer;
-        private readonly IViewLocalizer ViewLocalizer;
        
-        public HomeController(ILogger<HomeController> logger, IStringLocalizer<HomeController> stringLocalizer, IViewLocalizer viewLocalizer)
+        public HomeController(IStringLocalizer<HomeController> stringLocalizer, IViewLocalizer viewLocalizer)
         {
-            Logger = logger;
             StringLocalizer = stringLocalizer;
-            ViewLocalizer = viewLocalizer;
         }
 
         public IActionResult Index()
         {
-            TempData["Example"] = StringLocalizer.GetString("value");
-          
             return View();
         }
 
