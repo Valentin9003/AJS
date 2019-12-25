@@ -74,6 +74,7 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 
 ## Changelog
 * [2019.01.12] Creation of the project
+* [2019.08.12] Integration with Appveyor has been added
 * [2019.12.12] Added Email Sender Provider
 * [2019.12.12] Migrated project to .Net Core 3.1
 * [2019.22.12] Added Error Logging
