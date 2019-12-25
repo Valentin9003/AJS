@@ -78,3 +78,4 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 * [2019.12.12] Migrated project to .Net Core 3.1
 * [2019.22.12] Added Error Logging
 * [2019.23.12] Added Facebook Authentication
+* [2019.26.12] Multilingual support has been added to the layout, views and identity
