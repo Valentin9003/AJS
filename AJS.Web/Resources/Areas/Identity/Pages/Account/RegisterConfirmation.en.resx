@@ -117,8 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="value" xml:space="preserve">
-    <value>MainAssembly</value>
-    <comment>ergergreg</comment>
+  <data name="Click here to confirm your account" xml:space="preserve">
+    <value>Click here to confirm your account</value>
+    <comment>Click here to confirm your account</comment>
+  </data>
+  <data name="for how to configure a real email sender. Normally this would be emailed:" xml:space="preserve">
+    <value>for how to configure a real email sender. Normally this would be emailed:</value>
+    <comment>for how to configure a real email sender. Normally this would be emailed:</comment>
+  </data>
+  <data name="Please check your email to confirm your account." xml:space="preserve">
+    <value>Please check your email to confirm your account.</value>
+    <comment>Please check your email to confirm your account.</comment>
+  </data>
+  <data name="Register confirmation" xml:space="preserve">
+    <value>Register confirmation</value>
+    <comment>Register confirmation</comment>
+  </data>
+  <data name="these docs" xml:space="preserve">
+    <value>these docs</value>
+    <comment>these docs</comment>
+  </data>
+  <data name="This app does not currently have a real email sender registered, see" xml:space="preserve">
+    <value>This app does not currently have a real email sender registered, see</value>
+    <comment>This app does not currently have a real email sender registered, see</comment>
   </data>
 </root>

@@ -117,8 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="value" xml:space="preserve">
-    <value>MainAssembly</value>
-    <comment>ergergreg</comment>
+  <data name="Log in" xml:space="preserve">
+    <value>Влезте</value>
+    <comment>Log in</comment>
+  </data>
+  <data name="Recovery code verification" xml:space="preserve">
+    <value>Проверка на код за възстановяване</value>
+    <comment>Recovery code verification</comment>
+  </data>
+  <data name="You have requested to log in with a recovery code. This login will not be remembered until you provide an authenticator app code at log in or disable 2FA and log in again." xml:space="preserve">
+    <value>Вие поискахте да влезете с код за възстановяване. Това влизане няма да се запомни, докато не предоставите код за приложение за удостоверяване при влизане или деактивирате на 2FA и влезте отново.</value>
+    <comment>You have requested to log in with a recovery code. This login will not be remembered until you provide an authenticator app code at log in or disable 2FA and log in again.</comment>
   </data>
 </root>
