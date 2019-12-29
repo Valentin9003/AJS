@@ -1,7 +1,8 @@
 ﻿@page
 @model RegisterConfirmationModel
+@inject IViewLocalizer Localizer
 @{
-    ViewData["Title"] = "Register confirmation";
+    ViewData["Title"] = Localizer["Register confirmation"];
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -9,14 +10,14 @@
     if (@Model.DisplayConfirmAccountLink)
     {
 <p>
-    This app does not currently have a real email sender registered, see <a href="https://aka.ms/aspaccountconf">these docs</a> for how to configure a real email sender.
-    Normally this would be emailed: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Click here to confirm your account</a>
+    @Localizer["This app does not currently have a real email sender registered, see"] <a href="https://aka.ms/aspaccountconf">@Localizer["these docs"]</a> @Localizer["for how to configure a real email sender. Normally this would be emailed:"]
+    <a id="confirm-link" href="@Model.EmailConfirmationUrl">@Localizer["Click here to confirm your account"]</a>
 </p>
     }
     else
     {
 <p>
-        Please check your email to confirm your account.
+        @Localizer["Please check your email to confirm your account."]
 </p>
     }
 }

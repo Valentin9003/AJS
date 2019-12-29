@@ -119,9 +119,10 @@
   </resheader>
   <data name="Language" xml:space="preserve">
     <value>Език</value>
-    <comment>Language for choose at SetLanguage Partial View</comment>
+    <comment>Language for choose at set language partial view</comment>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Запази</value>
+    <comment>Save language button</comment>
   </data>
 </root>

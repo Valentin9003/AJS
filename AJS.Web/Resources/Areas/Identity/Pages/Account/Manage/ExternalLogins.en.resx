@@ -117,8 +117,36 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="value" xml:space="preserve">
-    <value>ertet</value>
-    <comment>ergergreg</comment>
+  <data name="account" xml:space="preserve">
+    <value>account</value>
+    <comment>account</comment>
+  </data>
+  <data name="Add another service to log in." xml:space="preserve">
+    <value>Add another service to log in.</value>
+    <comment>Add another service to log in.</comment>
+  </data>
+  <data name="Log in using your" xml:space="preserve">
+    <value>Log in using your</value>
+    <comment>Log in using your</comment>
+  </data>
+  <data name="login from your account" xml:space="preserve">
+    <value>login from your account</value>
+    <comment>login from your account</comment>
+  </data>
+  <data name="Manage your external logins" xml:space="preserve">
+    <value>Manage your external logins</value>
+    <comment>Manage your external logins</comment>
+  </data>
+  <data name="Registered Logins" xml:space="preserve">
+    <value>Registered Logins</value>
+    <comment>Registered Logins</comment>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+    <comment>Remove</comment>
+  </data>
+  <data name="Remove this" xml:space="preserve">
+    <value>Remove this</value>
+    <comment>Remove this</comment>
   </data>
 </root>

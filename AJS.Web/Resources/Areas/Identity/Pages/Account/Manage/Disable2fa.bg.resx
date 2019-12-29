@@ -117,8 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="value" xml:space="preserve">
-    <value>ertet</value>
-    <comment>ergergreg</comment>
+  <data name="Disable 2FA" xml:space="preserve">
+    <value>Деактивирай 2FA</value>
+    <comment>Disable 2FA</comment>
+  </data>
+  <data name="Disable two-factor authentication (2FA)" xml:space="preserve">
+    <value>Деактивиране на двуфакторната автентификация (2FA)</value>
+    <comment>Disable two-factor authentication (2FA)</comment>
+  </data>
+  <data name="Disabling 2FA does not change the keys used in authenticator apps. If you wish to change the key used" xml:space="preserve">
+    <value>Деактивирането на 2FA не променя клавишите, използвани в приложенията за удостоверяване. Ако искате да ги промените използвания ключ</value>
+    <comment>Disabling 2FA does not change the keys used in authenticator apps. If you wish to change the key used</comment>
+  </data>
+  <data name="reset your authenticator keys." xml:space="preserve">
+    <value>нулирайте ключовете за удостоверяване.</value>
+    <comment>reset your authenticator keys.</comment>
   </data>
 </root>
