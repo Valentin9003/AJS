@@ -48,7 +48,7 @@ namespace AJS.Web.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
-            [Display(Name = "Email")]
+            [Display(Name = "Email")] // TODO: ResourceType = typeof(AJS.Web.Areas.Identity.Pages.Account.RegisterModel.InputModel) Does not work.. .NET Core 3.0 BUG with public resource files
             public string Email { get; set; }
 
             [Required]
