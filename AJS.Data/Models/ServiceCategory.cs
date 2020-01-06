@@ -16,5 +16,7 @@ namespace AJS.Data.Models
         public ServiceCategory ParentCategory { get; set; }
 
         public List<ServiceCategory> Categories { get; set; } = new List<ServiceCategory>();
+
+        public List<Service> Services { get; set; } = new List<Service>();
     }
 }
