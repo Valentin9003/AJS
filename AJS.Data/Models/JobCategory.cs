@@ -16,5 +16,7 @@ namespace AJS.Data.Models
         public JobCategory ParentCategory { get; set; }
 
         public List<JobCategory> Categories { get; set; } = new List<JobCategory>();
+
+        public List<Job> Jobs { get; set; } = new List<Job>();
     }
 }
