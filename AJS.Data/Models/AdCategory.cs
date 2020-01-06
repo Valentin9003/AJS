@@ -16,5 +16,7 @@ namespace AJS.Data.Models
         public AdCategory ParentCategory { get; set; }
 
         public List<AdCategory> Categories { get; set; } = new List<AdCategory>();
+
+        public List<Ad> Ads { get; set; } = new List<Ad>();
    }
 }
