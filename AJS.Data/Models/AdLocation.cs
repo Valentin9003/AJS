@@ -34,6 +34,7 @@ namespace AJS.Data.Models
         public string Address { get; set; }
 
         [StringLength(DataConstants.AdLocationPostCodeMaximumLength)]
+        [RegularExpression("[0-9]{10}")]
         public string PostCode { get; set; }
     }
 }
