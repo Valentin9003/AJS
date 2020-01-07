@@ -1,4 +1,4 @@
-﻿using AJS.Data.Models.Enums;
+using AJS.Data.Models.Enums;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 

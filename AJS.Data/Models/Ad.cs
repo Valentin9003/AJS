@@ -1,4 +1,4 @@
-﻿using AJS.Data.Models.Enums;
+using AJS.Data.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
