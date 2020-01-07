@@ -1,13 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace AJS.Data.Models
 {
    public class AdPicture
     {
-        public string PictureId { get; set; } // Primary Key
+        [Key]
+        [Required]
+        public string Id { get; set; } // Primary Key
+
+        [Required]
+        [ForeignKey("AdId")]
+        public string AdId { get; set; }
+
+        public Ad Ad { get; set; }
 
         [Required]
         [MaxLength(10 * 1024 * 1024)]

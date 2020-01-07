@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel.DataAnnotations;
-using System.Text;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AJS.Data.Models
 {
@@ -10,18 +9,31 @@ namespace AJS.Data.Models
     /// </summary>
     public class AdLocation
     {
-        public string LocationId { get; set; } // Primary Key
+        [Key]
+        [Required]
+        public string LocationId { get; set; }
 
-        public string AdId { get; set; } // Foreign Key for Ad
+        [Required]
+        [ForeignKey("AdId")]
+        public string AdId { get; set; }
 
         public Ad Ad { get; set; }
 
+        [Required]
+        [StringLength(DataConstants.AdLocationCountryMnimumLength, MinimumLength = DataConstants.AdLocationCountryMnimumLength)]
         public string Country { get; set; }
 
+        [Required]
+        [StringLength(DataConstants.AdLocationCityMaximumLength, MinimumLength = DataConstants.AdLocationCityMnimumLength)]
         public string City { get; set; }
 
+        [StringLength(DataConstants.AdLocationStreetMaximumLength)]
         public string Street { get; set; }
 
+        [StringLength(DataConstants.AdLocationAddressMaximumLength)]
         public string Address { get; set; }
+
+        [StringLength(DataConstants.AdLocationPostCodeMaximumLength)]
+        public string PostCode { get; set; }
     }
 }
