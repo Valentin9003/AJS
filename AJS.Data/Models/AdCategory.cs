@@ -1,17 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AJS.Data.Models
 {
     /// <summary>
     /// Ads Categories
     /// </summary>
-   public class AdCategory
+    public class AdCategory
     {
-        public string Name { get; set; } // Primary Key
+       [Key]
+       [Required]
+        public string CategoryId { get; set; }
+
+        public string Name { get; set; } 
+
         public string Description { get; set; }
-        public string ParentCategoryId { get; set; } // Foreign Key for Parent Category
+
+        [ForeignKey("Id")]
+        public string ParentCategoryId { get; set; }
 
         public AdCategory ParentCategory { get; set; }
 
