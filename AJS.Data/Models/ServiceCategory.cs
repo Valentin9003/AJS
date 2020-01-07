@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,6 +9,7 @@ namespace AJS.Data.Models
     /// </summary>
     class ServiceCategory
     {
+
         public string Name { get; set; } // Primary Key
         public string Description { get; set; }
         public string ParentCategoryId { get; set; } // Foreign Key for Parent Category

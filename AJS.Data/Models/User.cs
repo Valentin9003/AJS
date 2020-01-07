@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+using AJS.Data.Models.Enums;
+using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
-using System.Text;
 
 namespace AJS.Data.Models
 {
-   public class User: IdentityUser
+    public class User: IdentityUser
     {
+        public UserType UserType { get; set; }
         public List<Ad> Ads { get; set; } = new List<Ad>(); // List of created Ads
 
         // public List<Service> Services { get; set; } = new List<Service> // List of created Services
