@@ -12,6 +12,9 @@
         public const int AdLocationCityMnimumLength = 3;
         public const int AdLocationCityMaximumLength = 15;
         public const int AdLocationStreetMaximumLength = 15;
+        public const int AdLocationAddressMaximumLength = 15;
+        public const int AdLocationPostCodeMaximumLength = 10;
+
         #endregion String Length Data Annotation Constants
     }
 }
