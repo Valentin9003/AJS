@@ -7,7 +7,7 @@ namespace AJS.Data.Models
     /// <summary>
     /// Services Categories
     /// </summary>
-    class ServiceCategory
+   public class ServiceCategory
     {
 
         public string Name { get; set; } // Primary Key

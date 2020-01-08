@@ -9,7 +9,6 @@ namespace AJS.Data.Models
     /// </summary>
     public class AdDescription
     {
-        [Key]
         [Required]
         public string DescriptionId { get; set; }
 
@@ -20,7 +19,6 @@ namespace AJS.Data.Models
         public AdState State { get; set; }
 
         [Required]
-        [ForeignKey("AdId")]
         public string AdId { get; set; }
 
         public Ad Ad { get; set; }

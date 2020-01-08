@@ -7,7 +7,7 @@ namespace AJS.Data.Models
     /// <summary>
     /// Jobs Categories
     /// </summary>
-    class JobCategory
+   public class JobCategory
     {
         public string Name { get; set; } // Primary Key
         public string Description { get; set; }
