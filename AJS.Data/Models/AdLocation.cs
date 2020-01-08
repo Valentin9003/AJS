@@ -1,6 +1,4 @@
-
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AJS.Data.Models
 {
@@ -9,12 +7,10 @@ namespace AJS.Data.Models
     /// </summary>
     public class AdLocation
     {
-        [Key]
         [Required]
         public string LocationId { get; set; }
 
         [Required]
-        [ForeignKey("AdId")]
         public string AdId { get; set; }
 
         public Ad Ad { get; set; }
