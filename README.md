@@ -73,12 +73,12 @@ See also the list of [contributors](https://github.com/Valentin9003/AJS/contribu
 This project is licensed under the Apache License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Changelog
-Creation of the project
-Integration with Appveyor has been added
-Added Email Sender Provider
-Migrated project to .Net Core 3.1
-Added Error Logging
-Added Facebook Authentication
-Added multilingual backend functionality
-Multilingual support has been added to the layout, views and identity
-Added Data Models and configurations for them
+* Creation of the project
+* Integration with Appveyor has been added
+* Added Email Sender Provider
+* Migrated project to .Net Core 3.1
+* Added Error Logging
+* Added Facebook Authentication
+* Added multilingual backend functionality
+* Multilingual support has been added to the layout, views and identity
+* Added Data Models and configurations for them
