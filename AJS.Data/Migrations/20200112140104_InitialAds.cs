@@ -3,10 +3,61 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AJS.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialAds : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AdCategory",
+                columns: table => new
+                {
+                    CategoryId = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    ParentAdCategoryId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdCategory", x => x.CategoryId);
+                    table.ForeignKey(
+                        name: "FK_AdCategory_AdCategory_ParentAdCategoryId",
+                        column: x => x.ParentAdCategoryId,
+                        principalTable: "AdCategory",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AdDescription",
+                columns: table => new
+                {
+                    DescriptionId = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(maxLength: 700, nullable: false),
+                    State = table.Column<int>(nullable: false),
+                    AdId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdDescription", x => x.DescriptionId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AdLocation",
+                columns: table => new
+                {
+                    LocationId = table.Column<string>(nullable: false),
+                    AdId = table.Column<string>(nullable: false),
+                    Country = table.Column<string>(maxLength: 3, nullable: false),
+                    City = table.Column<string>(maxLength: 15, nullable: false),
+                    Street = table.Column<string>(maxLength: 15, nullable: true),
+                    Address = table.Column<string>(maxLength: 15, nullable: true),
+                    PostCode = table.Column<string>(maxLength: 10, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdLocation", x => x.LocationId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -39,7 +90,8 @@ namespace AJS.Data.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    UserType = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,6 +115,49 @@ namespace AJS.Data.Migrations
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Ad",
+                columns: table => new
+                {
+                    AdId = table.Column<string>(nullable: false),
+                    Title = table.Column<string>(maxLength: 22, nullable: false),
+                    CreatorId = table.Column<string>(nullable: false),
+                    CategoryId = table.Column<string>(nullable: false),
+                    MainPictureId = table.Column<string>(nullable: true),
+                    LocationId = table.Column<string>(nullable: false),
+                    DescriptionId = table.Column<string>(nullable: false),
+                    PublicationDate = table.Column<DateTime>(nullable: false),
+                    Language = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ad", x => x.AdId);
+                    table.ForeignKey(
+                        name: "FK_Ad_AdDescription_AdId",
+                        column: x => x.AdId,
+                        principalTable: "AdDescription",
+                        principalColumn: "DescriptionId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Ad_AdLocation_AdId",
+                        column: x => x.AdId,
+                        principalTable: "AdLocation",
+                        principalColumn: "LocationId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Ad_AdCategory_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "AdCategory",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Ad_AspNetUsers_CreatorId",
+                        column: x => x.CreatorId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -152,6 +247,46 @@ namespace AJS.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "AdPicture",
+                columns: table => new
+                {
+                    PictureId = table.Column<string>(nullable: false),
+                    AdId = table.Column<string>(nullable: false),
+                    PictureByteArray = table.Column<byte[]>(maxLength: 10485760, nullable: false),
+                    IsProfilePicture = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdPicture", x => x.PictureId);
+                    table.ForeignKey(
+                        name: "FK_AdPicture_Ad_AdId",
+                        column: x => x.AdId,
+                        principalTable: "Ad",
+                        principalColumn: "AdId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ad_CategoryId",
+                table: "Ad",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ad_CreatorId",
+                table: "Ad",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AdCategory_ParentAdCategoryId",
+                table: "AdCategory",
+                column: "ParentAdCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AdPicture_AdId",
+                table: "AdPicture",
+                column: "AdId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -195,6 +330,9 @@ namespace AJS.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AdPicture");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -210,7 +348,19 @@ namespace AJS.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Ad");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "AdDescription");
+
+            migrationBuilder.DropTable(
+                name: "AdLocation");
+
+            migrationBuilder.DropTable(
+                name: "AdCategory");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

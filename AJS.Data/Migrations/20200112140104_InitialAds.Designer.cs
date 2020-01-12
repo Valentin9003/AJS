@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AJS.Data.Migrations
 {
     [DbContext(typeof(AJSDbContext))]
-    [Migration("20191211194525_Initial")]
-    partial class Initial
+    [Migration("20200112140104_InitialAds")]
+    partial class InitialAds
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,153 @@ namespace AJS.Data.Migrations
                 .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("AJS.Data.Models.Ad", b =>
+                {
+                    b.Property<string>("AdId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CategoryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("DescriptionId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LocationId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MainPictureId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("PublicationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(22)")
+                        .HasMaxLength(22);
+
+                    b.HasKey("AdId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("CreatorId");
+
+                    b.ToTable("Ad");
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.AdCategory", b =>
+                {
+                    b.Property<string>("CategoryId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParentAdCategoryId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("CategoryId");
+
+                    b.HasIndex("ParentAdCategoryId");
+
+                    b.ToTable("AdCategory");
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.AdDescription", b =>
+                {
+                    b.Property<string>("DescriptionId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AdId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(700)")
+                        .HasMaxLength(700);
+
+                    b.Property<int>("State")
+                        .HasColumnType("int");
+
+                    b.HasKey("DescriptionId");
+
+                    b.ToTable("AdDescription");
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.AdLocation", b =>
+                {
+                    b.Property<string>("LocationId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AdId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(15)")
+                        .HasMaxLength(15);
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(15)")
+                        .HasMaxLength(15);
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(3)")
+                        .HasMaxLength(3);
+
+                    b.Property<string>("PostCode")
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("Street")
+                        .HasColumnType("nvarchar(15)")
+                        .HasMaxLength(15);
+
+                    b.HasKey("LocationId");
+
+                    b.ToTable("AdLocation");
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.AdPicture", b =>
+                {
+                    b.Property<string>("PictureId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AdId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsProfilePicture")
+                        .HasColumnType("bit");
+
+                    b.Property<byte[]>("PictureByteArray")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)")
+                        .HasMaxLength(10485760);
+
+                    b.HasKey("PictureId");
+
+                    b.HasIndex("AdId");
+
+                    b.ToTable("AdPicture");
+                });
 
             modelBuilder.Entity("AJS.Data.Models.User", b =>
                 {
@@ -72,6 +219,9 @@ namespace AJS.Data.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
+
+                    b.Property<int>("UserType")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -219,6 +369,49 @@ namespace AJS.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.Ad", b =>
+                {
+                    b.HasOne("AJS.Data.Models.AdDescription", "Description")
+                        .WithOne("Ad")
+                        .HasForeignKey("AJS.Data.Models.Ad", "AdId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AJS.Data.Models.AdLocation", "Location")
+                        .WithOne("Ad")
+                        .HasForeignKey("AJS.Data.Models.Ad", "AdId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AJS.Data.Models.AdCategory", "Category")
+                        .WithMany("Ads")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AJS.Data.Models.User", "Creator")
+                        .WithMany("Ads")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.AdCategory", b =>
+                {
+                    b.HasOne("AJS.Data.Models.AdCategory", "ParentAdCategory")
+                        .WithMany("Categories")
+                        .HasForeignKey("ParentAdCategoryId");
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.AdPicture", b =>
+                {
+                    b.HasOne("AJS.Data.Models.Ad", "Ad")
+                        .WithMany("Pictures")
+                        .HasForeignKey("AdId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

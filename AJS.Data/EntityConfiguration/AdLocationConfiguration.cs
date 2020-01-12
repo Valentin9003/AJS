@@ -1,17 +1,18 @@
 ﻿using AJS.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace AJS.Data.DbConfiguration
+namespace AJS.Data.EntityConfiguration
 {
     public class AdLocationConfiguration : IEntityTypeConfiguration<AdLocation>
     {
         public void Configure(EntityTypeBuilder<AdLocation> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(k => k.LocationId);
+
+            builder.HasOne(a => a.Ad)
+                   .WithOne(l => l.Location)
+                   .HasForeignKey<Ad>(fk => fk.AdId);
         }
     }
 }

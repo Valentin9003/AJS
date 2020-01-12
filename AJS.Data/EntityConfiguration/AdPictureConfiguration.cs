@@ -1,17 +1,18 @@
 ﻿using AJS.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace AJS.Data.DbConfiguration
+namespace AJS.Data.EntityConfiguration
 {
     public class AdPictureConfiguration : IEntityTypeConfiguration<AdPicture>
     {
         public void Configure(EntityTypeBuilder<AdPicture> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(k => k.PictureId);
+
+            builder.HasOne(p => p.Ad)
+                   .WithMany(a => a.Pictures)
+                   .HasForeignKey(fk => fk.AdId);
         }
     }
 }
