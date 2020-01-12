@@ -1,17 +1,17 @@
 ﻿using AJS.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace AJS.Data.DbConfiguration
+namespace AJS.Data.EntityConfiguration
 {
+    /// <summary>
+    /// Service Data Model Configuration
+    /// </summary>
     public class ServiceConfiguration : IEntityTypeConfiguration<Service>
     {
         public void Configure(EntityTypeBuilder<Service> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(k => k.ServiceId);
         }
     }
 }

@@ -1,17 +1,17 @@
 ﻿using AJS.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace AJS.Data.DbConfiguration
+namespace AJS.Data.EntityConfiguration
 {
+    /// <summary>
+    /// Ad Data Model Configuration
+    /// </summary>
     public class AdConfiguration : IEntityTypeConfiguration<Ad>
     {
         public void Configure(EntityTypeBuilder<Ad> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(k => k.AdId);
         }
     }
 }

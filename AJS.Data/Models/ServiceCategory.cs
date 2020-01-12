@@ -1,22 +1,25 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AJS.Data.Models
 {
     /// <summary>
-    /// Services Categories
+    /// ServicesCategory Data Model
     /// </summary>
-   public class ServiceCategory
+    public class ServiceCategory
     {
+        public string CategoryId { get; set; }
 
-        public string Name { get; set; } // Primary Key
+        public string Name { get; set; }
+
         public string Description { get; set; }
-        public string ParentCategoryId { get; set; } // Foreign Key for Parent Category
 
-        public ServiceCategory ParentCategory { get; set; }
+        public string ParentServiceCategoryId { get; set; }
 
-        public List<ServiceCategory> Categories { get; set; } = new List<ServiceCategory>();
+        [ForeignKey("ParentServiceCategoryId")]
+        public ServiceCategory ParentServiceCategory { get; set; }
+
+        public HashSet<ServiceCategory> Categories { get; set; } = new HashSet<ServiceCategory>();
 
         public List<Service> Services { get; set; } = new List<Service>();
     }

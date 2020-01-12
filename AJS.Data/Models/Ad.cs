@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace AJS.Data.Models
 {
     /// <summary>
-    /// Full Information About the Add
+    /// Ad Data Model
     /// </summary>
     public class Ad
     {
@@ -27,10 +27,6 @@ namespace AJS.Data.Models
 
         public AdCategory Category { get; set; }
         
-        public string MainPictureId { get; set; }
-
-        public AdPicture MainPicture { get; set; }
-
         public List<AdPicture> Pictures { get; set; } = new List<AdPicture>();
 
         [Required]

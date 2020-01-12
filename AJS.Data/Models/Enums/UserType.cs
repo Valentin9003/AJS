@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AJS.Data.Models.Enums
+﻿namespace AJS.Data.Models.Enums
 {
     /// <summary>
-    /// Type of User: User or Company
+    /// Type of User Enum: User or Company
     /// </summary>
     public enum UserType
     {

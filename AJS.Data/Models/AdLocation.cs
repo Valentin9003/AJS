@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace AJS.Data.Models
 {
     /// <summary>
-    /// Location of the Ad
+    /// AdLocation Data Model
     /// </summary>
     public class AdLocation
     {

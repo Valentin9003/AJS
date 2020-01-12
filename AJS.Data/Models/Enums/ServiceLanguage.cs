@@ -1,12 +1,12 @@
 ﻿namespace AJS.Data.Models.Enums
 {
     /// <summary>
-    /// Ad State Enum
+    /// Service Language Enum
     /// </summary>
-    public enum AdState
+    public enum ServiceLanguage
     {
         Undefined = 0,
-        New = 1, 
-        Used = 2
+        EN = 1,
+        BG = 2,
     }
 }

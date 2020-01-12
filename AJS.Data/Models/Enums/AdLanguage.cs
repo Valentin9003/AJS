@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AJS.Data.Models.Enums
+﻿namespace AJS.Data.Models.Enums
 {
     /// <summary>
-    /// Ad Language
+    /// Ad Language Enum
     /// </summary>
     public enum AdLanguage
     {
         Undefined = 0,
         EN = 1,
         BG = 2,
-
     }
 }
