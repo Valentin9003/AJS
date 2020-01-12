@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AJS.Data.EntityConfiguration
 {
+    /// <summary>
+    /// AdCategory Data Model Configuration
+    /// </summary>
     public class AdCategoryConfiguration : IEntityTypeConfiguration<AdCategory>
     {
         public void Configure(EntityTypeBuilder<AdCategory> builder)

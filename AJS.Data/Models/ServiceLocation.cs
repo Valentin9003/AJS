@@ -2,6 +2,9 @@
 
 namespace AJS.Data.Models
 {
+    /// <summary>
+    /// ServiceLocation Data Model
+    /// </summary>
     public class ServiceLocation
     {
         [Required]

@@ -2,7 +2,6 @@
 using AJS.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace AJS.Data
 {
@@ -23,7 +22,7 @@ namespace AJS.Data
 
         public DbSet<AdLocation> AdLocation { get; set; }
 
-        public DbSet<AdPicture> AdPicture { get; set; } 
+        public DbSet<AdPicture> AdPicture { get; set; }
 
         public DbSet<Service> Service { get; set; }
 
@@ -35,9 +34,15 @@ namespace AJS.Data
 
         public DbSet<ServiceDescription> ServiceDescription { get; set; }
 
-        //public DbSet<Job> Job { get; set; }
+        public DbSet<Job> Job { get; set; }
 
-        //public DbSet<JobCategory> JobCategory { get; set; }
+        public DbSet<JobCategory> JobCategory { get; set; }
+
+        public DbSet<JobLocation> JobLocation { get; set; }
+
+        public DbSet<JobPicture> JobPicture { get; set; }
+
+        public DbSet<JobDescription> JobDescription { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -63,9 +68,15 @@ namespace AJS.Data
 
             builder.ApplyConfiguration(new ServiceDescriptionConfiguration());
 
-            //builder.ApplyConfiguration(new JobConfiguration());
+            builder.ApplyConfiguration(new JobConfiguration());
 
-            //builder.ApplyConfiguration(new JobCategoryConfiguration());
+            builder.ApplyConfiguration(new JobCategoryConfiguration());
+
+            builder.ApplyConfiguration(new JobLocationConfiguration());
+
+            builder.ApplyConfiguration(new JobPictureConfiguration());
+
+            builder.ApplyConfiguration(new JobDescriptionConfiguration());
 
             base.OnModelCreating(builder);
         }

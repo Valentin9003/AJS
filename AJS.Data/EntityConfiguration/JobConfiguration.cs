@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace AJS.Data.EntityConfiguration
 {
     /// <summary>
-    /// Service Data Model Configuration
+    /// Job Data Model Configuration
     /// </summary>
-    public class ServiceConfiguration : IEntityTypeConfiguration<Service>
+    public class JobConfiguration : IEntityTypeConfiguration<Job>
     {
-        public void Configure(EntityTypeBuilder<Service> builder)
+        public void Configure(EntityTypeBuilder<Job> builder)
         {
-            builder.HasKey(k => k.ServiceId);
+            builder.HasKey(k => k.JobId);
         }
     }
 }

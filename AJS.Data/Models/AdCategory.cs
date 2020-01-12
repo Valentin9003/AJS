@@ -5,11 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace AJS.Data.Models
 {
     /// <summary>
-    /// Ads Categories
+    /// AdCategory Data Model
     /// </summary>
     public class AdCategory
     {
-      // [Required]
+        [Required]
         public string CategoryId { get; set; }
 
         public string Name { get; set; } 

@@ -4,13 +4,16 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AJS.Data.EntityConfiguration
 {
+    /// <summary>
+    /// ServiceLocation Data Model Configuration
+    /// </summary>
     public class ServiceLocationConfiguration : IEntityTypeConfiguration<ServiceLocation>
     {
         public void Configure(EntityTypeBuilder<ServiceLocation> builder)
         {
             builder.HasKey(k => k.LocationId);
 
-            builder.HasOne(a => a.Service)
+            builder.HasOne(s => s.Service)
                    .WithOne(l => l.Location)
                    .HasForeignKey<Service>(fk => fk.ServiceId);
         }

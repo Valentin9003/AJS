@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AJS.Data.EntityConfiguration
 {
+    /// <summary>
+    /// ServiceCategory Data Model Configuration
+    /// </summary>
     class ServiceCategoryConfiguration : IEntityTypeConfiguration<ServiceCategory>
     {
         public void Configure(EntityTypeBuilder<ServiceCategory> builder)

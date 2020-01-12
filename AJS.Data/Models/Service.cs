@@ -5,6 +5,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AJS.Data.Models
 {
+    /// <summary>
+    /// Service Data Model
+    /// </summary>
     public class Service
     {
         [Required]

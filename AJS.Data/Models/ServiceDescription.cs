@@ -2,7 +2,10 @@
 
 namespace AJS.Data.Models
 {
-   public class ServiceDescription
+    /// <summary>
+    ///  ServiceDescription Data Model
+    /// </summary>
+    public class ServiceDescription
     {
         [Required]
         public string DescriptionId { get; set; }

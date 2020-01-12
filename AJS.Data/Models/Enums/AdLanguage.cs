@@ -1,7 +1,7 @@
 ﻿namespace AJS.Data.Models.Enums
 {
     /// <summary>
-    /// Ad Language
+    /// Ad Language Enum
     /// </summary>
     public enum AdLanguage
     {

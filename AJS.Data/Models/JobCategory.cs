@@ -1,21 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AJS.Data.Models
 {
     /// <summary>
-    /// Jobs Categories
+    /// JobCategory Data Model
     /// </summary>
-   public class JobCategory
+    public class JobCategory
     {
-        public string Name { get; set; } // Primary Key
+        [Required]
+        public string CategoryId { get; set; }
+
+        public string Name { get; set; }
+
         public string Description { get; set; }
-        public string ParentCategoryId { get; set; } // Foreign Key for Parent Category
 
-        public JobCategory ParentCategory { get; set; }
+        public string ParentJobCategoryId { get; set; }
 
-        public List<JobCategory> Categories { get; set; } = new List<JobCategory>();
+        [ForeignKey("ParentJobCategoryId")]
+        public JobCategory ParentJobCategory { get; set; }
+
+        public HashSet<JobCategory> Categories { get; set; } = new HashSet<JobCategory>();
 
         public List<Job> Jobs { get; set; } = new List<Job>();
     }

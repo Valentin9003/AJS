@@ -1,9 +1,9 @@
 ﻿namespace AJS.Data.Models.Enums
 {
     /// <summary>
-    /// Service Language Enum
+    /// Job Language Enum
     /// </summary>
-    public enum ServiceLanguage
+    public enum JobLanguage
     {
         Undefined = 0,
         EN = 1,

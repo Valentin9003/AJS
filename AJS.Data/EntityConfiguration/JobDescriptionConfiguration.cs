@@ -5,17 +5,17 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace AJS.Data.EntityConfiguration
 {
     /// <summary>
-    /// AdDescription Data Model Configuration
+    /// JobDescription Data Model Configuration
     /// </summary>
-    public class AdDescriptionConfiguration : IEntityTypeConfiguration<AdDescription>
+    public class JobDescriptionConfiguration : IEntityTypeConfiguration<JobDescription>
     {
-        public void Configure(EntityTypeBuilder<AdDescription> builder)
+        public void Configure(EntityTypeBuilder<JobDescription> builder)
         {
             builder.HasKey(k => k.DescriptionId);
 
-            builder.HasOne(a => a.Ad)
+            builder.HasOne(j => j.Job)
                    .WithOne(d => d.Description)
-                   .HasForeignKey<Ad>(fk => fk.AdId);
+                   .HasForeignKey<Job>(fk => fk.JobId);
         }
     }
 }

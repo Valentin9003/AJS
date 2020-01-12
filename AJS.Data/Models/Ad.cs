@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace AJS.Data.Models
 {
     /// <summary>
-    /// Full Information About the Add
+    /// Ad Data Model
     /// </summary>
     public class Ad
     {

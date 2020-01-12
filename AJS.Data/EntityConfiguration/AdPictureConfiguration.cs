@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AJS.Data.EntityConfiguration
 {
+    /// <summary>
+    /// AdPicture Data Model Configuration
+    /// </summary>
     public class AdPictureConfiguration : IEntityTypeConfiguration<AdPicture>
     {
         public void Configure(EntityTypeBuilder<AdPicture> builder)

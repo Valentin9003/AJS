@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace AJS.Data.Models
 {
     /// <summary>
-    /// Services Categories
+    /// ServicesCategory Data Model
     /// </summary>
     public class ServiceCategory
     {

@@ -2,6 +2,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AJS.Data.Models
 {
+    /// <summary>
+    /// AdPicture Data Model
+    /// </summary>
     public class AdPicture
     {
         [Required]
@@ -16,6 +19,6 @@ namespace AJS.Data.Models
         [MaxLength(DataConstants.AdPictureByteArrayMaximumLength)]
         public byte[] PictureByteArray { get; set; } = new byte[(10 * 1024 * 1024)];
 
-        public bool IsProfilePicture { get; set; } = false;
+        public bool IsMainPicture { get; set; } = false;
     }
 }
