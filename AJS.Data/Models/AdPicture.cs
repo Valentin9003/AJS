@@ -13,7 +13,7 @@ namespace AJS.Data.Models
         public Ad Ad { get; set; }
 
         [Required]
-        [MaxLength(DataConstants.PictureByteArrayMaximumLength)]
+        [MaxLength(DataConstants.AdPictureByteArrayMaximumLength)]
         public byte[] PictureByteArray { get; set; } = new byte[(10 * 1024 * 1024)];
 
         public bool IsProfilePicture { get; set; } = false;

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AJS.Data.Models
 {
@@ -8,7 +9,7 @@ namespace AJS.Data.Models
     /// </summary>
     public class AdCategory
     {
-       [Required]
+      // [Required]
         public string CategoryId { get; set; }
 
         public string Name { get; set; } 
@@ -17,9 +18,10 @@ namespace AJS.Data.Models
 
         public string ParentAdCategoryId { get; set; }
 
-        public AdCategory ParentAdCategory { get; set; }
+      [ForeignKey("ParentAdCategoryId")]
+       public AdCategory ParentAdCategory { get; set; }
 
-        public List<AdCategory> Categories { get; set; } = new List<AdCategory>();
+        public HashSet<AdCategory> Categories { get; set; } = new HashSet<AdCategory>();
 
         public List<Ad> Ads { get; set; } = new List<Ad>();
    }
