@@ -10,10 +10,11 @@ namespace AJS.Data.Models
     public class User: IdentityUser
     {
         public UserType UserType { get; set; }
-        public List<Ad> Ads { get; set; } = new List<Ad>(); 
 
-        public List<Service> Services { get; set; } = new List<Service>();
+        public ICollection<Ad> Ads { get; set; } = new List<Ad>(); 
 
-        public List<Job> Jobs { get; set; } = new List<Job>();
+        public ICollection<Service> Services { get; set; } = new List<Service>();
+
+        public ICollection<Job> Jobs { get; set; } = new List<Job>();
     }
 }

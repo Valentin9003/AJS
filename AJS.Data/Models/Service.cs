@@ -27,7 +27,7 @@ namespace AJS.Data.Models
 
         public ServiceCategory Category { get; set; }
 
-        public List<ServicePicture> Pictures { get; set; } = new List<ServicePicture>();
+        public ICollection<ServicePicture> Pictures { get; set; } = new List<ServicePicture>();
 
         [Required]
         public string LocationId { get; set; }
@@ -44,5 +44,7 @@ namespace AJS.Data.Models
 
         [Required]
         public ServiceLanguage Language { get; set; }
+
+        public ICollection<ServicePrice> Prices { get; set; } = new List<ServicePrice>();
     }
 }

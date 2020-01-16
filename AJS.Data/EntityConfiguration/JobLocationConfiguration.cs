@@ -15,7 +15,7 @@ namespace AJS.Data.EntityConfiguration
 
             builder.HasOne(j => j.Job)
                       .WithOne(l => l.Location)
-                      .HasForeignKey<Job>(fk => fk.JobId);
+                      .HasForeignKey<JobLocation>(fk => fk.JobId);
         }
     }
 }
