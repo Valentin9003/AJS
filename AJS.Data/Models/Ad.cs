@@ -27,7 +27,7 @@ namespace AJS.Data.Models
 
         public AdCategory Category { get; set; }
         
-        public List<AdPicture> Pictures { get; set; } = new List<AdPicture>();
+        public ICollection<AdPicture> Pictures { get; set; } = new List<AdPicture>();
 
         [Required]
         public string LocationId { get; set; }
@@ -44,5 +44,7 @@ namespace AJS.Data.Models
 
         [Required]
         public AdLanguage Language { get; set; }
+
+        public ICollection<AdPrice> Prices { get; set; } = new List<AdPrice>();
     }
 }

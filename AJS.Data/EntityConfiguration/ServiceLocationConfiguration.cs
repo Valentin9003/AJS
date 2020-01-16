@@ -15,7 +15,7 @@ namespace AJS.Data.EntityConfiguration
 
             builder.HasOne(s => s.Service)
                    .WithOne(l => l.Location)
-                   .HasForeignKey<Service>(fk => fk.ServiceId);
+                   .HasForeignKey<ServiceLocation>(fk => fk.ServiceId);
         }
     }
 }

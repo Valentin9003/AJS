@@ -88,7 +88,7 @@ namespace AJS.Data.Migrations
 
                     b.Property<string>("AdId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -100,6 +100,9 @@ namespace AJS.Data.Migrations
 
                     b.HasKey("DescriptionId");
 
+                    b.HasIndex("AdId")
+                        .IsUnique();
+
                     b.ToTable("AdDescription");
                 });
 
@@ -110,7 +113,7 @@ namespace AJS.Data.Migrations
 
                     b.Property<string>("AdId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(15)")
@@ -135,6 +138,9 @@ namespace AJS.Data.Migrations
                         .HasMaxLength(15);
 
                     b.HasKey("LocationId");
+
+                    b.HasIndex("AdId")
+                        .IsUnique();
 
                     b.ToTable("AdLocation");
                 });
@@ -163,6 +169,27 @@ namespace AJS.Data.Migrations
                     b.ToTable("AdPicture");
                 });
 
+            modelBuilder.Entity("AJS.Data.Models.AdPrice", b =>
+                {
+                    b.Property<string>("AdPriceId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AdId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Currency")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("AdPriceId");
+
+                    b.HasIndex("AdId");
+
+                    b.ToTable("AdPrice");
+                });
+
             modelBuilder.Entity("AJS.Data.Models.Job", b =>
                 {
                     b.Property<string>("JobId")
@@ -188,7 +215,7 @@ namespace AJS.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PictureId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PublicationDate")
                         .HasColumnType("datetime2");
@@ -203,10 +230,6 @@ namespace AJS.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("CreatorId");
-
-                    b.HasIndex("PictureId")
-                        .IsUnique()
-                        .HasFilter("[PictureId] IS NOT NULL");
 
                     b.ToTable("Job");
                 });
@@ -244,9 +267,12 @@ namespace AJS.Data.Migrations
 
                     b.Property<string>("JobId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("DescriptionId");
+
+                    b.HasIndex("JobId")
+                        .IsUnique();
 
                     b.ToTable("JobDescription");
                 });
@@ -272,7 +298,7 @@ namespace AJS.Data.Migrations
 
                     b.Property<string>("JobId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PostCode")
                         .HasColumnType("nvarchar(10)")
@@ -283,6 +309,9 @@ namespace AJS.Data.Migrations
                         .HasMaxLength(15);
 
                     b.HasKey("LocationId");
+
+                    b.HasIndex("JobId")
+                        .IsUnique();
 
                     b.ToTable("JobLocation");
                 });
@@ -304,6 +333,27 @@ namespace AJS.Data.Migrations
                     b.HasKey("PictureId");
 
                     b.ToTable("JobPicture");
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.JobPrice", b =>
+                {
+                    b.Property<string>("JobPriceId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Currency")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("JobPriceId");
+
+                    b.HasIndex("JobId");
+
+                    b.ToTable("JobPrice");
                 });
 
             modelBuilder.Entity("AJS.Data.Models.Service", b =>
@@ -380,9 +430,12 @@ namespace AJS.Data.Migrations
 
                     b.Property<string>("ServiceId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("DescriptionId");
+
+                    b.HasIndex("ServiceId")
+                        .IsUnique();
 
                     b.ToTable("ServiceDescription");
                 });
@@ -412,13 +465,16 @@ namespace AJS.Data.Migrations
 
                     b.Property<string>("ServiceId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Street")
                         .HasColumnType("nvarchar(15)")
                         .HasMaxLength(15);
 
                     b.HasKey("LocationId");
+
+                    b.HasIndex("ServiceId")
+                        .IsUnique();
 
                     b.ToTable("ServiceLocation");
                 });
@@ -445,6 +501,27 @@ namespace AJS.Data.Migrations
                     b.HasIndex("ServiceId");
 
                     b.ToTable("ServicePicture");
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.ServicePrice", b =>
+                {
+                    b.Property<string>("ServicePriceId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Currency")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("ServiceId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ServicePriceId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("ServicePrice");
                 });
 
             modelBuilder.Entity("AJS.Data.Models.User", b =>
@@ -652,18 +729,6 @@ namespace AJS.Data.Migrations
 
             modelBuilder.Entity("AJS.Data.Models.Ad", b =>
                 {
-                    b.HasOne("AJS.Data.Models.AdDescription", "Description")
-                        .WithOne("Ad")
-                        .HasForeignKey("AJS.Data.Models.Ad", "AdId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AJS.Data.Models.AdLocation", "Location")
-                        .WithOne("Ad")
-                        .HasForeignKey("AJS.Data.Models.Ad", "AdId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AJS.Data.Models.AdCategory", "Category")
                         .WithMany("Ads")
                         .HasForeignKey("CategoryId")
@@ -681,7 +746,26 @@ namespace AJS.Data.Migrations
                 {
                     b.HasOne("AJS.Data.Models.AdCategory", "ParentAdCategory")
                         .WithMany("Categories")
-                        .HasForeignKey("ParentAdCategoryId");
+                        .HasForeignKey("ParentAdCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.AdDescription", b =>
+                {
+                    b.HasOne("AJS.Data.Models.Ad", "Ad")
+                        .WithOne("Description")
+                        .HasForeignKey("AJS.Data.Models.AdDescription", "AdId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.AdLocation", b =>
+                {
+                    b.HasOne("AJS.Data.Models.Ad", "Ad")
+                        .WithOne("Location")
+                        .HasForeignKey("AJS.Data.Models.AdLocation", "AdId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AJS.Data.Models.AdPicture", b =>
@@ -691,6 +775,13 @@ namespace AJS.Data.Migrations
                         .HasForeignKey("AdId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.AdPrice", b =>
+                {
+                    b.HasOne("AJS.Data.Models.Ad", "Ad")
+                        .WithMany("Prices")
+                        .HasForeignKey("AdId");
                 });
 
             modelBuilder.Entity("AJS.Data.Models.Job", b =>
@@ -706,29 +797,48 @@ namespace AJS.Data.Migrations
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("AJS.Data.Models.JobDescription", "Description")
-                        .WithOne("Job")
-                        .HasForeignKey("AJS.Data.Models.Job", "JobId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AJS.Data.Models.JobLocation", "Location")
-                        .WithOne("Job")
-                        .HasForeignKey("AJS.Data.Models.Job", "JobId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AJS.Data.Models.JobPicture", "Picture")
-                        .WithOne("Job")
-                        .HasForeignKey("AJS.Data.Models.Job", "PictureId");
                 });
 
             modelBuilder.Entity("AJS.Data.Models.JobCategory", b =>
                 {
                     b.HasOne("AJS.Data.Models.JobCategory", "ParentJobCategory")
                         .WithMany("Categories")
-                        .HasForeignKey("ParentJobCategoryId");
+                        .HasForeignKey("ParentJobCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.JobDescription", b =>
+                {
+                    b.HasOne("AJS.Data.Models.Job", "Job")
+                        .WithOne("Description")
+                        .HasForeignKey("AJS.Data.Models.JobDescription", "JobId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.JobLocation", b =>
+                {
+                    b.HasOne("AJS.Data.Models.Job", "Job")
+                        .WithOne("Location")
+                        .HasForeignKey("AJS.Data.Models.JobLocation", "JobId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.JobPicture", b =>
+                {
+                    b.HasOne("AJS.Data.Models.Job", "Job")
+                        .WithOne("Picture")
+                        .HasForeignKey("AJS.Data.Models.JobPicture", "PictureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.JobPrice", b =>
+                {
+                    b.HasOne("AJS.Data.Models.Job", "Job")
+                        .WithMany("Prices")
+                        .HasForeignKey("JobId");
                 });
 
             modelBuilder.Entity("AJS.Data.Models.Service", b =>
@@ -744,25 +854,32 @@ namespace AJS.Data.Migrations
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("AJS.Data.Models.ServiceDescription", "Description")
-                        .WithOne("Service")
-                        .HasForeignKey("AJS.Data.Models.Service", "ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AJS.Data.Models.ServiceLocation", "Location")
-                        .WithOne("Service")
-                        .HasForeignKey("AJS.Data.Models.Service", "ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("AJS.Data.Models.ServiceCategory", b =>
                 {
                     b.HasOne("AJS.Data.Models.ServiceCategory", "ParentServiceCategory")
                         .WithMany("Categories")
-                        .HasForeignKey("ParentServiceCategoryId");
+                        .HasForeignKey("ParentServiceCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.ServiceDescription", b =>
+                {
+                    b.HasOne("AJS.Data.Models.Service", "Service")
+                        .WithOne("Description")
+                        .HasForeignKey("AJS.Data.Models.ServiceDescription", "ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.ServiceLocation", b =>
+                {
+                    b.HasOne("AJS.Data.Models.Service", "Service")
+                        .WithOne("Location")
+                        .HasForeignKey("AJS.Data.Models.ServiceLocation", "ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AJS.Data.Models.ServicePicture", b =>
@@ -772,6 +889,13 @@ namespace AJS.Data.Migrations
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.ServicePrice", b =>
+                {
+                    b.HasOne("AJS.Data.Models.Service", "Service")
+                        .WithMany("Prices")
+                        .HasForeignKey("ServiceId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

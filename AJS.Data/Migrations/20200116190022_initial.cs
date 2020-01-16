@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AJS.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,37 +25,6 @@ namespace AJS.Data.Migrations
                         principalTable: "AdCategory",
                         principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AdDescription",
-                columns: table => new
-                {
-                    DescriptionId = table.Column<string>(nullable: false),
-                    Description = table.Column<string>(maxLength: 700, nullable: false),
-                    State = table.Column<int>(nullable: false),
-                    AdId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AdDescription", x => x.DescriptionId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AdLocation",
-                columns: table => new
-                {
-                    LocationId = table.Column<string>(nullable: false),
-                    AdId = table.Column<string>(nullable: false),
-                    Country = table.Column<string>(maxLength: 3, nullable: false),
-                    City = table.Column<string>(maxLength: 15, nullable: false),
-                    Street = table.Column<string>(maxLength: 15, nullable: true),
-                    Address = table.Column<string>(maxLength: 15, nullable: true),
-                    PostCode = table.Column<string>(maxLength: 10, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AdLocation", x => x.LocationId);
                 });
 
             migrationBuilder.CreateTable(
@@ -119,49 +88,6 @@ namespace AJS.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "JobDescription",
-                columns: table => new
-                {
-                    DescriptionId = table.Column<string>(nullable: false),
-                    Description = table.Column<string>(maxLength: 700, nullable: false),
-                    JobId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_JobDescription", x => x.DescriptionId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "JobLocation",
-                columns: table => new
-                {
-                    LocationId = table.Column<string>(nullable: false),
-                    JobId = table.Column<string>(nullable: false),
-                    Country = table.Column<string>(maxLength: 3, nullable: false),
-                    City = table.Column<string>(maxLength: 15, nullable: false),
-                    Street = table.Column<string>(maxLength: 15, nullable: true),
-                    Address = table.Column<string>(maxLength: 15, nullable: true),
-                    PostCode = table.Column<string>(maxLength: 10, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_JobLocation", x => x.LocationId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "JobPicture",
-                columns: table => new
-                {
-                    PictureId = table.Column<string>(nullable: false),
-                    JobId = table.Column<string>(nullable: false),
-                    PictureByteArray = table.Column<byte[]>(maxLength: 10485760, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_JobPicture", x => x.PictureId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ServiceCategory",
                 columns: table => new
                 {
@@ -179,36 +105,6 @@ namespace AJS.Data.Migrations
                         principalTable: "ServiceCategory",
                         principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ServiceDescription",
-                columns: table => new
-                {
-                    DescriptionId = table.Column<string>(nullable: false),
-                    Description = table.Column<string>(maxLength: 700, nullable: false),
-                    ServiceId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ServiceDescription", x => x.DescriptionId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ServiceLocation",
-                columns: table => new
-                {
-                    LocationId = table.Column<string>(nullable: false),
-                    ServiceId = table.Column<string>(nullable: false),
-                    Country = table.Column<string>(maxLength: 3, nullable: false),
-                    City = table.Column<string>(maxLength: 15, nullable: false),
-                    Street = table.Column<string>(maxLength: 15, nullable: true),
-                    Address = table.Column<string>(maxLength: 15, nullable: true),
-                    PostCode = table.Column<string>(maxLength: 10, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ServiceLocation", x => x.LocationId);
                 });
 
             migrationBuilder.CreateTable(
@@ -248,18 +144,6 @@ namespace AJS.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ad", x => x.AdId);
-                    table.ForeignKey(
-                        name: "FK_Ad_AdDescription_AdId",
-                        column: x => x.AdId,
-                        principalTable: "AdDescription",
-                        principalColumn: "DescriptionId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Ad_AdLocation_AdId",
-                        column: x => x.AdId,
-                        principalTable: "AdLocation",
-                        principalColumn: "LocationId",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Ad_AdCategory_CategoryId",
                         column: x => x.CategoryId,
@@ -388,24 +272,6 @@ namespace AJS.Data.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Job_JobDescription_JobId",
-                        column: x => x.JobId,
-                        principalTable: "JobDescription",
-                        principalColumn: "DescriptionId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Job_JobLocation_JobId",
-                        column: x => x.JobId,
-                        principalTable: "JobLocation",
-                        principalColumn: "LocationId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Job_JobPicture_PictureId",
-                        column: x => x.PictureId,
-                        principalTable: "JobPicture",
-                        principalColumn: "PictureId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -436,17 +302,48 @@ namespace AJS.Data.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AdDescription",
+                columns: table => new
+                {
+                    DescriptionId = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(maxLength: 700, nullable: false),
+                    State = table.Column<int>(nullable: false),
+                    AdId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdDescription", x => x.DescriptionId);
                     table.ForeignKey(
-                        name: "FK_Service_ServiceDescription_ServiceId",
-                        column: x => x.ServiceId,
-                        principalTable: "ServiceDescription",
-                        principalColumn: "DescriptionId",
+                        name: "FK_AdDescription_Ad_AdId",
+                        column: x => x.AdId,
+                        principalTable: "Ad",
+                        principalColumn: "AdId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AdLocation",
+                columns: table => new
+                {
+                    LocationId = table.Column<string>(nullable: false),
+                    AdId = table.Column<string>(nullable: false),
+                    Country = table.Column<string>(maxLength: 3, nullable: false),
+                    City = table.Column<string>(maxLength: 15, nullable: false),
+                    Street = table.Column<string>(maxLength: 15, nullable: true),
+                    Address = table.Column<string>(maxLength: 15, nullable: true),
+                    PostCode = table.Column<string>(maxLength: 10, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdLocation", x => x.LocationId);
                     table.ForeignKey(
-                        name: "FK_Service_ServiceLocation_ServiceId",
-                        column: x => x.ServiceId,
-                        principalTable: "ServiceLocation",
-                        principalColumn: "LocationId",
+                        name: "FK_AdLocation_Ad_AdId",
+                        column: x => x.AdId,
+                        principalTable: "Ad",
+                        principalColumn: "AdId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -471,6 +368,149 @@ namespace AJS.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AdPrice",
+                columns: table => new
+                {
+                    AdPriceId = table.Column<string>(nullable: false),
+                    Price = table.Column<double>(nullable: false),
+                    Currency = table.Column<string>(nullable: true),
+                    AdId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdPrice", x => x.AdPriceId);
+                    table.ForeignKey(
+                        name: "FK_AdPrice_Ad_AdId",
+                        column: x => x.AdId,
+                        principalTable: "Ad",
+                        principalColumn: "AdId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "JobDescription",
+                columns: table => new
+                {
+                    DescriptionId = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(maxLength: 700, nullable: false),
+                    JobId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JobDescription", x => x.DescriptionId);
+                    table.ForeignKey(
+                        name: "FK_JobDescription_Job_JobId",
+                        column: x => x.JobId,
+                        principalTable: "Job",
+                        principalColumn: "JobId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "JobLocation",
+                columns: table => new
+                {
+                    LocationId = table.Column<string>(nullable: false),
+                    JobId = table.Column<string>(nullable: false),
+                    Country = table.Column<string>(maxLength: 3, nullable: false),
+                    City = table.Column<string>(maxLength: 15, nullable: false),
+                    Street = table.Column<string>(maxLength: 15, nullable: true),
+                    Address = table.Column<string>(maxLength: 15, nullable: true),
+                    PostCode = table.Column<string>(maxLength: 10, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JobLocation", x => x.LocationId);
+                    table.ForeignKey(
+                        name: "FK_JobLocation_Job_JobId",
+                        column: x => x.JobId,
+                        principalTable: "Job",
+                        principalColumn: "JobId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "JobPicture",
+                columns: table => new
+                {
+                    PictureId = table.Column<string>(nullable: false),
+                    JobId = table.Column<string>(nullable: false),
+                    PictureByteArray = table.Column<byte[]>(maxLength: 10485760, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JobPicture", x => x.PictureId);
+                    table.ForeignKey(
+                        name: "FK_JobPicture_Job_PictureId",
+                        column: x => x.PictureId,
+                        principalTable: "Job",
+                        principalColumn: "JobId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "JobPrice",
+                columns: table => new
+                {
+                    JobPriceId = table.Column<string>(nullable: false),
+                    Price = table.Column<double>(nullable: false),
+                    Currency = table.Column<string>(nullable: true),
+                    JobId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JobPrice", x => x.JobPriceId);
+                    table.ForeignKey(
+                        name: "FK_JobPrice_Job_JobId",
+                        column: x => x.JobId,
+                        principalTable: "Job",
+                        principalColumn: "JobId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ServiceDescription",
+                columns: table => new
+                {
+                    DescriptionId = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(maxLength: 700, nullable: false),
+                    ServiceId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServiceDescription", x => x.DescriptionId);
+                    table.ForeignKey(
+                        name: "FK_ServiceDescription_Service_ServiceId",
+                        column: x => x.ServiceId,
+                        principalTable: "Service",
+                        principalColumn: "ServiceId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ServiceLocation",
+                columns: table => new
+                {
+                    LocationId = table.Column<string>(nullable: false),
+                    ServiceId = table.Column<string>(nullable: false),
+                    Country = table.Column<string>(maxLength: 3, nullable: false),
+                    City = table.Column<string>(maxLength: 15, nullable: false),
+                    Street = table.Column<string>(maxLength: 15, nullable: true),
+                    Address = table.Column<string>(maxLength: 15, nullable: true),
+                    PostCode = table.Column<string>(maxLength: 10, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServiceLocation", x => x.LocationId);
+                    table.ForeignKey(
+                        name: "FK_ServiceLocation_Service_ServiceId",
+                        column: x => x.ServiceId,
+                        principalTable: "Service",
+                        principalColumn: "ServiceId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ServicePicture",
                 columns: table => new
                 {
@@ -490,6 +530,26 @@ namespace AJS.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ServicePrice",
+                columns: table => new
+                {
+                    ServicePriceId = table.Column<string>(nullable: false),
+                    Price = table.Column<double>(nullable: false),
+                    Currency = table.Column<string>(nullable: true),
+                    ServiceId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServicePrice", x => x.ServicePriceId);
+                    table.ForeignKey(
+                        name: "FK_ServicePrice_Service_ServiceId",
+                        column: x => x.ServiceId,
+                        principalTable: "Service",
+                        principalColumn: "ServiceId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Ad_CategoryId",
                 table: "Ad",
@@ -506,8 +566,25 @@ namespace AJS.Data.Migrations
                 column: "ParentAdCategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AdDescription_AdId",
+                table: "AdDescription",
+                column: "AdId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AdLocation_AdId",
+                table: "AdLocation",
+                column: "AdId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AdPicture_AdId",
                 table: "AdPicture",
+                column: "AdId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AdPrice_AdId",
+                table: "AdPrice",
                 column: "AdId");
 
             migrationBuilder.CreateIndex(
@@ -560,16 +637,26 @@ namespace AJS.Data.Migrations
                 column: "CreatorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Job_PictureId",
-                table: "Job",
-                column: "PictureId",
-                unique: true,
-                filter: "[PictureId] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_JobCategory_ParentJobCategoryId",
                 table: "JobCategory",
                 column: "ParentJobCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobDescription_JobId",
+                table: "JobDescription",
+                column: "JobId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobLocation_JobId",
+                table: "JobLocation",
+                column: "JobId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobPrice_JobId",
+                table: "JobPrice",
+                column: "JobId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Service_CategoryId",
@@ -587,15 +674,41 @@ namespace AJS.Data.Migrations
                 column: "ParentServiceCategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ServiceDescription_ServiceId",
+                table: "ServiceDescription",
+                column: "ServiceId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ServiceLocation_ServiceId",
+                table: "ServiceLocation",
+                column: "ServiceId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ServicePicture_ServiceId",
                 table: "ServicePicture",
+                column: "ServiceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ServicePrice_ServiceId",
+                table: "ServicePrice",
                 column: "ServiceId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AdDescription");
+
+            migrationBuilder.DropTable(
+                name: "AdLocation");
+
+            migrationBuilder.DropTable(
                 name: "AdPicture");
+
+            migrationBuilder.DropTable(
+                name: "AdPrice");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -613,21 +726,6 @@ namespace AJS.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Job");
-
-            migrationBuilder.DropTable(
-                name: "ServicePicture");
-
-            migrationBuilder.DropTable(
-                name: "Ad");
-
-            migrationBuilder.DropTable(
-                name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "JobCategory");
-
-            migrationBuilder.DropTable(
                 name: "JobDescription");
 
             migrationBuilder.DropTable(
@@ -637,28 +735,43 @@ namespace AJS.Data.Migrations
                 name: "JobPicture");
 
             migrationBuilder.DropTable(
-                name: "Service");
-
-            migrationBuilder.DropTable(
-                name: "AdDescription");
-
-            migrationBuilder.DropTable(
-                name: "AdLocation");
-
-            migrationBuilder.DropTable(
-                name: "AdCategory");
-
-            migrationBuilder.DropTable(
-                name: "ServiceCategory");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "JobPrice");
 
             migrationBuilder.DropTable(
                 name: "ServiceDescription");
 
             migrationBuilder.DropTable(
                 name: "ServiceLocation");
+
+            migrationBuilder.DropTable(
+                name: "ServicePicture");
+
+            migrationBuilder.DropTable(
+                name: "ServicePrice");
+
+            migrationBuilder.DropTable(
+                name: "Ad");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Job");
+
+            migrationBuilder.DropTable(
+                name: "Service");
+
+            migrationBuilder.DropTable(
+                name: "AdCategory");
+
+            migrationBuilder.DropTable(
+                name: "JobCategory");
+
+            migrationBuilder.DropTable(
+                name: "ServiceCategory");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

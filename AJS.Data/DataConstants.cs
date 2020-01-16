@@ -28,6 +28,8 @@
 
         public const int AdPictureByteArrayMaximumLength = 10 * 1024 * 1024;   // Max size for Picture is 10MB
 
+        public const string AdPriceCurrencyRegex = "^(BG|EN|USD|EUR|GDP)$";
+
         #endregion String Length Ad Data Annotation Constants
 
         #region String Length Service Data Annotation Constants
@@ -56,6 +58,8 @@
 
         public const int ServicePictureByteArrayMaximumLength = 10 * 1024 * 1024;   // Max size for Picture is 10MB
 
+        public const string ServicePriceCurrencyRegex = "^(BG|EN|USD|EUR|GDP)$";
+
         #endregion String Length Service Data Annotation Constants
 
         #region String Length Job Data Annotation Constants
@@ -83,6 +87,8 @@
         public const int JobLocationPostCodeMaximumLength = 10;
                          
         public const int JobPictureByteArrayMaximumLength = 10 * 1024 * 1024;   // Max size for Picture is 10MB
+
+        public const string JobPriceCurrencyRegex = "^(BG|EN|USD|EUR|GDP)$";
 
         #endregion String Length Job Data Annotation Constants
     }

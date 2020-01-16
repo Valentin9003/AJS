@@ -1,5 +1,6 @@
 ﻿using AJS.Data.Models.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace AJS.Data.Models
@@ -45,5 +46,7 @@ namespace AJS.Data.Models
 
         [Required]
         public JobLanguage Language { get; set; }
+
+        public ICollection<JobPrice> Prices { get; set; } = new List<JobPrice>();
     }
 }

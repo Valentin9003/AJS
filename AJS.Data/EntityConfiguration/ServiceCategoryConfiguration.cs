@@ -15,7 +15,8 @@ namespace AJS.Data.EntityConfiguration
 
             builder.HasMany(s => s.Categories)
                    .WithOne(p => p.ParentServiceCategory)
-                   .HasForeignKey(fk => fk.ParentServiceCategoryId);
+                   .HasForeignKey(fk => fk.ParentServiceCategoryId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

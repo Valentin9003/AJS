@@ -20,7 +20,7 @@ namespace AJS.Data.EntityConfiguration
             builder.HasMany(j => j.Jobs)
                  .WithOne(c => c.Creator)
                  .HasForeignKey(fk => fk.CreatorId);
-
+                
             builder.HasMany(s => s.Services)
                  .WithOne(c => c.Creator)
                  .HasForeignKey(fk => fk.CreatorId);
