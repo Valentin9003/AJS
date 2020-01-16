@@ -1,5 +1,4 @@
-﻿using AJS.Data.EntityConfiguration;
-using AJS.Data.Models;
+﻿using AJS.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +23,8 @@ namespace AJS.Data
 
         public DbSet<AdPicture> AdPicture { get; set; }
 
+        public DbSet<AdPrice> AdPrice { get; set; }
+
         public DbSet<Service> Service { get; set; }
 
         public DbSet<ServiceCategory> ServiceCategory { get; set; }
@@ -33,6 +34,8 @@ namespace AJS.Data
         public DbSet<ServicePicture> ServicePicture { get; set; }
 
         public DbSet<ServiceDescription> ServiceDescription { get; set; }
+
+        public DbSet<ServicePrice> ServicePrice { get; set; }
 
         public DbSet<Job> Job { get; set; }
 
@@ -44,39 +47,15 @@ namespace AJS.Data
 
         public DbSet<JobDescription> JobDescription { get; set; }
 
+        public DbSet<JobPrice> JobPrice { get; set; }
+
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new UserConfiguration());
+            var assembly = typeof(AJSDbContext).Assembly;
 
-            builder.ApplyConfiguration(new AdConfiguration());
-
-            builder.ApplyConfiguration(new AdDescriptionConfiguration());
-
-            builder.ApplyConfiguration(new AdCategoryConfiguration());
-
-            builder.ApplyConfiguration(new AdLocationConfiguration());
-
-            builder.ApplyConfiguration(new AdPictureConfiguration());
-
-            builder.ApplyConfiguration(new ServiceConfiguration());
-
-            builder.ApplyConfiguration(new ServiceCategoryConfiguration());
-
-            builder.ApplyConfiguration(new ServiceLocationConfiguration());
-
-            builder.ApplyConfiguration(new ServicePictureConfiguration());
-
-            builder.ApplyConfiguration(new ServiceDescriptionConfiguration());
-
-            builder.ApplyConfiguration(new JobConfiguration());
-
-            builder.ApplyConfiguration(new JobCategoryConfiguration());
-
-            builder.ApplyConfiguration(new JobLocationConfiguration());
-
-            builder.ApplyConfiguration(new JobPictureConfiguration());
-
-            builder.ApplyConfiguration(new JobDescriptionConfiguration());
+            builder.ApplyConfigurationsFromAssembly(assembly);
 
             base.OnModelCreating(builder);
         }
