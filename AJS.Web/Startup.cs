@@ -73,7 +73,7 @@ namespace AJS.Web
                         LanguageViewLocationExpanderFormat.Suffix,
                           option => option.ResourcesPath = ProjectConstants.LanguageResourcesPath)
                     .AddDataAnnotationsLocalization();
-
+            
             services.AddCors();
             services.AddSession();
             services.AddAutoMapper(typeof(Startup));
@@ -99,6 +99,7 @@ namespace AJS.Web
             }
 
             app.UseDatabaseMigration();
+            app.Seed();
             app.UseCors();
             app.UseSession();
             app.UseHttpsRedirection();
