@@ -12,7 +12,7 @@
 
         public const int AdTitleMaximumLength = 22;
 
-        public const int AdLocationCountryMnimumLength = 3;
+        public const int AdLocationCountryMinmumLength = 3;
 
         public const int AdLocationCountryMaximumLength = 15;
 
