@@ -16,7 +16,7 @@ namespace AJS.Data.Models
         public Ad Ad { get; set; }
 
         [Required]
-        [StringLength(DataConstants.AdLocationCountryMnimumLength, MinimumLength = DataConstants.AdLocationCountryMnimumLength)]
+        [StringLength(DataConstants.AdLocationCountryMaximumLength, MinimumLength = DataConstants.AdLocationCountryMinmumLength)]
         public string Country { get; set; }
 
         [Required]
