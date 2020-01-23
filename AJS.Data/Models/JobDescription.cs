@@ -11,7 +11,7 @@ namespace AJS.Data.Models
         public string DescriptionId { get; set; }
 
         [Required]
-        [StringLength(DataConstants.JobDescriptionTextMaximumLength, MinimumLength = DataConstants.JobDescriptionTextMnimumLength)] // TODO: Add Multilingual Error Message
+        [StringLength(DataConstants.JobDescriptionTextMaximumLength, MinimumLength = DataConstants.JobDescriptionTextMinimumLength)] // TODO: Add Multilingual Error Message
         public string Description { get; set; }
 
         [Required]

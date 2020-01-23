@@ -4,7 +4,7 @@
     {
         #region String Length Ad Data Annotation Constants
 
-        public const int AdDescriptionTextMnimumLength = 10;
+        public const int AdDescriptionTextMinimumLength = 10;
 
         public const int AdDescriptionTextMaximumLength = 700;
 
@@ -16,7 +16,7 @@
 
         public const int AdLocationCountryMaximumLength = 15;
 
-        public const int AdLocationCityMnimumLength = 3;
+        public const int AdLocationCityMinimumLength = 3;
 
         public const int AdLocationCityMaximumLength = 15;
 
@@ -34,7 +34,7 @@
 
         #region String Length Service Data Annotation Constants
 
-        public const int ServiceDescriptionTextMnimumLength = 10;
+        public const int ServiceDescriptionTextMinimumLength = 10;
 
         public const int ServiceDescriptionTextMaximumLength = 700;
 
@@ -42,11 +42,11 @@
 
         public const int ServiceTitleMaximumLength = 22;
 
-        public const int ServiceLocationCountryMnimumLength = 3;
+        public const int ServiceLocationCountryMinimumLength = 3;
 
         public const int ServiceLocationCountryMaximumLength = 15;
 
-        public const int ServiceLocationCityMnimumLength = 3;
+        public const int ServiceLocationCityMinimumLength = 3;
 
         public const int ServiceLocationCityMaximumLength = 15;
 
@@ -64,7 +64,7 @@
 
         #region String Length Job Data Annotation Constants
 
-        public const int JobDescriptionTextMnimumLength = 10;
+        public const int JobDescriptionTextMinimumLength = 10;
 
         public const int JobDescriptionTextMaximumLength = 700;
                          
@@ -72,11 +72,11 @@
                          
         public const int JobTitleMaximumLength = 22;
                          
-        public const int JobLocationCountryMnimumLength = 3;
+        public const int JobLocationCountryMinimumLength = 3;
                          
         public const int JobLocationCountryMaximumLength = 15;
                          
-        public const int JobLocationCityMnimumLength = 3;
+        public const int JobLocationCityMinimumLength = 3;
                          
         public const int JobLocationCityMaximumLength = 15;
                          

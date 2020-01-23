@@ -20,7 +20,7 @@ namespace AJS.Data.Models
         public string Country { get; set; }
 
         [Required]
-        [StringLength(DataConstants.AdLocationCityMaximumLength, MinimumLength = DataConstants.AdLocationCityMnimumLength)]
+        [StringLength(DataConstants.AdLocationCityMaximumLength, MinimumLength = DataConstants.AdLocationCityMinimumLength)]
         public string City { get; set; }
 
         [StringLength(DataConstants.AdLocationStreetMaximumLength)]
