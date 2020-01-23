@@ -82,3 +82,4 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 * Added multilingual backend functionality
 * Multilingual support has been added to the layout, views and identity
 * Added Data Models and configurations for them
+* Added Seed DB Method
