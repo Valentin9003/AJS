@@ -54,7 +54,7 @@ namespace AJS.Data
             var assembly = typeof(AJSDbContext).Assembly;
 
             builder.ApplyConfigurationsFromAssembly(assembly);
-
+            
             base.OnModelCreating(builder);
         }
     }

@@ -16,11 +16,11 @@ namespace AJS.Data.Models
         public Job Job { get; set; }
 
         [Required]
-        [StringLength(DataConstants.JobLocationCountryMnimumLength, MinimumLength = DataConstants.JobLocationCountryMnimumLength)]
+        [StringLength(DataConstants.JobLocationCountryMaximumLength, MinimumLength = DataConstants.JobLocationCountryMinimumLength)]
         public string Country { get; set; }
 
         [Required]
-        [StringLength(DataConstants.JobLocationCityMaximumLength, MinimumLength = DataConstants.JobLocationCityMnimumLength)]
+        [StringLength(DataConstants.JobLocationCityMaximumLength, MinimumLength = DataConstants.JobLocationCityMinimumLength)]
         public string City { get; set; }
 
         [StringLength(DataConstants.JobLocationStreetMaximumLength)]

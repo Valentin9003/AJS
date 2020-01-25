@@ -16,11 +16,11 @@ namespace AJS.Data.Models
         public Service Service { get; set; }
 
         [Required]
-        [StringLength(DataConstants.ServiceLocationCountryMnimumLength, MinimumLength = DataConstants.ServiceLocationCountryMnimumLength)]
+        [StringLength(DataConstants.ServiceLocationCountryMaximumLength, MinimumLength = DataConstants.ServiceLocationCountryMinimumLength)]
         public string Country { get; set; }
 
         [Required]
-        [StringLength(DataConstants.ServiceLocationCityMaximumLength, MinimumLength = DataConstants.ServiceLocationCityMnimumLength)]
+        [StringLength(DataConstants.ServiceLocationCityMaximumLength, MinimumLength = DataConstants.ServiceLocationCityMinimumLength)]
         public string City { get; set; }
 
         [StringLength(DataConstants.ServiceLocationStreetMaximumLength)]

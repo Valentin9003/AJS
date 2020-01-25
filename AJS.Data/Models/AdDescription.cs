@@ -13,7 +13,7 @@ namespace AJS.Data.Models
         public string DescriptionId { get; set; }
 
         [Required]
-        [StringLength(DataConstants.AdDescriptionTextMaximumLength, MinimumLength = DataConstants.AdDescriptionTextMnimumLength)] // TODO: Add Multilingual Error Message
+        [StringLength(DataConstants.AdDescriptionTextMaximumLength, MinimumLength = DataConstants.AdDescriptionTextMinimumLength)] // TODO: Add Multilingual Error Message
         public string Description {get;set;}
 
         public AdState State { get; set; }

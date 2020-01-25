@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AJS.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -136,8 +136,6 @@ namespace AJS.Data.Migrations
                     Title = table.Column<string>(maxLength: 22, nullable: false),
                     CreatorId = table.Column<string>(nullable: false),
                     CategoryId = table.Column<string>(nullable: false),
-                    LocationId = table.Column<string>(nullable: false),
-                    DescriptionId = table.Column<string>(nullable: false),
                     PublicationDate = table.Column<DateTime>(nullable: false),
                     Language = table.Column<int>(nullable: false)
                 },
@@ -251,9 +249,6 @@ namespace AJS.Data.Migrations
                     Title = table.Column<string>(maxLength: 22, nullable: false),
                     CreatorId = table.Column<string>(nullable: false),
                     CategoryId = table.Column<string>(nullable: false),
-                    PictureId = table.Column<string>(nullable: true),
-                    LocationId = table.Column<string>(nullable: false),
-                    DescriptionId = table.Column<string>(nullable: false),
                     PublicationDate = table.Column<DateTime>(nullable: false),
                     Language = table.Column<int>(nullable: false)
                 },
@@ -282,8 +277,6 @@ namespace AJS.Data.Migrations
                     Title = table.Column<string>(maxLength: 22, nullable: false),
                     CreatorId = table.Column<string>(nullable: false),
                     CategoryId = table.Column<string>(nullable: false),
-                    LocationId = table.Column<string>(nullable: false),
-                    DescriptionId = table.Column<string>(nullable: false),
                     PublicationDate = table.Column<DateTime>(nullable: false),
                     Language = table.Column<int>(nullable: false)
                 },
@@ -330,7 +323,7 @@ namespace AJS.Data.Migrations
                 {
                     LocationId = table.Column<string>(nullable: false),
                     AdId = table.Column<string>(nullable: false),
-                    Country = table.Column<string>(maxLength: 3, nullable: false),
+                    Country = table.Column<string>(maxLength: 15, nullable: false),
                     City = table.Column<string>(maxLength: 15, nullable: false),
                     Street = table.Column<string>(maxLength: 15, nullable: true),
                     Address = table.Column<string>(maxLength: 15, nullable: true),
@@ -412,7 +405,7 @@ namespace AJS.Data.Migrations
                 {
                     LocationId = table.Column<string>(nullable: false),
                     JobId = table.Column<string>(nullable: false),
-                    Country = table.Column<string>(maxLength: 3, nullable: false),
+                    Country = table.Column<string>(maxLength: 15, nullable: false),
                     City = table.Column<string>(maxLength: 15, nullable: false),
                     Street = table.Column<string>(maxLength: 15, nullable: true),
                     Address = table.Column<string>(maxLength: 15, nullable: true),
@@ -493,7 +486,7 @@ namespace AJS.Data.Migrations
                 {
                     LocationId = table.Column<string>(nullable: false),
                     ServiceId = table.Column<string>(nullable: false),
-                    Country = table.Column<string>(maxLength: 3, nullable: false),
+                    Country = table.Column<string>(maxLength: 15, nullable: false),
                     City = table.Column<string>(maxLength: 15, nullable: false),
                     Street = table.Column<string>(maxLength: 15, nullable: true),
                     Address = table.Column<string>(maxLength: 15, nullable: true),

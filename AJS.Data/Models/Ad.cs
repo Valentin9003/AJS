@@ -29,13 +29,7 @@ namespace AJS.Data.Models
         
         public ICollection<AdPicture> Pictures { get; set; } = new List<AdPicture>();
 
-        [Required]
-        public string LocationId { get; set; }
-
         public AdLocation Location { get; set; }
-
-        [Required]
-        public string DescriptionId { get; set; }
 
         public AdDescription Description { get; set; }
 
