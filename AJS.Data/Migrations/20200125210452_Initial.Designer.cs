@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AJS.Data.Migrations
 {
     [DbContext(typeof(AJSDbContext))]
-    [Migration("20200123185530_Initial")]
+    [Migration("20200125210452_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,16 +34,8 @@ namespace AJS.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("DescriptionId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Language")
                         .HasColumnType("int");
-
-                    b.Property<string>("LocationId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PublicationDate")
                         .HasColumnType("datetime2");
@@ -197,23 +189,16 @@ namespace AJS.Data.Migrations
                     b.Property<string>("JobId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("CategoryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("CreatorId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("DescriptionId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Language")
                         .HasColumnType("int");
-
-                    b.Property<string>("LocationId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PictureId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PublicationDate")
                         .HasColumnType("datetime2");
@@ -224,6 +209,8 @@ namespace AJS.Data.Migrations
                         .HasMaxLength(22);
 
                     b.HasKey("JobId");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("CreatorId");
 
@@ -365,16 +352,8 @@ namespace AJS.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("DescriptionId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Language")
                         .HasColumnType("int");
-
-                    b.Property<string>("LocationId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PublicationDate")
                         .HasColumnType("datetime2");
@@ -782,15 +761,15 @@ namespace AJS.Data.Migrations
 
             modelBuilder.Entity("AJS.Data.Models.Job", b =>
                 {
-                    b.HasOne("AJS.Data.Models.User", "Creator")
+                    b.HasOne("AJS.Data.Models.JobCategory", "Category")
                         .WithMany("Jobs")
-                        .HasForeignKey("CreatorId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AJS.Data.Models.JobCategory", "Category")
+                    b.HasOne("AJS.Data.Models.User", "Creator")
                         .WithMany("Jobs")
-                        .HasForeignKey("JobId")
+                        .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

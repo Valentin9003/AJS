@@ -28,9 +28,11 @@ namespace AJS.Web.Infrastructure.Extensions
 
                 SeedServiceCategory(db);
 
-               // SeedAd(db);
+                SeedAd(db);
 
                 SeedJob(db);
+
+                SeedService(db);
             }
             return app;
         }
@@ -41,7 +43,8 @@ namespace AJS.Web.Infrastructure.Extensions
             {
                 var adCategory = $"AdCategory{i}";
 
-                var isCreated = db.AdCategory.Any(c => c.Name == adCategory);
+                var isCreated = db.AdCategory
+                                  .Any(c => c.Name == adCategory);
 
                 if (!isCreated)
                 {
@@ -65,6 +68,7 @@ namespace AJS.Web.Infrastructure.Extensions
                               Categories = null,
                               Ads = null
                             },
+
                             new AdCategory
                             {
                               Name = $"AdSubCategory{i}.2",
@@ -74,6 +78,7 @@ namespace AJS.Web.Infrastructure.Extensions
                               Categories = null,
                               Ads = null
                             },
+
                             new AdCategory
                             {
                               Name = $"AdSubCategory{i}.3",
@@ -85,6 +90,7 @@ namespace AJS.Web.Infrastructure.Extensions
                             }
                         }
                     };
+
                     db.AdCategory.Add(category);
                     db.SaveChanges();
                 }
@@ -106,8 +112,11 @@ namespace AJS.Web.Infrastructure.Extensions
                     var category = new ServiceCategory
                     {
                         CategoryId = parentCategoryId,
+
                         Description = $"Some Text{i}",
+
                         Name = serviceCategory,
+
                         ParentServiceCategory = null,
 
                         Categories = new HashSet<ServiceCategory>()
@@ -121,6 +130,7 @@ namespace AJS.Web.Infrastructure.Extensions
                              Categories = null,
                              Services = null
                            },
+
                            new ServiceCategory
                            {
                              Name = $"ServiceSubCategory{i}.2",
@@ -130,6 +140,7 @@ namespace AJS.Web.Infrastructure.Extensions
                              Categories = null,
                              Services = null
                            },
+
                            new ServiceCategory
                            {
                              Name = $"ServiceSubCategory{i}.3",
@@ -163,8 +174,11 @@ namespace AJS.Web.Infrastructure.Extensions
                     var category = new JobCategory
                     {
                         CategoryId = parentCategoryId,
+
                         Description = $"Some Text{i}",
+
                         Name = JobCategory,
+
                         ParentJobCategory = null,
 
                         Categories = new HashSet<JobCategory>()
@@ -178,6 +192,7 @@ namespace AJS.Web.Infrastructure.Extensions
                                Categories = null,
                                Jobs = null
                              },
+
                              new JobCategory
                              {
                                Name = $"JobSubCategory{i}.2",
@@ -218,6 +233,7 @@ namespace AJS.Web.Infrastructure.Extensions
                 if (user == null)
                 {
                     var phoneNumber = $"089000000{i}";
+
                     var userName = $"User{i}";
 
                     var currentUser = new User
@@ -236,59 +252,71 @@ namespace AJS.Web.Infrastructure.Extensions
 
         private static void SeedAd(AJSDbContext db)
         {
-            var usersExist = db.Users.Any(u => u.UserType == UserType.Person) && db.Users.Any(u => u.UserType == UserType.Company);
-            var categoriesExist = db.AdCategory.Any(p => p.ParentAdCategory == null) && db.AdCategory.Any(p => p.ParentAdCategory != null);
+            var usersExist = db.Users
+                               .Any(u => u.UserType == UserType.Person) && db.Users.Any(u => u.UserType == UserType.Company);
 
-            if (usersExist && categoriesExist)
+            var categoriesExist = db.AdCategory
+                                    .Any(p => p.ParentAdCategory == null) && db.AdCategory.Any(p => p.ParentAdCategory != null);
+
+            var adExist = db.Ad.Any();
+
+            if (usersExist && categoriesExist && !adExist)
             {
-                var userId = db.Users.FirstOrDefault(u => u.UserType == UserType.Person).Id;
-                var companyId = db.Users.FirstOrDefault(c => c.UserType == UserType.Company).Id;
-                var parentCategoryId = db.AdCategory.FirstOrDefault(p => p.ParentAdCategory == null).CategoryId;
-                var subCategoryId = db.AdCategory.FirstOrDefault(p => p.ParentAdCategory != null).CategoryId;
+                var userId = db.Users
+                               .FirstOrDefault(u => u.UserType == UserType.Person)
+                               .Id;
+
+                var companyId = db.Users
+                                  .FirstOrDefault(c => c.UserType == UserType.Company)
+                                  .Id;
+
+                var parentCategoryId = db.AdCategory
+                                         .FirstOrDefault(p => p.ParentAdCategory == null)
+                                         .CategoryId;
+
+                var subCategoryId = db.AdCategory
+                                      .FirstOrDefault(p => p.ParentAdCategory != null)
+                                      .CategoryId;
 
                 for (int i = 0; i < 10; i++)
                 {
                     var adId = Guid.NewGuid().ToString();
-                    var descriptionId = Guid.NewGuid().ToString();
-                    var locationId = Guid.NewGuid().ToString();
 
                     var ad = new Ad
                     {
                         AdId = adId,
                         CategoryId = i % 2 == 0 ? parentCategoryId : subCategoryId,
                         CreatorId = i % 2 == 0 ? userId : companyId,
-                        DescriptionId = descriptionId,
-                        LocationId = locationId,
 
-                        //Pictures = new List<AdPicture>() 
-                        //{
-                        //    new AdPicture
-                        //    { 
-                        //        PictureByteArray = new byte[1]{ 0}, 
-                        //        AdId = adId,
-                        //        IsMainPicture = true,
-                        //        PictureId = Guid.NewGuid().ToString()
-                        //    }
-                        //},
+                        Pictures = new List<AdPicture>()
+                        {
+                            new AdPicture
+                            {
+                                PictureByteArray = new byte[1]{ 0},
+                                AdId = adId,
+                                IsMainPicture = true,
+                                PictureId = Guid.NewGuid().ToString()
+                            }
+                        },
                         Description = new AdDescription
                         {
-                            DescriptionId = descriptionId,
+                            DescriptionId = Guid.NewGuid().ToString(),
                             AdId = adId,
                             State = AdState.New,
                             Description = $"Some Description{i}"
                         },
                         Location = new AdLocation
                         {
-                            LocationId = locationId,
+                            LocationId = Guid.NewGuid().ToString(),
                             AdId = adId,
-                            Address = $"Some address",
-                            Street = $"Some street",
-                            City = $"Some city",
-                            Country = $"Some country",
+                            Address = $"Some address {i}",
+                            Street = $"Some street {i}",
+                            City = $"Some city {i}",
+                            Country = $"Some country {i}",
                             PostCode = $"2000",
                         },
                         Prices = new List<AdPrice>()
-                        { 
+                        {
                             new AdPrice
                             {
                                 AdPriceId = Guid.NewGuid().ToString(),
@@ -310,52 +338,75 @@ namespace AJS.Web.Infrastructure.Extensions
 
         private static void SeedJob(AJSDbContext db)
         {
-            var usersExist = db.Users.Any(u => u.UserType == UserType.Person) && db.Users.Any(u => u.UserType == UserType.Company);
-            var categoriesExist = db.AdCategory.Any(p => p.ParentAdCategory == null) && db.AdCategory.Any(p => p.ParentAdCategory != null);
+            var usersExist = db.Users
+                               .Any(u => u.UserType == UserType.Person) && db.Users.Any(u => u.UserType == UserType.Company);
 
-            if (usersExist && categoriesExist)
+            var categoriesExist = db.AdCategory
+                                    .Any(p => p.ParentAdCategory == null) && db.AdCategory.Any(p => p.ParentAdCategory != null);
+
+            var jobExist = db.Job.Any();
+
+            if (usersExist && categoriesExist && !jobExist)
             {
-                var userId = db.Users.FirstOrDefault(u => u.UserType == UserType.Person).Id;
-                var companyId = db.Users.FirstOrDefault(c => c.UserType == UserType.Company).Id;
-                var parentCategoryId = db.JobCategory.FirstOrDefault(p => p.ParentJobCategory == null) ;
-                var subCategoryId = db.JobCategory.FirstOrDefault(p => p.ParentJobCategory != null).CategoryId;
+                var userId = db.Users
+                               .FirstOrDefault(u => u.UserType == UserType.Person)
+                               .Id;
+
+                var companyId = db.Users
+                                  .FirstOrDefault(c => c.UserType == UserType.Company)
+                                  .Id;
+
+                var parentCategoryId = db.JobCategory
+                                         .FirstOrDefault(p => p.ParentJobCategory == null)
+                                         .CategoryId;
+
+                var subCategoryId = db.JobCategory
+                                      .FirstOrDefault(p => p.ParentJobCategory != null)
+                                      .CategoryId;
 
                 for (int i = 0; i < 10; i++)
                 {
                     var jobId = Guid.NewGuid().ToString();
-                    var descriptionId = Guid.NewGuid().ToString();
-                    var locationId = Guid.NewGuid().ToString();
 
                     var job = new Job
                     {
                         JobId = jobId,
-                        
+
+                        CategoryId = i % 2 == 0 ? parentCategoryId : subCategoryId,
+
                         CreatorId = i % 2 == 0 ? userId : companyId,
-                        DescriptionId = descriptionId,
-                        LocationId = locationId,
+
+                        Language = i % 2 == 0 ? JobLanguage.BG : JobLanguage.EN,
+
+                        PublicationDate = DateTime.Now,
+
+                        Title = $"Some Title {i}",
 
                         Picture = new JobPicture
-                        { 
-                                PictureByteArray = new byte[1]{ 0},
-                                JobId = jobId,
-                                PictureId = Guid.NewGuid().ToString()
+                        {
+                            PictureByteArray = new byte[1] { 0 },
+                            JobId = jobId,
+                            PictureId = Guid.NewGuid().ToString()
                         },
+
                         Description = new JobDescription
                         {
-                            DescriptionId = descriptionId,
+                            DescriptionId = Guid.NewGuid().ToString(),
                             JobId = jobId,
                             Description = $"Some Description{i}"
                         },
+
                         Location = new JobLocation
                         {
-                            LocationId = locationId,
+                            LocationId = Guid.NewGuid().ToString(),
                             JobId = jobId,
-                            Address = $"Some address",
-                            Street = $"Some street",
-                            City = $"Some city",
-                            Country = $"Some country",
-                            PostCode = $"2000",
+                            Address = $"Some address {i}",
+                            Street = $"Some street {i}",
+                            City = $"Some city {i}",
+                            Country = $"Some country {i}",
+                            PostCode = $"200{i}",
                         },
+
                         Prices = new List<JobPrice>()
                         {
                             new JobPrice
@@ -366,13 +417,100 @@ namespace AJS.Web.Infrastructure.Extensions
                                 Price = 200 + i,
                             }
                         },
-                        Language = i % 2 == 0 ? JobLanguage.BG : JobLanguage.EN,
-                        PublicationDate = DateTime.Now,
-                        Title = $"Some Title {i}",
-                       Category = parentCategoryId
                     };
 
                     db.Job.Add(job);
+                    db.SaveChanges();
+                }
+            }
+        }
+        private static void SeedService(AJSDbContext db)
+        {
+            var usersExist = db.Users
+                               .Any(u => u.UserType == UserType.Person) && db.Users.Any(u => u.UserType == UserType.Company);
+
+            var categoriesExist = db.AdCategory
+                                    .Any(p => p.ParentAdCategory == null) && db.AdCategory.Any(p => p.ParentAdCategory != null);
+
+            var serviceExist = db.Service.Any();
+
+            if (usersExist && categoriesExist && !serviceExist)
+            {
+                var userId = db.Users
+                               .FirstOrDefault(u => u.UserType == UserType.Person)
+                               .Id;
+
+                var companyId = db.Users
+                                  .FirstOrDefault(c => c.UserType == UserType.Company)
+                                  .Id;
+
+                var parentCategoryId = db.ServiceCategory
+                                         .FirstOrDefault(p => p.ParentServiceCategory == null)
+                                         .CategoryId;
+
+                var subCategoryId = db.ServiceCategory
+                                      .FirstOrDefault(p => p.ParentServiceCategory != null)
+                                      .CategoryId;
+
+                for (int i = 0; i < 10; i++)
+                {
+                    var serviceId = Guid.NewGuid().ToString();
+
+                    var service = new Service
+                    {
+                        ServiceId = serviceId,
+
+                        CategoryId = i % 2 == 0 ? parentCategoryId : subCategoryId,
+
+                        CreatorId = i % 2 == 0 ? userId : companyId,
+
+                        Language = i % 2 == 0 ? ServiceLanguage.BG : ServiceLanguage.EN,
+
+                        PublicationDate = DateTime.Now,
+
+                        Title = $"Some Title {i}",
+
+                        Pictures = new List<ServicePicture>()
+                        {
+                            new ServicePicture
+                            {
+                                PictureByteArray = new byte[1] { 0 },
+                                ServiceId = serviceId,
+                                PictureId = Guid.NewGuid().ToString()
+                            }
+                        },
+
+                        Description = new ServiceDescription
+                        {
+                            DescriptionId = Guid.NewGuid().ToString(),
+                            ServiceId = serviceId,
+                            Description = $"Some Description{i}"
+                        },
+
+                        Location = new ServiceLocation
+                        {
+                            LocationId = Guid.NewGuid().ToString(),
+                            ServiceId = serviceId,
+                            Address = $"Some address {i}",
+                            Street = $"Some street {i}",
+                            City = $"Some city {i}",
+                            Country = $"Some country {i}",
+                            PostCode = $"200{i}",
+                        },
+
+                        Prices = new List<ServicePrice>()
+                        {
+                            new ServicePrice
+                            {
+                                ServicePriceId = Guid.NewGuid().ToString(),
+                                ServiceId = serviceId,
+                                Currency = "BG",
+                                Price = 200 + i,
+                            }
+                        },
+                    };
+
+                    db.Service.Add(service);
                     db.SaveChanges();
                 }
             }

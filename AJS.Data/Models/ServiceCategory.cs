@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AJS.Data.Models
@@ -8,6 +9,7 @@ namespace AJS.Data.Models
     /// </summary>
     public class ServiceCategory
     {
+        [Required]
         public string CategoryId { get; set; }
 
         public string Name { get; set; }

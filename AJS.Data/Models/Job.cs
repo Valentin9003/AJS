@@ -27,17 +27,9 @@ namespace AJS.Data.Models
 
         public JobCategory Category { get; set; }
 
-        public string PictureId { get; set; }
-
         public JobPicture Picture { get; set; }
 
-        [Required]
-        public string LocationId { get; set; }
-
         public JobLocation Location { get; set; }
-
-        [Required]
-        public string DescriptionId { get; set; }
 
         public JobDescription Description { get; set; }
 

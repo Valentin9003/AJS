@@ -12,6 +12,10 @@ namespace AJS.Data.EntityConfiguration
         public void Configure(EntityTypeBuilder<Job> builder)
         {
             builder.HasKey(k => k.JobId);
+
+            builder.HasOne(c => c.Category)
+                   .WithMany(j => j.Jobs)
+                   .HasForeignKey(fk => fk.CategoryId);
         }
     }
 }

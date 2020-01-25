@@ -34,7 +34,7 @@ namespace AJS.Web
         {
             services.AddDbContext<AJSDbContext>(options =>
                  options.UseSqlServer(
-                     Configuration.GetConnectionString(ProjectConstants.DefaultConnection)));
+                     Configuration.GetConnectionString(ProjectConstants.DefaultConnection))) ;
 
             services.AddSingleton<ILoggerManager, LoggerManager>();
             services.AddTransient<IEmailSender, EmailSender>();

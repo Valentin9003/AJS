@@ -29,13 +29,7 @@ namespace AJS.Data.Models
 
         public ICollection<ServicePicture> Pictures { get; set; } = new List<ServicePicture>();
 
-        [Required]
-        public string LocationId { get; set; }
-
         public ServiceLocation Location { get; set; }
-
-        [Required]
-        public string DescriptionId { get; set; }
 
         public ServiceDescription Description { get; set; }
 
