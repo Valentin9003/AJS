@@ -47,6 +47,12 @@
 
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\Areas\Identity\Pages\Account\ForgotPasswordModel+InputModel.bg.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Areas\Identity\Pages\Account\ForgotPasswordModel+InputModel.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Areas\Identity\Pages\Account\LoginModel+InputModel.bg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>

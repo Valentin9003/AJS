@@ -31,8 +31,8 @@ namespace AJS.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Email is required")]
+            [EmailAddress(ErrorMessage = "Invalid email")]
             public string Email { get; set; }
         }
 
