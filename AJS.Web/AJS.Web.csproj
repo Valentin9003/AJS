@@ -83,6 +83,12 @@
     <EmbeddedResource Update="Resources\Areas\Identity\Pages\Account\LoginWithRecoveryCodeModel+InputModel.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Areas\Identity\Pages\Account\Manage\ChangePasswordModel+InputModel.bg.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Areas\Identity\Pages\Account\Manage\ChangePasswordModel+InputModel.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Areas\Identity\Pages\Account\RegisterModel+InputModel.bg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
