@@ -18,12 +18,22 @@ namespace AJS.Data.EntityConfiguration
                    .HasForeignKey(fk => fk.CreatorId);
 
             builder.HasMany(j => j.Jobs)
-                 .WithOne(c => c.Creator)
-                 .HasForeignKey(fk => fk.CreatorId);
+                   .WithOne(c => c.Creator)
+                   .HasForeignKey(fk => fk.CreatorId);
                 
             builder.HasMany(s => s.Services)
-                 .WithOne(c => c.Creator)
-                 .HasForeignKey(fk => fk.CreatorId);
+                   .WithOne(c => c.Creator)
+                   .HasForeignKey(fk => fk.CreatorId);
+
+            builder.HasMany(m => m.Received)
+                   .WithOne(u => u.Received)
+                   .HasForeignKey(fk => fk.ReceivedId)
+                   .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(m => m.Sent)
+                   .WithOne(u => u.Sender)
+                   .HasForeignKey(fk => fk.SenderId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
