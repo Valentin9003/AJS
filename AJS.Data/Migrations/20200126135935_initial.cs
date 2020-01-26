@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AJS.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -239,6 +239,35 @@ namespace AJS.Data.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Message",
+                columns: table => new
+                {
+                    SenderId = table.Column<string>(nullable: false),
+                    ReceivedId = table.Column<string>(nullable: false),
+                    MessageId = table.Column<string>(nullable: true),
+                    TextMessage = table.Column<string>(maxLength: 700, nullable: true),
+                    Title = table.Column<string>(maxLength: 50, nullable: true),
+                    TimeSend = table.Column<DateTime>(nullable: false),
+                    TimeSeen = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Message", x => new { x.SenderId, x.ReceivedId });
+                    table.ForeignKey(
+                        name: "FK_Message_AspNetUsers_ReceivedId",
+                        column: x => x.ReceivedId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Message_AspNetUsers_SenderId",
+                        column: x => x.SenderId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -652,6 +681,11 @@ namespace AJS.Data.Migrations
                 column: "JobId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Message_ReceivedId",
+                table: "Message",
+                column: "ReceivedId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Service_CategoryId",
                 table: "Service",
                 column: "CategoryId");
@@ -729,6 +763,9 @@ namespace AJS.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "JobPrice");
+
+            migrationBuilder.DropTable(
+                name: "Message");
 
             migrationBuilder.DropTable(
                 name: "ServiceDescription");

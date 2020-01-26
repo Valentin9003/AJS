@@ -337,6 +337,38 @@ namespace AJS.Data.Migrations
                     b.ToTable("JobPrice");
                 });
 
+            modelBuilder.Entity("AJS.Data.Models.Message", b =>
+                {
+                    b.Property<string>("SenderId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ReceivedId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("MessageId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TextMessage")
+                        .HasColumnType("nvarchar(700)")
+                        .HasMaxLength(700);
+
+                    b.Property<DateTime>("TimeSeen")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("TimeSend")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("SenderId", "ReceivedId");
+
+                    b.HasIndex("ReceivedId");
+
+                    b.ToTable("Message");
+                });
+
             modelBuilder.Entity("AJS.Data.Models.Service", b =>
                 {
                     b.Property<string>("ServiceId")
@@ -812,6 +844,21 @@ namespace AJS.Data.Migrations
                     b.HasOne("AJS.Data.Models.Job", "Job")
                         .WithMany("Prices")
                         .HasForeignKey("JobId");
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.Message", b =>
+                {
+                    b.HasOne("AJS.Data.Models.User", "Received")
+                        .WithMany("Received")
+                        .HasForeignKey("ReceivedId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("AJS.Data.Models.User", "Sender")
+                        .WithMany("Sent")
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AJS.Data.Models.Service", b =>
