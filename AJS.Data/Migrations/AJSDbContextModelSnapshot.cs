@@ -348,12 +348,15 @@ namespace AJS.Data.Migrations
                     b.Property<string>("MessageId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Seen")
+                        .HasColumnType("bit");
+
                     b.Property<string>("TextMessage")
                         .HasColumnType("nvarchar(700)")
                         .HasMaxLength(700);
 
-                    b.Property<DateTime>("TimeSeen")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("TimeSeen")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("TimeSend")
                         .HasColumnType("datetime2");

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AJS.Data.Migrations
 {
     [DbContext(typeof(AJSDbContext))]
-    [Migration("20200126135935_initial")]
-    partial class initial
+    [Migration("20200126152729_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -350,12 +350,15 @@ namespace AJS.Data.Migrations
                     b.Property<string>("MessageId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Seen")
+                        .HasColumnType("bit");
+
                     b.Property<string>("TextMessage")
                         .HasColumnType("nvarchar(700)")
                         .HasMaxLength(700);
 
-                    b.Property<DateTime>("TimeSeen")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("TimeSeen")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("TimeSend")
                         .HasColumnType("datetime2");

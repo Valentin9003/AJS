@@ -30,6 +30,9 @@ namespace AJS.Data.Models
         [Required]
         public DateTime TimeSend { get; set; }
 
-        public DateTime TimeSeen { get; set; }
+        [RegularExpression(DataConstants.MessageTimeSeenDateTimeRegularExpression)]
+        public string TimeSeen { get; set; }
+
+        public bool Seen { get; set; } = false;
     }
 }
