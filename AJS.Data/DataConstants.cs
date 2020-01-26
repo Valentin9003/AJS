@@ -91,5 +91,14 @@
         public const string JobPriceCurrencyRegex = "^(BG|EN|USD|EUR|GDP)$";
 
         #endregion String Length Job Data Annotation Constants
+
+        #region String Length Message Data Annotation Constants 
+
+        public const int MessageTextMaximumLength = 700;
+        public const int MessageTextMinimumLength = 2;
+        public const int MessageTitleMaximumLength = 50;
+        public const int MessageTitleMinimumLength = 2;
+
+        #endregion String Length Message Data Annotation Constants
     }
 }

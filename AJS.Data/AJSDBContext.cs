@@ -13,6 +13,8 @@ namespace AJS.Data
 
         public DbSet<User> User { get; set; }
 
+        public DbSet<Message> Message { get; set; }
+
         public DbSet<Ad> Ad { get; set; }
 
         public DbSet<AdDescription> AdDescription { get; set; }
