@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AJS.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -251,7 +251,8 @@ namespace AJS.Data.Migrations
                     TextMessage = table.Column<string>(maxLength: 700, nullable: true),
                     Title = table.Column<string>(maxLength: 50, nullable: true),
                     TimeSend = table.Column<DateTime>(nullable: false),
-                    TimeSeen = table.Column<DateTime>(nullable: false)
+                    TimeSeen = table.Column<string>(nullable: true),
+                    Seen = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
