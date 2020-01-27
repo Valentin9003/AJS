@@ -52,7 +52,7 @@ namespace AJS.Web.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required(ErrorMessage = "Password is required")]
-            [StringLength(100, ErrorMessage = "RegisterPasswordErrorMessage", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "The Password must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
