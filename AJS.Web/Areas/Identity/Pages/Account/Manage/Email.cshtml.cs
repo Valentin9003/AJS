@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using AJS.Data.Models;
+using Microsoft.Extensions.Localization;
 
 namespace AJS.Web.Areas.Identity.Pages.Account.Manage
 {
@@ -19,19 +20,23 @@ namespace AJS.Web.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IEmailSender _emailSender;
+        private readonly IStringLocalizer<EmailModel> _localizer;
 
         public EmailModel(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IStringLocalizer<EmailModel> localizer)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _localizer = localizer;
         }
 
         public string Username { get; set; }
 
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
@@ -44,8 +49,8 @@ namespace AJS.Web.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Email is Required")]
+            [EmailAddress(ErrorMessage = "Invalid Email")]
             [Display(Name = "New email")]
             public string NewEmail { get; set; }
         }
@@ -68,7 +73,7 @@ namespace AJS.Web.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound(string.Format(_localizer[$"Unable to load user with ID '{0}'."], _userManager.GetUserId(User)));
             }
 
             await LoadAsync(user);
@@ -80,7 +85,7 @@ namespace AJS.Web.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound(string.Format(_localizer[$"Unable to load user with ID '{0}'."], _userManager.GetUserId(User)));
             }
 
             if (!ModelState.IsValid)
@@ -104,11 +109,11 @@ namespace AJS.Web.Areas.Identity.Pages.Account.Manage
                     "Confirm your email",
                     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                StatusMessage = "Confirmation link to change email sent. Please check your email.";
+                StatusMessage = _localizer["Confirmation link to change email sent. Please check your email."];
                 return RedirectToPage();
             }
 
-            StatusMessage = "Your email is unchanged.";
+            StatusMessage = _localizer["Your email is unchanged."];
             return RedirectToPage();
         }
 
@@ -117,7 +122,7 @@ namespace AJS.Web.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound(string.Format(_localizer[$"Unable to load user with ID '{0}'."], _userManager.GetUserId(User)));
             }
 
             if (!ModelState.IsValid)
@@ -140,7 +145,7 @@ namespace AJS.Web.Areas.Identity.Pages.Account.Manage
                 "Confirm your email",
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = _localizer["Verification email sent. Please check your email."];
             return RedirectToPage();
         }
     }
