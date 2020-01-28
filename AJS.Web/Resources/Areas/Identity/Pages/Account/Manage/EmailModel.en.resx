@@ -121,6 +121,10 @@
     <value>Confirmation link to change email sent. Please check your email.</value>
     <comment>Confirmation link to change email sent. Please check your email.</comment>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+    <comment>Email</comment>
+  </data>
   <data name="Unable to load user with ID '{0}'." xml:space="preserve">
     <value>Unable to load user with ID '{0}'.</value>
     <comment>Unable to load user with ID '{0}'.</comment>

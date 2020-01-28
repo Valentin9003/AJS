@@ -125,6 +125,10 @@
     <value>Login</value>
     <comment>Login User</comment>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+    <comment>Logout</comment>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
     <comment>Register User</comment>

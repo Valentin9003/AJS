@@ -36,6 +36,7 @@ namespace AJS.Web.Areas.Identity.Pages.Account.Manage
 
         public string Username { get; set; }
 
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         public bool IsEmailConfirmed { get; set; }

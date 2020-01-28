@@ -125,6 +125,10 @@
     <value>Възникна неочаквана грешка при настройката на телефонен номер за потребител с идентификатор „{0}“.</value>
     <comment>Unexpected error occurred setting phone number for user with ID '{0}'.</comment>
   </data>
+  <data name="User name" xml:space="preserve">
+    <value>Потребителско име</value>
+    <comment>User name</comment>
+  </data>
   <data name="Your profile has been updated" xml:space="preserve">
     <value>Вашият профил е актуализиран</value>
     <comment>Your profile has been updated</comment>

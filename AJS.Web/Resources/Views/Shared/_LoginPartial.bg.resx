@@ -125,6 +125,10 @@
     <value>Влез</value>
     <comment>Login User</comment>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Излизане</value>
+    <comment>Logout</comment>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Регистрация</value>
     <comment>Register User</comment>

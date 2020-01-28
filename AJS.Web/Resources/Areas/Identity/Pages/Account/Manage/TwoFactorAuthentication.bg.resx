@@ -121,6 +121,10 @@
     <value>Добавете приложение за удостоверяване</value>
     <comment>Add authenticator app</comment>
   </data>
+  <data name="Authenticator app" xml:space="preserve">
+    <value>Приложение за удостоверяване</value>
+    <comment>Authenticator app</comment>
+  </data>
   <data name="before you can log in with a recovery code." xml:space="preserve">
     <value>преди да можете да влезете с код за възстановяване.</value>
     <comment>before you can log in with a recovery code.</comment>

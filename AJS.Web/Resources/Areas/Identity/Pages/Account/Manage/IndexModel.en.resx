@@ -125,6 +125,10 @@
     <value>Unexpected error occurred setting phone number for user with ID '{0}'.</value>
     <comment>Unexpected error occurred setting phone number for user with ID '{0}'.</comment>
   </data>
+  <data name="User name" xml:space="preserve">
+    <value>User name</value>
+    <comment>User name</comment>
+  </data>
   <data name="Your profile has been updated" xml:space="preserve">
     <value>Your profile has been updated</value>
     <comment>Your profile has been updated</comment>

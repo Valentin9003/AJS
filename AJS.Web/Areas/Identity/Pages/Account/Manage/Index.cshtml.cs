@@ -26,7 +26,7 @@ namespace AJS.Web.Areas.Identity.Pages.Account.Manage
             _signInManager = signInManager;
             _Localizer = Localizer;
         }
-
+        [Display(Name = "User name")]
         public string Username { get; set; }
 
         [TempData]
@@ -46,7 +46,7 @@ namespace AJS.Web.Areas.Identity.Pages.Account.Manage
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-
+            
             Username = userName;
 
             Input = new InputModel

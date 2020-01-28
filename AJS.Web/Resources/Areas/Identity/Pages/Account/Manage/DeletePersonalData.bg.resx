@@ -122,7 +122,7 @@
     <comment>Delete data and close my account</comment>
   </data>
   <data name="Delete Personal Data" xml:space="preserve">
-    <value>Delete Personal Data</value>
+    <value>Изтриване на персоналните данни</value>
     <comment>Delete Personal Data</comment>
   </data>
   <data name="Deleting this data will permanently remove your account, and this cannot be recovered." xml:space="preserve">
