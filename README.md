@@ -84,5 +84,5 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 * Added Data Models and configurations for them
 * Added Seed DB Method
 * Multilingual support has been added to data annotattion error messages and models attributes
-* Added Scaffold for MVC Structure (Models, Views, Controllers, Resx Files For Them, Main Services=
+* Added Scaffold for MVC Structure (Models, Views, Controllers, Resx Files For Them and Main Services) 
 * Added Extension metod for EndPoints
