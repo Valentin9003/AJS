@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AJS.Web.Infrastructure.Extensions
 {
-    public static class ApplicationBuilderExtentions
+    public static class ApplicationBuilderExtensions
     {
         /// <summary>
         /// Extention method that migrate Database
