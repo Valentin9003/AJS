@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using AJS.Web.Infrastructure.EmailSender;
 using System.IO;
 using NLog;
+using Microsoft.AspNetCore.Mvc;
 using AJS.Common.Logger;
 
 namespace AJS.Web
@@ -38,6 +39,7 @@ namespace AJS.Web
 
             services.AddSingleton<ILoggerManager, LoggerManager>();
             services.AddTransient<IEmailSender, EmailSender>();
+
             services.Configure<AuthMessageSenderOptions>(Configuration.GetSection(ProjectConstants.SendGridConfigSection));
 
             services.AddDefaultIdentity<User>(options =>
@@ -109,14 +111,7 @@ namespace AJS.Web
             app.UseAuthorization();
             app.UseRequestLocalizationExtension();
             app.SetLocalizationCookie();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=home}/{action=index}/{id?}");
-                endpoints.MapRazorPages();
-            });
+ app.UseEndpointsExtension();
         }
     }
 }
