@@ -157,12 +157,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Areas\Ads\Models\" />
-    <Folder Include="Areas\Jobs\Models\" />
-    <Folder Include="Areas\News\Models\" />
-    <Folder Include="Areas\Services\Models\" />
-  </ItemGroup>
-
 </Project>
