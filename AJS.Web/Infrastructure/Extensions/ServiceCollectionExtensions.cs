@@ -50,8 +50,10 @@ namespace AJS.Web.Infrastructure.Extensions
                   };
 
                 opts.DefaultRequestCulture = new RequestCulture("bg");
+
                 // Formatting numbers, dates, etc.
                 opts.SupportedCultures = supportedCultures;
+
                 // UI strings that we have localized.
                 opts.SupportedUICultures = supportedCultures;
             });
