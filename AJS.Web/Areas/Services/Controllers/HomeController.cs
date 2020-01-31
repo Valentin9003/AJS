@@ -6,15 +6,16 @@ namespace AJS.Web.Areas.Services.Controllers
 {
     public class HomeController : BaseServicesController
     {
-        private readonly IJobsService jobsService;
+        private readonly IJobsService servicesService;
         private readonly IStringLocalizer<HomeController> localizer;
 
-        public HomeController(IJobsService jobsService, IStringLocalizer<HomeController> localizer)
+        public HomeController(IJobsService servicesService, IStringLocalizer<HomeController> localizer)
         {
-            this.jobsService = jobsService;
+            this.servicesService = servicesService;
             this.localizer = localizer;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
