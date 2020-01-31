@@ -110,7 +110,7 @@ namespace AJS.Web
             app.UseAuthorization();
             app.UseRequestLocalizationExtension();
             app.SetLocalizationCookie();
- app.UseEndpointsExtension();
+            app.UseEndpointsExtension();
         }
     }
 }
