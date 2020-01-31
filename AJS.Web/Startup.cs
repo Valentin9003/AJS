@@ -15,7 +15,6 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using AJS.Web.Infrastructure.EmailSender;
 using System.IO;
 using NLog;
-using Microsoft.AspNetCore.Mvc;
 using AJS.Common.Logger;
 
 namespace AJS.Web
