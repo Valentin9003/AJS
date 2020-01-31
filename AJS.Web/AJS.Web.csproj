@@ -59,10 +59,10 @@
     <EmbeddedResource Update="Resources\Areas\News\Models\IndexViewModel.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Areas\Services\Models\AdsIndexViewModel.bg.resx">
+    <EmbeddedResource Update="Resources\Areas\Services\Models\IndexViewModel.bg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Areas\Services\Models\AdsIndexViewModel.en.resx">
+    <EmbeddedResource Update="Resources\Areas\Services\Models\IndexViewModel.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Areas\Ads\Models\IndexViewModel.bg.resx">
