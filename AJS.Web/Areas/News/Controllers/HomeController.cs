@@ -15,6 +15,7 @@ namespace AJS.Web.Areas.News.Controllers
             this.localizer = localizer;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
