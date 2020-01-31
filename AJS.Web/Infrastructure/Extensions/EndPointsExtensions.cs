@@ -9,7 +9,7 @@ namespace AJS.Web.Infrastructure.Extensions
     public static class EndPointsExtensions
     {
         /// <summary>
-        /// Extension method for adding routes
+        /// Extension Method For Add Routes
         /// </summary>
         /// <param name="app"></param>
         public static void UseEndpointsExtension(this IApplicationBuilder app)
