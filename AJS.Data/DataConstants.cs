@@ -101,5 +101,14 @@
         public const string MessageTimeSeenDateTimeRegularExpression = @"^((0[1-9])|([1-2][0-9])|(3[0-1]))\.((0[1-9])|(1[0-2]))\.20\d{2}(T|\s)(([0-1][0-9])|(2[0-3])):([0-5][0-9]):([0-5][0-9])";  // DateTime Format: "31.12.2000 23:59:59"
 
         #endregion String Length Message Data Annotation Constants
+
+        #region String Length News Data Annotation Constants
+
+        public const int NewsTitleMaximumLength = 50;
+        public const int NewsTitleMinimumLength = 2;
+        public const int NewsDescriptionMaximumLength = 1500;
+        public const int NewsDescriptionMinimumLength = 20;
+
+        #endregion String Length News Data Annotation Constants
     }
 }

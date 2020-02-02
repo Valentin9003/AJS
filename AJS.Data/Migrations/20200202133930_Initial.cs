@@ -272,6 +272,29 @@ namespace AJS.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "News",
+                columns: table => new
+                {
+                    NewsId = table.Column<string>(nullable: false),
+                    Title = table.Column<string>(maxLength: 50, nullable: false),
+                    Description = table.Column<string>(maxLength: 1500, nullable: false),
+                    PublicationDate = table.Column<DateTime>(nullable: false),
+                    Category = table.Column<int>(nullable: false),
+                    Location = table.Column<int>(nullable: false),
+                    CreatorId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_News", x => x.NewsId);
+                    table.ForeignKey(
+                        name: "FK_News_AspNetUsers_CreatorId",
+                        column: x => x.CreatorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Job",
                 columns: table => new
                 {
@@ -687,6 +710,11 @@ namespace AJS.Data.Migrations
                 column: "ReceivedId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_News_CreatorId",
+                table: "News",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Service_CategoryId",
                 table: "Service",
                 column: "CategoryId");
@@ -767,6 +795,9 @@ namespace AJS.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Message");
+
+            migrationBuilder.DropTable(
+                name: "News");
 
             migrationBuilder.DropTable(
                 name: "ServiceDescription");

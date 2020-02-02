@@ -51,6 +51,8 @@ namespace AJS.Data
 
         public DbSet<JobPrice> JobPrice { get; set; }
 
+        public DbSet<News> News { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             var assembly = typeof(AJSDbContext).Assembly;

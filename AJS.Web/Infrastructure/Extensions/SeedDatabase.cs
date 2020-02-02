@@ -33,8 +33,48 @@ namespace AJS.Web.Infrastructure.Extensions
                 SeedJob(db);
 
                 SeedService(db);
+
+                SeedNews(db);
             }
             return app;
+        }
+
+        private static void SeedNews(AJSDbContext db)
+        {
+            var user = db.Users
+                         .FirstOrDefault(u => u.UserType == UserType.Person);
+
+            var isCreated = db.News
+                              .Any();
+
+            if (user != null && !isCreated)
+            {
+                var userId = user.Id;
+
+                for (int i = 0;  i <= 50; i++)
+                {
+                    var news = new News()
+                    {
+                        NewsId = Guid.NewGuid().ToString(),
+
+                        Description = $"News Description {i}",
+
+                        Category = i % 2 == 0 ? NewsCategory.Business : NewsCategory.Culture,
+
+                        Location = i % 2 == 0 ? NewsLocation.Bulgaria : NewsLocation.England,
+
+                        PublicationDate = DateTime.Now,
+
+                        Title = $"News Title {i}",
+
+                        CreatorId = userId
+                    };
+
+                    db.News.Add(news);
+
+                    db.SaveChanges();
+                }
+            }
         }
 
         private static void SeedAdCategory(AJSDbContext db)

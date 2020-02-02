@@ -23,5 +23,7 @@ namespace AJS.Data.Models
 
         [InverseProperty(nameof(Message.Received))]
         public ICollection<Message> Received { get; set; }
+
+        public ICollection<News> News { get; set; }
     }
 }
