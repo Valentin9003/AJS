@@ -86,3 +86,5 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 * Multilingual support has been added to data annotattion error messages and models attributes
 * Added Scaffold for MVC Structure (Models, Views, Controllers, Resx Files For Them and Main Services) For Ads, Jobs, News and Services
 * Added Extension metod for EndPoints
+* Added Tables For News in Database
+* Layout Changed
