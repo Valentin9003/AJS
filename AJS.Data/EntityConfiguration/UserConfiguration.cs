@@ -34,6 +34,10 @@ namespace AJS.Data.EntityConfiguration
                    .WithOne(u => u.Sender)
                    .HasForeignKey(fk => fk.SenderId)
                    .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(n => n.News)
+                   .WithOne(c => c.Creator)
+                   .HasForeignKey(fk => fk.CreatorId);
         }
     }
 }

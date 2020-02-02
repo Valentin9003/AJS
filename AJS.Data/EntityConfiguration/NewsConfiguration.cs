@@ -1,7 +1,6 @@
 ﻿using AJS.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 
 namespace AJS.Data.EntityConfiguration
 {
@@ -9,7 +8,7 @@ namespace AJS.Data.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<News> builder)
         {
-            // TODO: Configuration
+            builder.HasKey(pk => pk.NewsId);
         }
     }
 }
