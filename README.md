@@ -88,3 +88,4 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 * Added Extension metod for EndPoints
 * Added Tables For News in Database
 * Layout Changed
+* The Project is Migrated to .Net Core 3.1.1
