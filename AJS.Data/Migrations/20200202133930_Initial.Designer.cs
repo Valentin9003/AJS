@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AJS.Data.Migrations
 {
     [DbContext(typeof(AJSDbContext))]
-    [Migration("20200126152729_Initial")]
+    [Migration("20200202133930_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -372,6 +372,41 @@ namespace AJS.Data.Migrations
                     b.HasIndex("ReceivedId");
 
                     b.ToTable("Message");
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.News", b =>
+                {
+                    b.Property<string>("NewsId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1500)")
+                        .HasMaxLength(1500);
+
+                    b.Property<int>("Location")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PublicationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("NewsId");
+
+                    b.HasIndex("CreatorId");
+
+                    b.ToTable("News");
                 });
 
             modelBuilder.Entity("AJS.Data.Models.Service", b =>
@@ -863,6 +898,15 @@ namespace AJS.Data.Migrations
                         .WithMany("Sent")
                         .HasForeignKey("SenderId")
                         .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.News", b =>
+                {
+                    b.HasOne("AJS.Data.Models.User", "Creator")
+                        .WithMany("News")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
