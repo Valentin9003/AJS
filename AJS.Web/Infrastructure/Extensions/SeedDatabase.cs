@@ -42,7 +42,7 @@ namespace AJS.Web.Infrastructure.Extensions
         private static void SeedNews(AJSDbContext db)
         {
             var user = db.Users
-                                 .FirstOrDefault(u => u.UserType == UserType.Person);
+                         .FirstOrDefault(u => u.UserType == UserType.Person);
 
             var newsExist = db.News
                               .Any();
