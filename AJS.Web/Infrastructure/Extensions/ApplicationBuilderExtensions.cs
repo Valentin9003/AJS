@@ -96,8 +96,8 @@ namespace AJS.Web.Infrastructure.Extensions
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=home}/{action=index}/{id?}");
+                   name: "News",
+                   pattern: "{area:exists}/{controller=News}/{action=index}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "Ads",
@@ -112,8 +112,8 @@ namespace AJS.Web.Infrastructure.Extensions
                    pattern: "{area:exists}/{controller=Services}/{action=index}/{id?}");
 
                 endpoints.MapControllerRoute(
-                   name: "News",
-                   pattern: "{area:exists}/{controller=News}/{action=index}/{id?}");
+                    name: "default",
+                    pattern: "{controller=home}/{action=index}/{id?}");
 
                 endpoints.MapRazorPages();
             });
