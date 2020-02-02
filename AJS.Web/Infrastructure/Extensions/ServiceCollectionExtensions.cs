@@ -7,6 +7,9 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
+using AJS.Web.Infrastructure.EmailSenderConfiguration;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using AJS.Common.Logger;
 
 namespace AJS.Web.Infrastructure.Extensions
 {
@@ -50,11 +53,26 @@ namespace AJS.Web.Infrastructure.Extensions
                   };
 
                 opts.DefaultRequestCulture = new RequestCulture("bg");
+
                 // Formatting numbers, dates, etc.
                 opts.SupportedCultures = supportedCultures;
+
                 // UI strings that we have localized.
                 opts.SupportedUICultures = supportedCultures;
             });
+
+            return services;
+        }
+
+        /// <summary>
+        /// Extension Metod For Add Custom Services
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddCustomServices(this IServiceCollection services)
+        {
+            services.AddSingleton<ILoggerManager, LoggerManager>();
+            services.AddTransient<IEmailSender, EmailSender>();
 
             return services;
         }

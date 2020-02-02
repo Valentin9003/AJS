@@ -12,7 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using AJS.Web.Infrastructure.EmailSender;
+using AJS.Web.Infrastructure.EmailSenderConfiguration;
 using System.IO;
 using NLog;
 using AJS.Common.Logger;
@@ -34,10 +34,10 @@ namespace AJS.Web
         {
             services.AddDbContext<AJSDbContext>(options =>
                  options.UseSqlServer(
-                     Configuration.GetConnectionString(ProjectConstants.DefaultConnection)));
+                     Configuration.GetConnectionString(ProjectConstants.DefaultConnection))) ;
 
-            services.AddSingleton<ILoggerManager, LoggerManager>();
-            services.AddTransient<IEmailSender, EmailSender>();
+            services.AddCustomServices();
+           
             services.Configure<AuthMessageSenderOptions>(Configuration.GetSection(ProjectConstants.SendGridConfigSection));
 
             services.AddDefaultIdentity<User>(options =>
@@ -73,7 +73,7 @@ namespace AJS.Web
                         LanguageViewLocationExpanderFormat.Suffix,
                           option => option.ResourcesPath = ProjectConstants.LanguageResourcesPath)
                     .AddDataAnnotationsLocalization();
-
+            
             services.AddCors();
             services.AddSession();
             services.AddAutoMapper(typeof(Startup));
@@ -99,6 +99,7 @@ namespace AJS.Web
             }
 
             app.UseDatabaseMigration();
+            app.Seed();
             app.UseCors();
             app.UseSession();
             app.UseHttpsRedirection();
@@ -108,14 +109,7 @@ namespace AJS.Web
             app.UseAuthorization();
             app.UseRequestLocalizationExtension();
             app.SetLocalizationCookie();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=home}/{action=index}/{id?}");
-                endpoints.MapRazorPages();
-            });
+            app.UseEndpointsExtension();
         }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using AJS.Data.Models;
+using Microsoft.Extensions.Localization;
 
 namespace AJS.Web.Areas.Identity.Pages.Account
 {
@@ -15,11 +16,13 @@ namespace AJS.Web.Areas.Identity.Pages.Account
     {
         private readonly UserManager<User> _userManager;
         private readonly IEmailSender _sender;
+        private readonly IStringLocalizer<RegisterConfirmationModel> _localizer;
 
-        public RegisterConfirmationModel(UserManager<User> userManager, IEmailSender sender)
+        public RegisterConfirmationModel(UserManager<User> userManager, IEmailSender sender, IStringLocalizer<RegisterConfirmationModel> localizer)
         {
             _userManager = userManager;
             _sender = sender;
+            _localizer = localizer;
         }
 
         public string Email { get; set; }
@@ -38,7 +41,7 @@ namespace AJS.Web.Areas.Identity.Pages.Account
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
             {
-                return NotFound($"Unable to load user with email '{email}'.");
+                return NotFound(string.Format(_localizer[$"Unable to load user with email '{0}'."], email));
             }
 
             Email = email;

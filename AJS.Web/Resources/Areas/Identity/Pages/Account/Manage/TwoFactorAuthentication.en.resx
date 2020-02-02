@@ -121,6 +121,10 @@
     <value>Add authenticator app</value>
     <comment>Add authenticator app</comment>
   </data>
+  <data name="Authenticator app" xml:space="preserve">
+    <value>Authenticator app</value>
+    <comment>Authenticator app</comment>
+  </data>
   <data name="before you can log in with a recovery code." xml:space="preserve">
     <value>before you can log in with a recovery code.</value>
     <comment>before you can log in with a recovery code.</comment>
