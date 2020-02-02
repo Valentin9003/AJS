@@ -44,10 +44,10 @@ namespace AJS.Web.Infrastructure.Extensions
             var user = db.Users
                          .FirstOrDefault(u => u.UserType == UserType.Person);
 
-            var newsExist = db.News
+            var isCreated = db.News
                               .Any();
 
-            if (user != null && !newsExist)
+            if (user != null && !isCreated)
             {
                 var userId = user.Id;
 
