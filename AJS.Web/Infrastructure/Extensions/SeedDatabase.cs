@@ -65,7 +65,7 @@ namespace AJS.Web.Infrastructure.Extensions
 
                         PublicationDate = DateTime.Now,
 
-                        Title = $"News.. Some Title {i}",
+                        Title = $"News Title {i}",
 
                         CreatorId = userId
                     };
