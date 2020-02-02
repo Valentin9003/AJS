@@ -5,7 +5,7 @@ using SendGrid.Helpers.Mail;
 using System.Threading.Tasks;
 
 
-namespace AJS.Web.Infrastructure.EmailSender
+namespace AJS.Web.Infrastructure.EmailSenderConfiguration
 {
     public class EmailSender : IEmailSender
     {
