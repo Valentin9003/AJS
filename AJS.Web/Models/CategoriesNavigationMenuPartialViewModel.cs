@@ -7,19 +7,19 @@ namespace AJS.Web.Models
     {
         public string ParentCategoryId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = ProjectConstants.CategoryNavigationMenuPartialViewModelActionNameRequiredErrorMessage)]
         public string CategoryName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = ProjectConstants.CategoryNavigationMenuPartialViewModelAreaNameRequiredErrorMessage)]
         public string Area { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = ProjectConstants.CategoryNavigationMenuPartialViewModelControllerNameRequiredErrorMessage)]
         public string Controller { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = ProjectConstants.CategoryNavigationMenuPartialViewModelActionNameRequiredErrorMessage)]
         public string Action { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = ProjectConstants.CategoryNavigationMenuPartialViewModelCategoryIdRequiredErrorMessage)]
         public string CategoryId { get; set; }
 
         public List<CategoriesNavigationMenuPartialViewModel> SubCategories { get; set; }
