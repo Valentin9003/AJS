@@ -7,6 +7,8 @@ namespace AJS.Web
 {
     public static class ProjectConstants
     {
+        #region ApplicationConstants
+
         public const string LanguageResourcesPath = "Resources";
         public const string ErrorLogTitle = "Internal server error: ";
         public const string NLogConfigFileDirectory = "/nlog.config";
@@ -15,6 +17,8 @@ namespace AJS.Web
         public const string ErrorControllerPath = "/Home/Error";
         public const string FacebookAppId = "FacebookAutentication:FacebookAppId";
         public const string FacebookAppSecret = "FacebookAutentication:FacebookAppSecret";
+
+        #endregion ApplicationConstants
 
         #region CategoryNavigationMenuPartialViewModel
 
