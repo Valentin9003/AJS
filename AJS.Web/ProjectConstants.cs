@@ -15,5 +15,15 @@ namespace AJS.Web
         public const string ErrorControllerPath = "/Home/Error";
         public const string FacebookAppId = "FacebookAutentication:FacebookAppId";
         public const string FacebookAppSecret = "FacebookAutentication:FacebookAppSecret";
+
+        #region CategoryNavigationMenuPartialViewModel
+
+        public const string CategoryNavigationMenuPartialViewModelAreaNameRequiredErrorMessage = "Area Name is Required";
+        public const string CategoryNavigationMenuPartialViewModelControllerNameRequiredErrorMessage = "Controller Name is Required";
+        public const string CategoryNavigationMenuPartialViewModelActionNameRequiredErrorMessage = "Action Name is Required";
+        public const string CategoryNavigationMenuPartialViewModelCategoryNameRequiredErrorMessage = "Category Name is Required";
+        public const string CategoryNavigationMenuPartialViewModelCategoryIdRequiredErrorMessage = "Category Id is Required";
+
+        #endregion CategoryNavigationMenuPartialViewModel
     }
 }
