@@ -45,4 +45,15 @@
                 font-size: 18px;
             }
     }
+
+    .btn-back {
+        color: red;
+    }
     
+    .back {
+        background-color: green;
+    }
+    .btn-back:hover {
+        color: black;
+    }
+                
