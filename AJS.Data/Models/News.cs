@@ -21,6 +21,9 @@ namespace AJS.Data.Models
         public string Description { get; set; }
 
         [Required]
+        public int ReviewCounter { get; set; }
+
+        [Required]
         public DateTime PublicationDate { get; set; }
 
         [Required]
