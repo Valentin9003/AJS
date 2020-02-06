@@ -18,6 +18,9 @@ namespace AJS.Data.Models
         public string Title { get; set; }
 
         [Required]
+        public int ReviewCounter { get; set; }
+
+        [Required]
         public string CreatorId { get; set; }
 
         public User Creator { get; set; }

@@ -67,7 +67,9 @@ namespace AJS.Web.Infrastructure.Extensions
 
                         Title = $"News Title {i}",
 
-                        CreatorId = userId
+                        CreatorId = userId,
+
+                        ReviewCounter = i
                     };
 
                     db.News.Add(news);
@@ -325,8 +327,12 @@ namespace AJS.Web.Infrastructure.Extensions
                     var ad = new Ad
                     {
                         AdId = adId,
+
                         CategoryId = i % 2 == 0 ? parentCategoryId : subCategoryId,
+
                         CreatorId = i % 2 == 0 ? userId : companyId,
+
+                        ReviewCounter = i,
 
                         Pictures = new List<AdPicture>()
                         {
@@ -422,6 +428,8 @@ namespace AJS.Web.Infrastructure.Extensions
 
                         Title = $"Some Title {i}",
 
+                        ReviewCounter = i,
+
                         Picture = new JobPicture
                         {
                             PictureByteArray = new byte[1] { 0 },
@@ -509,6 +517,8 @@ namespace AJS.Web.Infrastructure.Extensions
                         PublicationDate = DateTime.Now,
 
                         Title = $"Some Title {i}",
+
+                        ReviewCounter = i,
 
                         Pictures = new List<ServicePicture>()
                         {
