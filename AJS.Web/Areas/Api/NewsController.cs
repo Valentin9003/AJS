@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AJS.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +12,11 @@ namespace AJS.Web.Areas.Api
     [ApiController]
     public class NewsController : ControllerBase
     {
-        public NewsController()
-        {
+        private readonly INewsApiService newsApiService;
 
+        public NewsController(INewsApiService newsApiService)
+        {
+            this.newsApiService = newsApiService;
         }
 
         [HttpGet]

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AJS.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +12,11 @@ namespace AJS.Web.Areas.Api
     [ApiController]
     public class JobsController : ControllerBase
     {
-        public JobsController()
-        {
+        private readonly IJobsApiService jobsApiService;
 
+        public JobsController(IJobsApiService jobsApiService)
+        {
+            this.jobsApiService = jobsApiService;
         }
 
         [HttpGet]
