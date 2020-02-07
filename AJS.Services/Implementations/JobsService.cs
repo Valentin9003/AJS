@@ -4,5 +4,9 @@ namespace AJS.Services.Implementations
 {
     public class JobsService : IJobsService
     {
+        public JobsService()
+        {
+
+        }
     }
 }
