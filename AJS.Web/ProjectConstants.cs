@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace AJS.Web
+﻿namespace AJS.Web
 {
     public static class ProjectConstants
     {
@@ -27,6 +22,11 @@ namespace AJS.Web
         public const string CategoryNavigationMenuPartialViewModelActionNameRequiredErrorMessage = "Action Name is Required";
         public const string CategoryNavigationMenuPartialViewModelCategoryNameRequiredErrorMessage = "Category Name is Required";
         public const string CategoryNavigationMenuPartialViewModelCategoryIdRequiredErrorMessage = "Category Id is Required";
+        public const string ChildCategoryNavigationMenuPartialViewModelAreaNameRequiredErrorMessage = "Area Name is Required";
+        public const string ChildCategoryNavigationMenuPartialViewModelControllerNameRequiredErrorMessage = "Controller Name is Required";
+        public const string ChildCategoryNavigationMenuPartialViewModelActionNameRequiredErrorMessage = "Action Name is Required";
+        public const string ChildCategoryNavigationMenuPartialViewModelCategoryNameRequiredErrorMessage = "Category Name is Required";
+        public const string ChildCategoryNavigationMenuPartialViewModelCategoryIdRequiredErrorMessage = "Category Id is Required";
 
         #endregion CategoryNavigationMenuPartialViewModel
     }
