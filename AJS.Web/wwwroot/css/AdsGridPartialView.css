@@ -1,0 +1,34 @@
+﻿ad-img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+    ad-img:hover {
+        box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    }
+
+#ad {
+    margin: 15px;
+}
+
+.ads-partial-view-title {
+    background-color: black;
+    color: greenyellow;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+.ad-title{
+
+}
+
+.ad-link{
+
+}
+
+.ad-publication-date{
+
+}

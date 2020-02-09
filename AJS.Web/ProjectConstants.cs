@@ -29,5 +29,17 @@ namespace AJS.Web
         public const string CategoryNavigationMenuPartialViewModelCategoryIdRequiredErrorMessage = "Category Id is Required";
 
         #endregion CategoryNavigationMenuPartialViewModel
+
+        #region AdsGridPartialViewModel
+
+        public const int AdsGridPartialViewModelPictureByteArrayMaximumLength = 10 * 124 * 1024;
+
+        public const string AdsGridPartialViewModelDateTimeRequiredErrorMessage = "Publication date for ad in 'AdsGridPartialViewModel' is required.";
+
+        public const string AdsGridPartialViewModelAdTitleRequiredErrorMessage = "'Ad name' for ad in 'AdsGridPartialViewModel' required.";
+
+        public const string AdsGridPartialViewModelAdIdRequiredErrorMessage = "'Ad id' for ad in 'AdsGridPartialView' is required.";
+
+        #endregion AdsGridPartialViewModel
     }
 }
