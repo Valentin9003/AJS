@@ -20,5 +20,16 @@ namespace AJS.Web.Areas.Ads.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// This action present a single ad
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult Ad(string id)
+        {
+            return View();
+        }
     }
 }
