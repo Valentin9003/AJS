@@ -16,7 +16,7 @@ namespace AJS.Web.Infrastructure.Extensions
     public static class ServiceCollectionExtensions
     {
         /// <summary>
-        /// This method gets called by the runtime services with reflection and creates instances
+        /// This method gets called by the runtime services with reflection and creates instances from them
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>        
