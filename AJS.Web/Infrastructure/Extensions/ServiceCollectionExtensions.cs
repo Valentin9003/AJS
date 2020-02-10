@@ -49,7 +49,7 @@ namespace AJS.Web.Infrastructure.Extensions
                 var supportedCultures = new List<CultureInfo>
                   {
                     new CultureInfo("bg"),
-                      new CultureInfo("en"),
+                    new CultureInfo("en"),
                   };
 
                 opts.DefaultRequestCulture = new RequestCulture("bg");
