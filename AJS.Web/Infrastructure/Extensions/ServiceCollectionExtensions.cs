@@ -65,7 +65,7 @@ namespace AJS.Web.Infrastructure.Extensions
         }
 
         /// <summary>
-        /// Extension Metod For Add Custom Services
+        /// Extension method that adds Custom Services
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
