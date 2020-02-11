@@ -1,5 +1,6 @@
 ﻿using AJS.Data.Models.Enums;
 using System;
+using System.Collections;
 using System.ComponentModel.DataAnnotations;
 
 namespace AJS.Data.Models
@@ -27,14 +28,16 @@ namespace AJS.Data.Models
         public DateTime PublicationDate { get; set; }
 
         [Required]
-        public NewsCategory Category { get; set; }
-
-        [Required]
         public NewsLocation Location { get; set; }
 
         [Required]
         public string CreatorId { get; set; }
 
         public User Creator { get; set; }
+
+        [Required]
+        public string CategoryId { get; set; }
+
+        public NewsCategory Category { get; set; }
     }
 }

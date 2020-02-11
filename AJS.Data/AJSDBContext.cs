@@ -27,6 +27,8 @@ namespace AJS.Data
 
         public DbSet<AdPrice> AdPrice { get; set; }
 
+        public DbSet<AdCategoryTranslation> AdCategoryTranslations { get; set; }
+
         public DbSet<Service> Service { get; set; }
 
         public DbSet<ServiceCategory> ServiceCategory { get; set; }
@@ -39,6 +41,8 @@ namespace AJS.Data
 
         public DbSet<ServicePrice> ServicePrice { get; set; }
 
+        public DbSet<ServiceCategoryTranslation> ServiceCategoryTranslations { get; set; }
+
         public DbSet<Job> Job { get; set; }
 
         public DbSet<JobCategory> JobCategory { get; set; }
@@ -50,6 +54,8 @@ namespace AJS.Data
         public DbSet<JobDescription> JobDescription { get; set; }
 
         public DbSet<JobPrice> JobPrice { get; set; }
+
+        public DbSet<JobCategoryTranslation> JobCategoryTranslations { get; set; }
 
         public DbSet<News> News { get; set; }
 
