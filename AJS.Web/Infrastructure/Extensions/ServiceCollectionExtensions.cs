@@ -73,6 +73,7 @@ namespace AJS.Web.Infrastructure.Extensions
         {
             services.AddSingleton<ILoggerManager, LoggerManager>();
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddHttpContextAccessor();
 
             return services;
         }
