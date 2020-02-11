@@ -99,7 +99,7 @@ namespace AJS.Web
             }
 
             app.UseDatabaseMigration();
-            app.Seed();
+          //  app.Seed();
             app.UseCors();
             app.UseSession();
             app.UseHttpsRedirection();

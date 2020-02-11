@@ -24,5 +24,7 @@ namespace AJS.Data.Models
         public HashSet<ServiceCategory> Categories { get; set; } = new HashSet<ServiceCategory>();
 
         public List<Service> Services { get; set; } = new List<Service>();
+
+        public ICollection<ServiceCategoryTranslation> Translations { get; set; } = new HashSet<ServiceCategoryTranslation>();
     }
 }

@@ -17,6 +17,10 @@ namespace AJS.Data.EntityConfiguration
                    .WithOne(p => p.ParentServiceCategory)
                    .HasForeignKey(fk => fk.ParentServiceCategoryId)
                    .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(t => t.Translations)
+                   .WithOne(c => c.Category)
+                   .HasForeignKey(fk => fk.CategoryId);
         }
     }
 }

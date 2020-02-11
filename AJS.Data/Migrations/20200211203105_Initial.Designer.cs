@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AJS.Data.Migrations
 {
     [DbContext(typeof(AJSDbContext))]
-    [Migration("20200211195647_LocalizeJobCategoryTable")]
-    partial class LocalizeJobCategoryTable
+    [Migration("20200211203105_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -521,6 +521,29 @@ namespace AJS.Data.Migrations
                     b.ToTable("ServiceCategory");
                 });
 
+            modelBuilder.Entity("AJS.Data.Models.ServiceCategoryTranslation", b =>
+                {
+                    b.Property<string>("ServiceCategoryTranslationId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CategoryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Translation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ServiceCategoryTranslationId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("ServiceCategoryTranslation");
+                });
+
             modelBuilder.Entity("AJS.Data.Models.ServiceDescription", b =>
                 {
                     b.Property<string>("DescriptionId")
@@ -1007,6 +1030,15 @@ namespace AJS.Data.Migrations
                         .WithMany("Categories")
                         .HasForeignKey("ParentServiceCategoryId")
                         .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.ServiceCategoryTranslation", b =>
+                {
+                    b.HasOne("AJS.Data.Models.ServiceCategory", "Category")
+                        .WithMany("Translations")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AJS.Data.Models.ServiceDescription", b =>
