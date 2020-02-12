@@ -16,6 +16,7 @@ using AJS.Web.Infrastructure.EmailSenderConfiguration;
 using System.IO;
 using NLog;
 using AJS.Common.Logger;
+using AJS.Web.Models;
 
 namespace AJS.Web
 {
@@ -39,7 +40,7 @@ namespace AJS.Web
             services.AddCustomServices();
            
             services.Configure<AuthMessageSenderOptions>(Configuration.GetSection(ProjectConstants.SendGridConfigSection));
-
+            
             services.AddDefaultIdentity<User>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;
@@ -99,7 +100,7 @@ namespace AJS.Web
             }
 
             app.UseDatabaseMigration();
-            app.Seed();
+            app.Seed(Configuration);
             app.UseCors();
             app.UseSession();
             app.UseHttpsRedirection();
