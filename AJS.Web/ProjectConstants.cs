@@ -40,5 +40,13 @@ namespace AJS.Web
         public const string CategoryNavigationMenuPartialViewModelCategoryIdRequiredErrorMessage = "Category Id is Required";
 
         #endregion CategoryNavigationMenuPartialViewModel
+
+        #region AdminData
+        public const string AdminConfigSection = "AdminData";      // Config Section Name at User Secrets
+        public const string AdminEmailKey = "AdminEmail";          //  Admin Email at AdminData Section
+        public const string AdminPasswordKey = "AdminPassword";    //  Admin Password at AdminPassword Section
+        public const string AdminNameKey = "AdminName";            //  Admin Email at AdminName Section
+        public const string AdminRoleName = "Administrator";       // Admin Role Name
+        #endregion AdminData
     }
 }
