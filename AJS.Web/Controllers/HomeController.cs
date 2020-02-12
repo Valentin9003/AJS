@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
 using System;
+using AJS.Web.Infrastructure.Attributes;
 
 namespace AJS.Web.Controllers
 {
@@ -35,6 +36,7 @@ namespace AJS.Web.Controllers
             return LocalRedirect(returnUrl);
         }
 
+        [CustomAuthorizationAttribute("Administrator")]
         public IActionResult Privacy()
         {
             return View();
@@ -44,6 +46,11 @@ namespace AJS.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Denied()
+        {
+            return View();
         }
     }
 }
