@@ -54,8 +54,8 @@ namespace AJS.Web.Infrastructure.Extensions
         {
             var supportedCultures = new List<CultureInfo>
             {
-                       new CultureInfo("bg"),
-                      new CultureInfo("en"),
+                 new CultureInfo("bg"),
+                 new CultureInfo("en"),
             };
 
             var localizationOptions = new RequestLocalizationOptions

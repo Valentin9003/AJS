@@ -16,7 +16,7 @@ namespace AJS.Web.Infrastructure.Extensions
     public static class ServiceCollectionExtensions
     {
         /// <summary>
-        /// This method gets called by the runtime services with reflection and creates instances
+        /// This method gets called by the runtime services with reflection and creates instances from them
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>        
@@ -49,7 +49,7 @@ namespace AJS.Web.Infrastructure.Extensions
                 var supportedCultures = new List<CultureInfo>
                   {
                     new CultureInfo("bg"),
-                      new CultureInfo("en"),
+                    new CultureInfo("en"),
                   };
 
                 opts.DefaultRequestCulture = new RequestCulture("bg");
@@ -65,7 +65,7 @@ namespace AJS.Web.Infrastructure.Extensions
         }
 
         /// <summary>
-        /// Extension Metod For Add Custom Services
+        /// Extension method that adds Custom Services
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
@@ -73,6 +73,7 @@ namespace AJS.Web.Infrastructure.Extensions
         {
             services.AddSingleton<ILoggerManager, LoggerManager>();
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddHttpContextAccessor();
 
             return services;
         }

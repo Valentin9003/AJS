@@ -7,6 +7,7 @@ namespace AJS.Web.Areas.Api
     /// <summary>
     /// Ads API Controller
     /// </summary>
+
     [Route("api/Ads")]
     [ApiController]
     public class AdsController : ControllerBase

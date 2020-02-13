@@ -7,6 +7,7 @@ namespace AJS.Web.Areas.Api
     /// <summary>
     /// Jobs API Controller
     /// </summary>
+    
     [Route("api/Jobs")]
     [ApiController]
     public class JobsController : ControllerBase
@@ -30,6 +31,7 @@ namespace AJS.Web.Areas.Api
         public async Task<IActionResult> GetById()
         {
             return new JsonResult("");
+
         }
 
         [HttpGet]
