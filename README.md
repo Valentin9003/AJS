@@ -92,4 +92,4 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 * Added Custom Authorization Attribute
 * Added Custom "Denied" Controller, View and Localization for them
 * Seed Method are refactored
-
+* Added Categories Navigation Menu Partial View
