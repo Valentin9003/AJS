@@ -89,3 +89,4 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 * Added Tables For News in Database
 * Layout Changed
 * Migrated project to .Net Core 3.1.1
+* Added Custom Authorization Attribute
