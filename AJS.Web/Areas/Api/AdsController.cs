@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace AJS.Web.Areas.Api
 {
     /// <summary>
-    /// Ads API  Controller
+    /// Ads API Controller
     /// </summary>
 
     [Route("api/Ads")]
