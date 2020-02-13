@@ -91,4 +91,5 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 * Migrated project to .Net Core 3.1.1
 * Added Custom Authorization Attribute
 * Added Custom "Denied" Controller, View and Localization for them
+* Seed Method are refactored
 
