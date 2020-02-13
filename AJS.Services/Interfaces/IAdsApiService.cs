@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AJS.Services.Interfaces
+﻿namespace AJS.Services.Interfaces
 {
+    /// <summary>
+    /// Ads API Service Interface
+    /// </summary>
+
     public interface IAdsApiService
     {
     }

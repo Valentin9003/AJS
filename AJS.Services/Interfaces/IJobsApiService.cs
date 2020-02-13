@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AJS.Services.Interfaces
+﻿namespace AJS.Services.Interfaces
 {
+    /// <summary>
+    /// Jobs API Service Interface
+    /// </summary>
     public interface IJobsApiService
     {
     }

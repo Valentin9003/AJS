@@ -1,11 +1,11 @@
 ﻿using AJS.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AJS.Services.Implementations
 {
-    class ServiceApiService : IServiceApiService
+    /// <summary>
+    /// Services API Service
+    /// </summary>
+    public class ServiceApiService : IServicesApiService
     {
         public ServiceApiService()
         {

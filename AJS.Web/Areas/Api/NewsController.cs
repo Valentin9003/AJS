@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AJS.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AJS.Web.Areas.Api
 {
+    /// <summary>
+    /// News API Controller
+    /// </summary>
+
     [Route("api/News")]
     [ApiController]
     public class NewsController : ControllerBase
@@ -21,37 +21,37 @@ namespace AJS.Web.Areas.Api
 
         [HttpGet]
         [Route("Get")]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return new JsonResult("Implement me");
+            return new JsonResult("");
         }
 
         [HttpGet]
         [Route("GetById")]
-        public IActionResult GetById()
+        public async Task<IActionResult> GetById()
         {
-            return new JsonResult("Implement me");
+            return new JsonResult("");
         }
 
         [HttpGet]
         [Route("GetByCategory")]
-        public IActionResult GetByCategory()
+        public async Task<IActionResult> GetByCategory()
         {
-            return new JsonResult("Implement me");
+            return new JsonResult("");
         }
 
         [HttpGet]
         [Route("GetByDate")]
-        public IActionResult GetByDate()
+        public async Task<IActionResult> GetByDate()
         {
-            return new JsonResult("Implement me");
+            return new JsonResult("");
         }
 
         [HttpGet]
         [Route("GetByLastDateSync")]
-        public IActionResult GetByLastDateSync()
+        public async Task<IActionResult> GetByLastDateSync()
         {
-            return new JsonResult("Implement me");
+            return new JsonResult("");
         }
     }
 }
