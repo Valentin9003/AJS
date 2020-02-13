@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using AJS.Services.Interfaces;
-
 using Microsoft.AspNetCore.Mvc;
 
 namespace AJS.Web.Areas.Api
