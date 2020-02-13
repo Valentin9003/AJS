@@ -36,7 +36,7 @@ namespace AJS.Web.Areas.Api
 
         [HttpGet]
         [Route("GetByCategory")]
-        public IActionResult GetByCategory()
+        public async Task<IActionResult> GetByCategory()
         {
             return new JsonResult("");
         }
