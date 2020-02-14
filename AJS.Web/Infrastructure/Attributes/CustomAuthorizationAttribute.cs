@@ -38,7 +38,7 @@ namespace AJS.Web.Infrastructure.Attributes
                 }
             }
 
-            return Task.Run(() => context.Result = new RedirectToActionResult("Denied", "Home", new object { }));
+            return Task.Run(() => context.Result = new RedirectToActionResult(ProjectConstants.DeniedActionName, ProjectConstants.HomeControllerName, new { Area = string.Empty }));
         }
     }
 }

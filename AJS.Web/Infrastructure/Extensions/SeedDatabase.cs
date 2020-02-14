@@ -28,7 +28,7 @@ namespace AJS.Web.Infrastructure.Extensions
 
                 var configuration = serviceScope.ServiceProvider.GetRequiredService<IConfiguration>();
 
-                AddAdministrator(userManager,rolemanager, configuration);
+                AddAdministrator(userManager, rolemanager, configuration);
 
                 SeedUser(userManager);
 
@@ -75,7 +75,7 @@ namespace AJS.Web.Infrastructure.Extensions
                     Email = adminEmail,
                 };
 
-                var uu = Task.Run(() => userManager.CreateAsync(administrator, adminPassword)).GetAwaiter().GetResult();
+                Task.Run(() => userManager.CreateAsync(administrator, adminPassword)).GetAwaiter().GetResult();
             }
 
             var roleExist = Task.Run(() => roleManager.RoleExistsAsync(ProjectConstants.AdminRoleName)).GetAwaiter().GetResult();
