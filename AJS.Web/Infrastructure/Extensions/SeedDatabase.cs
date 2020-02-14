@@ -15,7 +15,7 @@ namespace AJS.Web.Infrastructure.Extensions
 {
     public static class SeedDatabase
     {
-        public static IApplicationBuilder Seed(this IApplicationBuilder app, IConfiguration configuration)
+        public static IApplicationBuilder Seed(this IApplicationBuilder app)
         {
 
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
@@ -25,6 +25,8 @@ namespace AJS.Web.Infrastructure.Extensions
                 var rolemanager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
                 var db = serviceScope.ServiceProvider.GetRequiredService<AJSDbContext>();
+
+                var configuration = serviceScope.ServiceProvider.GetRequiredService<IConfiguration>();
 
                 AddAdministrator(userManager,rolemanager, configuration);
 
@@ -59,18 +61,18 @@ namespace AJS.Web.Infrastructure.Extensions
 
             if (string.IsNullOrEmpty(adminEmail) || string.IsNullOrEmpty(adminName) || string.IsNullOrEmpty(adminPassword))
             {
-                throw new Exception("User data not found in 'User Secrets'");
+                throw new Exception("Admin data not found in 'User Secrets'");
             }
 
-            var adminExist = Task.Run(() => userManager.FindByEmailAsync(adminEmail + "kk")).GetAwaiter().GetResult();
+            var adminExist = Task.Run(() => userManager.FindByEmailAsync(adminEmail)).GetAwaiter().GetResult();
 
             if (adminExist == null)
             {
                 var administrator = new User
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = adminName + "ll",
-                    Email = adminEmail + "kk",
+                    UserName = adminName,
+                    Email = adminEmail,
                 };
 
                 var uu = Task.Run(() => userManager.CreateAsync(administrator, adminPassword)).GetAwaiter().GetResult();

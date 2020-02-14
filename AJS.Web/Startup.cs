@@ -17,6 +17,7 @@ using System.IO;
 using NLog;
 using AJS.Common.Logger;
 using AJS.Web.Models;
+using Microsoft.Extensions.Options;
 
 namespace AJS.Web
 {
@@ -33,14 +34,11 @@ namespace AJS.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AJSDbContext>(options =>
-                 options.UseSqlServer(
-                     Configuration.GetConnectionString(ProjectConstants.DefaultConnection))) ;
+            services.AddDbContext<AJSDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(ProjectConstants.DefaultConnection))) ;
 
             services.AddCustomServices();
-           
-            services.Configure<AuthMessageSenderOptions>(Configuration.GetSection(ProjectConstants.SendGridConfigSection));
-            
+            services.AddSingleton(Configuration);
+
             services.AddDefaultIdentity<User>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;
@@ -51,15 +49,18 @@ namespace AJS.Web
             })
              .AddRoles<IdentityRole>()
              .AddEntityFrameworkStores<AJSDbContext>();
+          
+            services.AddAuthentication()
+                    .AddFacebook(option =>
+                    {
+                        option.AppSecret = Configuration.GetValue<string>(ProjectConstants.FacebookAppSecret);
+                        option.AppId = Configuration.GetValue<string>(ProjectConstants.FacebookAppId);
+                    });
 
-            services.AddAuthentication().AddFacebook(option =>
-            {
-                option.AppSecret = Configuration
-                      .GetValue<string>(ProjectConstants.FacebookAppSecret);
-                option.AppId = Configuration
-                      .GetValue<string>(ProjectConstants.FacebookAppId);
-            });
+            services.AddAuthorization();
 
+
+            services.Configure<AuthMessageSenderOptions>(Configuration.GetSection(ProjectConstants.SendGridConfigSection));
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -70,9 +71,7 @@ namespace AJS.Web
             services.AddLocalization(option => option.ResourcesPath = ProjectConstants.LanguageResourcesPath);
 
             services.AddControllersWithViews()
-                    .AddViewLocalization(
-                        LanguageViewLocationExpanderFormat.Suffix,
-                          option => option.ResourcesPath = ProjectConstants.LanguageResourcesPath)
+                    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix, option => option.ResourcesPath = ProjectConstants.LanguageResourcesPath)
                     .AddDataAnnotationsLocalization();
             
             services.AddCors();
@@ -100,7 +99,7 @@ namespace AJS.Web
             }
 
             app.UseDatabaseMigration();
-            app.Seed(Configuration);
+            //app.Seed();
             app.UseCors();
             app.UseSession();
             app.UseHttpsRedirection();
