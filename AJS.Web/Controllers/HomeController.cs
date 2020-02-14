@@ -36,7 +36,7 @@ namespace AJS.Web.Controllers
             return LocalRedirect(returnUrl);
         }
 
-        [CustomAuthorizationAttribute("Administrator")]
+
         public IActionResult Privacy()
         {
             return View();
