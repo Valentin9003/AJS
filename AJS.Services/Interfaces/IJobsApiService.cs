@@ -1,9 +1,9 @@
 ﻿namespace AJS.Services.Interfaces
 {
     /// <summary>
-    /// Jobs Service Interface
+    /// Jobs API Service Interface
     /// </summary>
-    public interface IJobsService
+    public interface IJobsApiService
     {
     }
 }

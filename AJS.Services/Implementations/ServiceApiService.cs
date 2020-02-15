@@ -3,11 +3,11 @@
 namespace AJS.Services.Implementations
 {
     /// <summary>
-    /// Services Service
+    /// Services API Service
     /// </summary>
-    public class ServicesService : IServicesService
+    public class ServiceApiService : IServicesApiService
     {
-        public ServicesService()
+        public ServiceApiService()
         {
 
         }
