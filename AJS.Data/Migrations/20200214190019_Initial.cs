@@ -134,6 +134,7 @@ namespace AJS.Data.Migrations
                 {
                     AdId = table.Column<string>(nullable: false),
                     Title = table.Column<string>(maxLength: 22, nullable: false),
+                    ReviewCounter = table.Column<int>(nullable: false),
                     CreatorId = table.Column<string>(nullable: false),
                     CategoryId = table.Column<string>(nullable: false),
                     PublicationDate = table.Column<DateTime>(nullable: false),
@@ -278,6 +279,7 @@ namespace AJS.Data.Migrations
                     NewsId = table.Column<string>(nullable: false),
                     Title = table.Column<string>(maxLength: 50, nullable: false),
                     Description = table.Column<string>(maxLength: 1500, nullable: false),
+                    ReviewCounter = table.Column<int>(nullable: false),
                     PublicationDate = table.Column<DateTime>(nullable: false),
                     Category = table.Column<int>(nullable: false),
                     Location = table.Column<int>(nullable: false),
@@ -300,6 +302,7 @@ namespace AJS.Data.Migrations
                 {
                     JobId = table.Column<string>(nullable: false),
                     Title = table.Column<string>(maxLength: 22, nullable: false),
+                    ReviewCounter = table.Column<int>(nullable: false),
                     CreatorId = table.Column<string>(nullable: false),
                     CategoryId = table.Column<string>(nullable: false),
                     PublicationDate = table.Column<DateTime>(nullable: false),
@@ -328,6 +331,7 @@ namespace AJS.Data.Migrations
                 {
                     ServiceId = table.Column<string>(nullable: false),
                     Title = table.Column<string>(maxLength: 22, nullable: false),
+                    ReviewCounter = table.Column<int>(nullable: false),
                     CreatorId = table.Column<string>(nullable: false),
                     CategoryId = table.Column<string>(nullable: false),
                     PublicationDate = table.Column<DateTime>(nullable: false),

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AJS.Data.Migrations
 {
     [DbContext(typeof(AJSDbContext))]
-    [Migration("20200206191945_AddReviewCounterColumn")]
-    partial class AddReviewCounterColumn
+    [Migration("20200214190019_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
