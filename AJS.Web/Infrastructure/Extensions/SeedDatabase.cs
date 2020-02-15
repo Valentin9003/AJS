@@ -61,7 +61,7 @@ namespace AJS.Web.Infrastructure.Extensions
 
             if (string.IsNullOrEmpty(adminEmail) || string.IsNullOrEmpty(adminName) || string.IsNullOrEmpty(adminPassword))
             {
-                throw new Exception("Admin data not found in 'User Secrets'");
+                throw new Exception(ProjectConstants.SeedDatabaseNullAdminDataErrorMessage);
             }
 
             var adminExist = Task.Run(() => userManager.FindByEmailAsync(adminEmail)).GetAwaiter().GetResult();

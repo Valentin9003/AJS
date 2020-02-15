@@ -29,6 +29,8 @@ namespace AJS.Web
 
         public const string HomeControllerName = "Home";
 
+        public const string SeedDatabaseNullAdminDataErrorMessage = "Admin data not found in 'User Secrets'";
+
         #endregion ApplicationConstants
 
         #region CategoryNavigationMenuPartialViewModel
