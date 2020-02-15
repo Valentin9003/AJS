@@ -21,7 +21,7 @@
         public const string CategoryNavigationMenuPartialViewModelControllerNameRequiredErrorMessage = "Controller Name is Required";
         public const string CategoryNavigationMenuPartialViewModelActionNameRequiredErrorMessage = "Action Name is Required";
         public const string CategoryNavigationMenuPartialViewModelCategoryNameRequiredErrorMessage = "Category Name is Required";
-        public const string CategoryNavigationMenuPartialViewModelCategoryIdRequiredErrorMessage = "Category Id is Required";
+        public const string CategoryNavigationMenuPartialViewModelCategoryIdRequiredErrorMessage = "Category ID is Required";
         public const string ChildCategoryNavigationMenuPartialViewModelAreaNameRequiredErrorMessage = "Child Area Name is Required";
         public const string ChildCategoryNavigationMenuPartialViewModelControllerNameRequiredErrorMessage = "Child Controller Name is Required";
         public const string ChildCategoryNavigationMenuPartialViewModelActionNameRequiredErrorMessage = "Child Action Name is Required";
