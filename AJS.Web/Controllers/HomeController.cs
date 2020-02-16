@@ -7,20 +7,24 @@ using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
 using System;
-using AJS.Web.Infrastructure.Attributes;
+using AJS.Services.Interfaces;
+using System.Threading.Tasks;
 
 namespace AJS.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IStringLocalizer<HomeController> StringLocalizer;
-       
-        public HomeController(IStringLocalizer<HomeController> stringLocalizer, IViewLocalizer viewLocalizer)
+
+        private readonly IServiceHelper helper;
+
+        public HomeController(IStringLocalizer<HomeController> stringLocalizer, IViewLocalizer viewLocalizer, IServiceHelper helper)
         {
             StringLocalizer = stringLocalizer;
+            this.helper = helper;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
         }

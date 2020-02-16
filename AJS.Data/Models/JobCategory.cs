@@ -24,5 +24,7 @@ namespace AJS.Data.Models
         public HashSet<JobCategory> Categories { get; set; } = new HashSet<JobCategory>();
 
         public List<Job> Jobs { get; set; } = new List<Job>();
+
+        public ICollection<JobCategoryTranslation> Translations { get; set; } = new HashSet<JobCategoryTranslation>();
     }
 }

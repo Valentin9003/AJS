@@ -17,6 +17,10 @@ namespace AJS.Data.EntityConfiguration
                    .WithOne(p => p.ParentAdCategory)
                    .HasForeignKey(fk => fk.ParentAdCategoryId)
                    .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(t => t.Translations)
+                   .WithOne(c => c.Category)
+                   .HasForeignKey(fk => fk.CategoryId);
         }
     }
 }

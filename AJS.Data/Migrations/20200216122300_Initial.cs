@@ -88,6 +88,19 @@ namespace AJS.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "NewsCategory",
+                columns: table => new
+                {
+                    CategoryId = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NewsCategory", x => x.CategoryId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ServiceCategory",
                 columns: table => new
                 {
@@ -105,6 +118,26 @@ namespace AJS.Data.Migrations
                         principalTable: "ServiceCategory",
                         principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AdCategoryTranslation",
+                columns: table => new
+                {
+                    AdCategoryTranslationId = table.Column<string>(nullable: false),
+                    Translation = table.Column<string>(nullable: false),
+                    Language = table.Column<int>(nullable: false),
+                    CategoryId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdCategoryTranslation", x => x.AdCategoryTranslationId);
+                    table.ForeignKey(
+                        name: "FK_AdCategoryTranslation_AdCategory_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "AdCategory",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -273,30 +306,6 @@ namespace AJS.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "News",
-                columns: table => new
-                {
-                    NewsId = table.Column<string>(nullable: false),
-                    Title = table.Column<string>(maxLength: 50, nullable: false),
-                    Description = table.Column<string>(maxLength: 1500, nullable: false),
-                    ReviewCounter = table.Column<int>(nullable: false),
-                    PublicationDate = table.Column<DateTime>(nullable: false),
-                    Category = table.Column<int>(nullable: false),
-                    Location = table.Column<int>(nullable: false),
-                    CreatorId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_News", x => x.NewsId);
-                    table.ForeignKey(
-                        name: "FK_News_AspNetUsers_CreatorId",
-                        column: x => x.CreatorId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Job",
                 columns: table => new
                 {
@@ -326,6 +335,76 @@ namespace AJS.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "JobCategoryTranslation",
+                columns: table => new
+                {
+                    JobCategoryTranslationId = table.Column<string>(nullable: false),
+                    Translation = table.Column<string>(nullable: false),
+                    Language = table.Column<int>(nullable: false),
+                    CategoryId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JobCategoryTranslation", x => x.JobCategoryTranslationId);
+                    table.ForeignKey(
+                        name: "FK_JobCategoryTranslation_JobCategory_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "JobCategory",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "News",
+                columns: table => new
+                {
+                    NewsId = table.Column<string>(nullable: false),
+                    Title = table.Column<string>(maxLength: 50, nullable: false),
+                    Description = table.Column<string>(maxLength: 1500, nullable: false),
+                    ReviewCounter = table.Column<int>(nullable: false),
+                    PublicationDate = table.Column<DateTime>(nullable: false),
+                    Location = table.Column<int>(nullable: false),
+                    CreatorId = table.Column<string>(nullable: false),
+                    CategoryId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_News", x => x.NewsId);
+                    table.ForeignKey(
+                        name: "FK_News_NewsCategory_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "NewsCategory",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_News_AspNetUsers_CreatorId",
+                        column: x => x.CreatorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "NewsCategoryTranslation",
+                columns: table => new
+                {
+                    NewsCategoryTranslationId = table.Column<string>(nullable: false),
+                    Translation = table.Column<string>(nullable: false),
+                    Language = table.Column<int>(nullable: false),
+                    CategoryId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NewsCategoryTranslation", x => x.NewsCategoryTranslationId);
+                    table.ForeignKey(
+                        name: "FK_NewsCategoryTranslation_NewsCategory_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "NewsCategory",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Service",
                 columns: table => new
                 {
@@ -351,6 +430,26 @@ namespace AJS.Data.Migrations
                         column: x => x.CreatorId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ServiceCategoryTranslation",
+                columns: table => new
+                {
+                    ServiceCategoryTranslationId = table.Column<string>(nullable: false),
+                    Translation = table.Column<string>(nullable: false),
+                    Language = table.Column<int>(nullable: false),
+                    CategoryId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServiceCategoryTranslation", x => x.ServiceCategoryTranslationId);
+                    table.ForeignKey(
+                        name: "FK_ServiceCategoryTranslation_ServiceCategory_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "ServiceCategory",
+                        principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -616,6 +715,11 @@ namespace AJS.Data.Migrations
                 column: "ParentAdCategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AdCategoryTranslation_CategoryId",
+                table: "AdCategoryTranslation",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AdDescription_AdId",
                 table: "AdDescription",
                 column: "AdId",
@@ -692,6 +796,11 @@ namespace AJS.Data.Migrations
                 column: "ParentJobCategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_JobCategoryTranslation_CategoryId",
+                table: "JobCategoryTranslation",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_JobDescription_JobId",
                 table: "JobDescription",
                 column: "JobId",
@@ -714,9 +823,19 @@ namespace AJS.Data.Migrations
                 column: "ReceivedId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_News_CategoryId",
+                table: "News",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_News_CreatorId",
                 table: "News",
                 column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NewsCategoryTranslation_CategoryId",
+                table: "NewsCategoryTranslation",
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Service_CategoryId",
@@ -732,6 +851,11 @@ namespace AJS.Data.Migrations
                 name: "IX_ServiceCategory_ParentServiceCategoryId",
                 table: "ServiceCategory",
                 column: "ParentServiceCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ServiceCategoryTranslation_CategoryId",
+                table: "ServiceCategoryTranslation",
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServiceDescription_ServiceId",
@@ -758,6 +882,9 @@ namespace AJS.Data.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AdCategoryTranslation");
+
             migrationBuilder.DropTable(
                 name: "AdDescription");
 
@@ -786,6 +913,9 @@ namespace AJS.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "JobCategoryTranslation");
+
+            migrationBuilder.DropTable(
                 name: "JobDescription");
 
             migrationBuilder.DropTable(
@@ -802,6 +932,12 @@ namespace AJS.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "News");
+
+            migrationBuilder.DropTable(
+                name: "NewsCategoryTranslation");
+
+            migrationBuilder.DropTable(
+                name: "ServiceCategoryTranslation");
 
             migrationBuilder.DropTable(
                 name: "ServiceDescription");
@@ -823,6 +959,9 @@ namespace AJS.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Job");
+
+            migrationBuilder.DropTable(
+                name: "NewsCategory");
 
             migrationBuilder.DropTable(
                 name: "Service");

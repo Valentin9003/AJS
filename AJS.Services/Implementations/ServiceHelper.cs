@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace AJS.Services.Implementations
 {
+    /// <summary>
+    /// Service Helper
+    /// </summary>
     public class ServiceHelper : IServiceHelper
     {
         private readonly IHttpContextAccessor httpAccessor;
@@ -14,14 +17,22 @@ namespace AJS.Services.Implementations
             this.httpAccessor = httpAccessor;
         }
 
-        public async Task<HttpContext> GetCurrentHttpContext()
+        /// <summary>
+        /// This Method Return Current HTTP Context
+        /// </summary>
+        /// <returns></returns>
+        public HttpContext GetCurrentHttpContext()
         {
-            return await Task.Run(() => httpAccessor.HttpContext);
+            return httpAccessor.HttpContext;
         }
 
-        public async Task<string> GetUserLocalization()
+        /// <summary>
+        /// This Method Return Current Localization
+        /// </summary>
+        /// <returns></returns>
+        public string GetUserLocalization()
         {
-            var httpContext = await GetCurrentHttpContext();
+            var httpContext = httpAccessor.HttpContext;
 
             return  httpContext.Features
                                      .Get<IRequestCultureFeature>()

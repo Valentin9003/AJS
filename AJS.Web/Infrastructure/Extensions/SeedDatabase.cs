@@ -1,7 +1,6 @@
 ﻿using AJS.Data;
 using AJS.Data.Models;
 using AJS.Data.Models.Enums;
-using AJS.Web.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -38,6 +37,8 @@ namespace AJS.Web.Infrastructure.Extensions
 
                 SeedServiceCategory(db);
 
+                SeedNewsCategory(db);
+
                 SeedAd(db);
 
                 SeedJob(db);
@@ -49,6 +50,7 @@ namespace AJS.Web.Infrastructure.Extensions
             return app;
         }
 
+
         private static void AddAdministrator(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
             var adminDataSecret = configuration.GetSection(ProjectConstants.AdminConfigSection)
@@ -56,7 +58,9 @@ namespace AJS.Web.Infrastructure.Extensions
                                                .ToDictionary(t => t.Key);
 
             var adminEmail = adminDataSecret[ProjectConstants.AdminEmailKey].Get<string>();
+
             var adminPassword = adminDataSecret[ProjectConstants.AdminPasswordKey].Get<string>();
+
             var adminName = adminDataSecret[ProjectConstants.AdminNameKey].Get<string>();
 
             if (string.IsNullOrEmpty(adminEmail) || string.IsNullOrEmpty(adminName) || string.IsNullOrEmpty(adminPassword))
@@ -100,6 +104,52 @@ namespace AJS.Web.Infrastructure.Extensions
             }
         }
 
+        private static void SeedNewsCategory(AJSDbContext db)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                var categoryName = $"News Category {i}";
+
+                var categoryExist = db.NewsCategory.Any(c => c.Name == categoryName);
+
+                if (!categoryExist)
+                {
+                    var categoryId = Guid.NewGuid().ToString();
+
+                    var newsCategory = new NewsCategory()
+                    {
+                        CategoryId = categoryId,
+
+                        Description = $"Some Description {i}",
+
+                        Name = categoryName,
+
+                        Translations = new List<NewsCategoryTranslation>()
+                        {
+                            new NewsCategoryTranslation()
+                            {
+                                CategoryId = categoryId,
+                                Language = NewsCategoryLanguage.bg,
+                                NewsCategoryTranslationId = Guid.NewGuid().ToString(),
+                                Translation = $"Категория новини {i}"
+                            },
+
+                            new NewsCategoryTranslation()
+                            {
+                                CategoryId = categoryId,
+                                Language = NewsCategoryLanguage.en,
+                                NewsCategoryTranslationId = Guid.NewGuid().ToString(),
+                                Translation = $"News Category {i}"
+                            }
+                        }
+                    };
+
+                    db.NewsCategory.Add(newsCategory);
+                    db.SaveChanges();
+                }
+            }
+        }
+
         private static void SeedNews(AJSDbContext db)
         {
             var user = db.Users
@@ -108,19 +158,22 @@ namespace AJS.Web.Infrastructure.Extensions
             var isCreated = db.News
                               .Any();
 
-            if (user != null && !isCreated)
+            var newsCategory = db.NewsCategory
+                                 .FirstOrDefault();
+
+            if (user != null && !isCreated && newsCategory != null)
             {
                 var userId = user.Id;
+                var categoryId = newsCategory.CategoryId;
 
                 for (int i = 0; i <= 50; i++)
                 {
+
                     var news = new News()
                     {
                         NewsId = Guid.NewGuid().ToString(),
 
                         Description = $"News Description {i}",
-
-                        Category = i % 2 == 0 ? NewsCategory.Business : NewsCategory.Culture,
 
                         Location = i % 2 == 0 ? NewsLocation.Bulgaria : NewsLocation.England,
 
@@ -130,11 +183,12 @@ namespace AJS.Web.Infrastructure.Extensions
 
                         CreatorId = userId,
 
-                        ReviewCounter = i
+                        ReviewCounter = i,
+
+                        CategoryId = categoryId,
                     };
 
                     db.News.Add(news);
-
                     db.SaveChanges();
                 }
             }
@@ -153,11 +207,20 @@ namespace AJS.Web.Infrastructure.Extensions
                 {
                     var parentCategoryId = Guid.NewGuid().ToString();
 
+                    var firstSubCategoryId = Guid.NewGuid().ToString();
+
+                    var secondSubCategoryId = Guid.NewGuid().ToString();
+
+                    var thirdSubCategoryId = Guid.NewGuid().ToString();
+
                     var category = new AdCategory
                     {
                         CategoryId = parentCategoryId,
+
                         Description = $"Some Text{i}",
+
                         Name = adCategory,
+
                         ParentAdCategory = null,
 
                         Categories = new HashSet<AdCategory>()
@@ -165,31 +228,97 @@ namespace AJS.Web.Infrastructure.Extensions
                             new AdCategory
                             {
                               Name = $"AdSubCategory{i}.1",
-                              CategoryId = Guid.NewGuid().ToString(),
+
+                              CategoryId = firstSubCategoryId,
+
                               ParentAdCategoryId = parentCategoryId,
+
                               Description = $"Some Description{i}.1",
+
                               Categories = null,
-                              Ads = null
+
+                              Ads = null,
+
+                              Translations = new HashSet<AdCategoryTranslation>()
+                              {
+                                 new AdCategoryTranslation
+                                 {
+                                     AdCategoryTranslationId = Guid.NewGuid().ToString(),
+                                     CategoryId = firstSubCategoryId,
+                                     Language = AdCategoryLanguage.bg,
+                                     Translation = $"Обява Категория {i}"
+                                 },
+
+                                 new AdCategoryTranslation
+                                 {
+                                     AdCategoryTranslationId = Guid.NewGuid().ToString(),
+                                     CategoryId = firstSubCategoryId,
+                                     Language = AdCategoryLanguage.en,
+                                     Translation = $"Ad Category {i}"
+                                 }
+                              }
                             },
 
                             new AdCategory
                             {
                               Name = $"AdSubCategory{i}.2",
-                              CategoryId = Guid.NewGuid().ToString(),
+
+                              CategoryId = secondSubCategoryId,
+
                               ParentAdCategoryId = parentCategoryId,
+
                               Description = $"Some Description{i}.2",
+
                               Categories = null,
-                              Ads = null
+
+                              Ads = null,
+
+                              Translations = new List<AdCategoryTranslation>()
+                              {
+                                  new AdCategoryTranslation
+                                  {
+                                     AdCategoryTranslationId = Guid.NewGuid().ToString(),
+                                     CategoryId = secondSubCategoryId,
+                                     Language = AdCategoryLanguage.bg,
+                                     Translation = $"Обява Категория {i}"
+                                  },
+                                  new AdCategoryTranslation
+                                  {
+                                      AdCategoryTranslationId = Guid.NewGuid().ToString(),
+                                      CategoryId = secondSubCategoryId,
+                                      Language = AdCategoryLanguage.en,
+                                      Translation = $"Ad Category {i}"
+                                  }
+                              }
                             },
 
                             new AdCategory
                             {
                               Name = $"AdSubCategory{i}.3",
-                              CategoryId = Guid.NewGuid().ToString(),
+                              CategoryId = thirdSubCategoryId,
                               ParentAdCategoryId = parentCategoryId,
                               Description = $"Some Description{i}.3",
                               Categories = null,
-                              Ads = null
+                              Ads = null,
+
+                              Translations = new List<AdCategoryTranslation>()
+                              {
+                                  new AdCategoryTranslation
+                                  {
+                                     AdCategoryTranslationId = Guid.NewGuid().ToString(),
+                                     CategoryId = thirdSubCategoryId,
+                                     Language = AdCategoryLanguage.bg,
+                                     Translation = $"Обява Категория {i}"
+                                  },
+
+                                  new AdCategoryTranslation
+                                  {
+                                      AdCategoryTranslationId = Guid.NewGuid().ToString(),
+                                      CategoryId = thirdSubCategoryId,
+                                      Language = AdCategoryLanguage.en,
+                                      Translation = $"Ad Category {i}"
+                                  }
+                              }
                             }
                         }
                     };
@@ -212,6 +341,12 @@ namespace AJS.Web.Infrastructure.Extensions
                 {
                     var parentCategoryId = Guid.NewGuid().ToString();
 
+                    var firstSubCategoryId = Guid.NewGuid().ToString();
+
+                    var secondSubCategoryId = Guid.NewGuid().ToString();
+
+                    var thirdSubCategoryId = Guid.NewGuid().ToString();
+
                     var category = new ServiceCategory
                     {
                         CategoryId = parentCategoryId,
@@ -227,31 +362,103 @@ namespace AJS.Web.Infrastructure.Extensions
                            new ServiceCategory
                            {
                              Name = $"ServiceSubCategory{i}.1",
-                             CategoryId = Guid.NewGuid().ToString(),
+
+                             CategoryId = firstSubCategoryId,
+
                              ParentServiceCategoryId = parentCategoryId,
+
                              Description = $"Some Description{i}.1",
+
                              Categories = null,
-                             Services = null
+
+                             Services = null,
+
+                              Translations = new HashSet<ServiceCategoryTranslation>()
+                              {
+                                 new ServiceCategoryTranslation
+                                 {
+                                     ServiceCategoryTranslationId = Guid.NewGuid().ToString(),
+                                     CategoryId = firstSubCategoryId,
+                                     Language = ServiceCategoryLanguage.bg,
+                                     Translation = $"Услуги Категория {i}"
+                                 },
+
+                                 new ServiceCategoryTranslation
+                                 {
+                                     ServiceCategoryTranslationId = Guid.NewGuid().ToString(),
+                                     CategoryId = firstSubCategoryId,
+                                     Language = ServiceCategoryLanguage.en,
+                                     Translation = $"Service Category {i}"
+                                 }
+                              }
                            },
 
                            new ServiceCategory
                            {
                              Name = $"ServiceSubCategory{i}.2",
-                             CategoryId = Guid.NewGuid().ToString(),
+
+                             CategoryId = secondSubCategoryId,
+
                              ParentServiceCategoryId = parentCategoryId,
+
                              Description = $"Some Description{i}.2",
+
                              Categories = null,
-                             Services = null
+
+                             Services = null,
+
+                              Translations = new HashSet<ServiceCategoryTranslation>()
+                              {
+                                 new ServiceCategoryTranslation
+                                 {
+                                     ServiceCategoryTranslationId = Guid.NewGuid().ToString(),
+                                     CategoryId = secondSubCategoryId,
+                                     Language = ServiceCategoryLanguage.bg,
+                                     Translation = $"Услуги Категория {i}"
+                                 },
+
+                                 new ServiceCategoryTranslation
+                                 {
+                                     ServiceCategoryTranslationId = Guid.NewGuid().ToString(),
+                                     CategoryId = secondSubCategoryId,
+                                     Language = ServiceCategoryLanguage.en,
+                                     Translation = $"Service Category {i}"
+                                 }
+                              }
                            },
 
                            new ServiceCategory
                            {
                              Name = $"ServiceSubCategory{i}.3",
-                             CategoryId = Guid.NewGuid().ToString(),
+
+                             CategoryId = thirdSubCategoryId,
+
                              ParentServiceCategoryId = parentCategoryId,
+
                              Description = $"Some Description{i}.3",
+
                              Categories = null,
-                             Services = null
+
+                             Services = null,
+
+                              Translations = new HashSet<ServiceCategoryTranslation>()
+                              {
+                                 new ServiceCategoryTranslation
+                                 {
+                                     ServiceCategoryTranslationId = Guid.NewGuid().ToString(),
+                                     CategoryId = thirdSubCategoryId,
+                                     Language = ServiceCategoryLanguage.bg,
+                                     Translation = $"Услуги Категория {i}"
+                                 },
+
+                                 new ServiceCategoryTranslation
+                                 {
+                                     ServiceCategoryTranslationId = Guid.NewGuid().ToString(),
+                                     CategoryId = thirdSubCategoryId,
+                                     Language = ServiceCategoryLanguage.en,
+                                     Translation = $"Service Category {i}"
+                                 }
+                              }
                            }
                         }
                     };
@@ -274,6 +481,12 @@ namespace AJS.Web.Infrastructure.Extensions
                 {
                     var parentCategoryId = Guid.NewGuid().ToString();
 
+                    var firstSubCategoryId = Guid.NewGuid().ToString();
+
+                    var secondSubCategoryId = Guid.NewGuid().ToString();
+
+                    var thirdSubCategoryId = Guid.NewGuid().ToString();
+
                     var category = new JobCategory
                     {
                         CategoryId = parentCategoryId,
@@ -289,30 +502,103 @@ namespace AJS.Web.Infrastructure.Extensions
                              new JobCategory
                              {
                                Name = $"JobSubCategory{i}.1",
+
                                CategoryId = Guid.NewGuid().ToString(),
+
                                ParentJobCategoryId = parentCategoryId,
+
                                Description = $"Some Description{i}.1",
+
                                Categories = null,
-                               Jobs = null
+
+                               Jobs = null,
+
+                                Translations = new HashSet<JobCategoryTranslation>()
+                                {
+                                      new JobCategoryTranslation
+                                      {
+                                          JobCategoryTranslationId = Guid.NewGuid().ToString(),
+                                          CategoryId = firstSubCategoryId,
+                                          Language = JobCategoryLanguage.bg,
+                                          Translation = $"Работа Категория {i}"
+                                      },
+
+                                      new JobCategoryTranslation
+                                      {
+                                          JobCategoryTranslationId = Guid.NewGuid().ToString(),
+                                          CategoryId = firstSubCategoryId,
+                                          Language = JobCategoryLanguage.en,
+                                          Translation = $"Service Category {i}"
+                                      }
+                                }
                              },
 
                              new JobCategory
                              {
                                Name = $"JobSubCategory{i}.2",
-                               CategoryId = Guid.NewGuid().ToString(),
+
+                               CategoryId = secondSubCategoryId,
+
                                ParentJobCategoryId = parentCategoryId,
+
                                Description = $"Some Description{i}.2",
+
                                Categories = null,
-                               Jobs = null
+
+                               Jobs = null,
+
+                               Translations = new HashSet<JobCategoryTranslation>()
+                                 {
+                                      new JobCategoryTranslation()
+                                      {
+                                        JobCategoryTranslationId = Guid.NewGuid().ToString(),
+                                        CategoryId = secondSubCategoryId,
+                                        Language = JobCategoryLanguage.bg,
+                                        Translation = $"Работа Категория {i}"
+                                      },
+
+                                      new JobCategoryTranslation
+                                      {
+                                          JobCategoryTranslationId = Guid.NewGuid().ToString(),
+                                          CategoryId = secondSubCategoryId,
+                                          Language = JobCategoryLanguage.en,
+                                          Translation = $"Service Category {i}"
+                                      }
+                               }
                              },
+
                              new JobCategory
                              {
                                Name = $"JobSubCategory{i}.3",
-                               CategoryId = Guid.NewGuid().ToString(),
+
+                               CategoryId = thirdSubCategoryId,
+
                                ParentJobCategoryId = parentCategoryId,
+
                                Description = $"Some Description{i}.3",
+
                                Categories = null,
-                               Jobs = null
+
+                               Jobs = null,
+
+                                Translations = new HashSet<JobCategoryTranslation>()
+                                {
+                                      new JobCategoryTranslation
+                                      {
+                                          JobCategoryTranslationId = Guid.NewGuid().ToString(),
+                                          CategoryId = thirdSubCategoryId,
+                                          Language = JobCategoryLanguage.bg,
+                                          Translation = $"Работа Категория {i}"
+                                      },
+
+                                      new JobCategoryTranslation
+                                      {
+                                          JobCategoryTranslationId = Guid.NewGuid().ToString(),
+                                          CategoryId = thirdSubCategoryId,
+                                          Language = JobCategoryLanguage.en,
+                                          Translation = $"Job Category {i}"
+                                      }
+                                }
                              }
                         }
                     };
@@ -395,6 +681,12 @@ namespace AJS.Web.Infrastructure.Extensions
 
                         ReviewCounter = i,
 
+                        Language = i % 2 == 0 ? AdLanguage.BG : AdLanguage.EN,
+
+                        PublicationDate = DateTime.Now,
+
+                        Title = $"Some Title {i}",
+
                         Pictures = new List<AdPicture>()
                         {
                             new AdPicture
@@ -405,6 +697,7 @@ namespace AJS.Web.Infrastructure.Extensions
                                 PictureId = Guid.NewGuid().ToString()
                             }
                         },
+
                         Description = new AdDescription
                         {
                             DescriptionId = Guid.NewGuid().ToString(),
@@ -412,6 +705,7 @@ namespace AJS.Web.Infrastructure.Extensions
                             State = AdState.New,
                             Description = $"Some Description{i}"
                         },
+
                         Location = new AdLocation
                         {
                             LocationId = Guid.NewGuid().ToString(),
@@ -422,6 +716,7 @@ namespace AJS.Web.Infrastructure.Extensions
                             Country = $"Some country {i}",
                             PostCode = $"2000",
                         },
+
                         Prices = new List<AdPrice>()
                         {
                             new AdPrice
@@ -432,9 +727,6 @@ namespace AJS.Web.Infrastructure.Extensions
                                 Price = 200 + i,
                             }
                         },
-                        Language = i % 2 == 0 ? AdLanguage.BG : AdLanguage.EN,
-                        PublicationDate = DateTime.Now,
-                        Title = $"Some Title {i}"
                     };
 
                     db.Ad.Add(ad);
