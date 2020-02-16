@@ -26,8 +26,8 @@ namespace AJS.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var context = await helper.GetCurrentHttpContext();
-            var lang = await helper.GetUserLocalization();
+            var context =  helper.GetCurrentHttpContext();
+            var lang =  helper.GetUserLocalization();
             return View();
         }
 

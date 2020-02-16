@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace AJS.Data.Models
 {
     /// <summary>
-    /// Service Category Translations
+    /// Service Category Translation Data Model
     /// </summary>
     public class ServiceCategoryTranslation
     {

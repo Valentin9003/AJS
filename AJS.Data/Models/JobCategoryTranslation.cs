@@ -1,13 +1,10 @@
 ﻿using AJS.Data.Models.Enums;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace AJS.Data.Models
 {
     /// <summary>
-    /// Job Category Translations
+    /// Job Category Translation Data Model
     /// </summary>
     public class JobCategoryTranslation
     {

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using AJS.Data.Models;
 
 /// <summary>
-///  AdCategoryTranslation Data Model Configuration
+///  JobCategoryTranslation Data Model Configuration
 /// </summary>
 namespace AJS.Data.EntityConfiguration
 {

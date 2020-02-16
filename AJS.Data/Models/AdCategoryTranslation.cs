@@ -1,13 +1,10 @@
 ﻿using AJS.Data.Models.Enums;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace AJS.Data.Models
 {
     /// <summary>
-    /// Ad Category Translations
+    /// Ad Category Translation Data Model
     /// </summary>
     public class AdCategoryTranslation
     {

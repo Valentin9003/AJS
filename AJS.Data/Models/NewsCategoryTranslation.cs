@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace AJS.Data.Models
 {
     /// <summary>
-    /// News Category Translations
+    /// News Category Translation Data Model
     /// </summary>
     public class NewsCategoryTranslation
     {
@@ -19,6 +19,6 @@ namespace AJS.Data.Models
         [Required]
         public string CategoryId { get; set; }
 
-        public AdCategory Category { get; set; }
+        public NewsCategory Category { get; set; }
     }
 }

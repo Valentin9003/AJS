@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace AJS.Data.EntityConfiguration
 {
     /// <summary>
-    /// JobCategory Data Model Configuration
+    /// NewsCategory Data Model Configuration
     /// </summary>
     public class NewsCategoryConfiguration : IEntityTypeConfiguration<NewsCategory>
     {

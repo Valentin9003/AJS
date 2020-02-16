@@ -4,14 +4,16 @@ using AJS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AJS.Data.Migrations
 {
     [DbContext(typeof(AJSDbContext))]
-    partial class AJSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200216113004_LocalizeCategoriesTables")]
+    partial class LocalizeCategoriesTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -493,6 +495,9 @@ namespace AJS.Data.Migrations
                     b.Property<int>("Language")
                         .HasColumnType("int");
 
+                    b.Property<string>("NewsCategoryCategoryId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Translation")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -500,6 +505,8 @@ namespace AJS.Data.Migrations
                     b.HasKey("NewsCategoryTranslationId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("NewsCategoryCategoryId");
 
                     b.ToTable("NewsCategoryTranslation");
                 });
@@ -1057,11 +1064,15 @@ namespace AJS.Data.Migrations
 
             modelBuilder.Entity("AJS.Data.Models.NewsCategoryTranslation", b =>
                 {
-                    b.HasOne("AJS.Data.Models.NewsCategory", "Category")
-                        .WithMany("Translations")
+                    b.HasOne("AJS.Data.Models.AdCategory", "Category")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("AJS.Data.Models.NewsCategory", null)
+                        .WithMany("Translations")
+                        .HasForeignKey("NewsCategoryCategoryId");
                 });
 
             modelBuilder.Entity("AJS.Data.Models.Service", b =>

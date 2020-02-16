@@ -27,7 +27,7 @@ namespace AJS.Data
 
         public DbSet<AdPrice> AdPrice { get; set; }
 
-        public DbSet<AdCategoryTranslation> AdCategoryTranslations { get; set; }
+        public DbSet<AdCategoryTranslation> AdCategoryTranslation { get; set; }
 
         public DbSet<Service> Service { get; set; }
 
@@ -41,7 +41,7 @@ namespace AJS.Data
 
         public DbSet<ServicePrice> ServicePrice { get; set; }
 
-        public DbSet<ServiceCategoryTranslation> ServiceCategoryTranslations { get; set; }
+        public DbSet<ServiceCategoryTranslation> ServiceCategoryTranslation { get; set; }
 
         public DbSet<Job> Job { get; set; }
 
@@ -55,9 +55,13 @@ namespace AJS.Data
 
         public DbSet<JobPrice> JobPrice { get; set; }
 
-        public DbSet<JobCategoryTranslation> JobCategoryTranslations { get; set; }
+        public DbSet<JobCategoryTranslation> JobCategoryTranslation { get; set; }
 
         public DbSet<News> News { get; set; }
+
+        public DbSet<NewsCategory> NewsCategory { get; set; }
+
+        public DbSet<NewsCategoryTranslation> NewsCategoryTranslation { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
