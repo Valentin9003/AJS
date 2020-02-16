@@ -24,7 +24,6 @@ namespace AJS.Web.Infrastructure.Extensions
             {
                var context =  serviceScope.ServiceProvider.GetService<AJSDbContext>();
 
-                   context.Database.EnsureDeleted();
                    context.Database.Migrate();
                    context.Database.EnsureCreated();
             }
