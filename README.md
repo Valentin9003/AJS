@@ -93,6 +93,6 @@ This project is licensed under the Apache License - see the [LICENSE.md](LICENSE
 * Added Custom "Denied" Controller, View and Localization for them
 * Seed Method are refactored
 * Added Categories Navigation Menu Partial View
-* Added Grid Partial View
 * Added Localization to Categories Tables in Database
 * Added APIs and Services for them
+* Added Service Helper
