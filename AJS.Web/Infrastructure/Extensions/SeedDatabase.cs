@@ -59,7 +59,9 @@ namespace AJS.Web.Infrastructure.Extensions
                                                .ToDictionary(t => t.Key);
 
             var adminEmail = adminDataSecret[ProjectConstants.AdminEmailKey].Get<string>();
+
             var adminPassword = adminDataSecret[ProjectConstants.AdminPasswordKey].Get<string>();
+
             var adminName = adminDataSecret[ProjectConstants.AdminNameKey].Get<string>();
 
             if (string.IsNullOrEmpty(adminEmail) || string.IsNullOrEmpty(adminName) || string.IsNullOrEmpty(adminPassword))
@@ -133,7 +135,7 @@ namespace AJS.Web.Infrastructure.Extensions
                                 Translation = $"Категория новини {i}"
                             },
 
-                             new NewsCategoryTranslation()
+                            new NewsCategoryTranslation()
                             {
                                 CategoryId = categoryId,
                                 Language = NewsCategoryLanguage.en,
@@ -145,6 +147,8 @@ namespace AJS.Web.Infrastructure.Extensions
 
                     db.NewsCategory.Add(newsCategory);
                     db.SaveChanges();
+                }
+            }
         }
           
         private static void SeedNews(AJSDbContext db)
@@ -186,7 +190,6 @@ namespace AJS.Web.Infrastructure.Extensions
                     };
 
                     db.News.Add(news);
-
                     db.SaveChanges();
                 }
             }
