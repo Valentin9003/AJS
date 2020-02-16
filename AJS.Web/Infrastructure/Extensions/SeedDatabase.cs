@@ -1,7 +1,6 @@
 ﻿using AJS.Data;
 using AJS.Data.Models;
 using AJS.Data.Models.Enums;
-using AJS.Web.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -51,7 +50,7 @@ namespace AJS.Web.Infrastructure.Extensions
             return app;
         }
 
-          
+
         private static void AddAdministrator(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
             var adminDataSecret = configuration.GetSection(ProjectConstants.AdminConfigSection)
@@ -150,7 +149,7 @@ namespace AJS.Web.Infrastructure.Extensions
                 }
             }
         }
-          
+
         private static void SeedNews(AJSDbContext db)
         {
             var user = db.Users
