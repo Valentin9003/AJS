@@ -3,11 +3,11 @@
 namespace AJS.Services.Implementations
 {
     /// <summary>
-    /// Services Service
+    /// News Api Service
     /// </summary>
-    public class ServicesService : IServicesService
+    public class NewsApiService : INewsApiService
     {
-        public ServicesService()
+        public NewsApiService()
         {
 
         }

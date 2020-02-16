@@ -1,12 +1,15 @@
 ﻿using AJS.Data;
 using AJS.Data.Models;
 using AJS.Data.Models.Enums;
+using AJS.Web.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace AJS.Web.Infrastructure.Extensions
 {
@@ -14,11 +17,18 @@ namespace AJS.Web.Infrastructure.Extensions
     {
         public static IApplicationBuilder Seed(this IApplicationBuilder app)
         {
+
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<User>>();
 
+                var rolemanager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
                 var db = serviceScope.ServiceProvider.GetRequiredService<AJSDbContext>();
+
+                var configuration = serviceScope.ServiceProvider.GetRequiredService<IConfiguration>();
+
+                AddAdministrator(userManager, rolemanager, configuration);
 
                 SeedUser(userManager);
 
@@ -39,6 +49,58 @@ namespace AJS.Web.Infrastructure.Extensions
                 SeedNews(db);
             }
             return app;
+        }
+
+          
+        private static void AddAdministrator(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+        {
+            var adminDataSecret = configuration.GetSection(ProjectConstants.AdminConfigSection)
+                                               .GetChildren()
+                                               .ToDictionary(t => t.Key);
+
+            var adminEmail = adminDataSecret[ProjectConstants.AdminEmailKey].Get<string>();
+            var adminPassword = adminDataSecret[ProjectConstants.AdminPasswordKey].Get<string>();
+            var adminName = adminDataSecret[ProjectConstants.AdminNameKey].Get<string>();
+
+            if (string.IsNullOrEmpty(adminEmail) || string.IsNullOrEmpty(adminName) || string.IsNullOrEmpty(adminPassword))
+            {
+                throw new Exception(ProjectConstants.SeedDatabaseNullAdminDataErrorMessage);
+            }
+
+            var adminExist = Task.Run(() => userManager.FindByEmailAsync(adminEmail)).GetAwaiter().GetResult();
+
+            if (adminExist == null)
+            {
+                var administrator = new User
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserName = adminName,
+                    Email = adminEmail,
+                };
+
+                Task.Run(() => userManager.CreateAsync(administrator, adminPassword)).GetAwaiter().GetResult();
+            }
+
+            var roleExist = Task.Run(() => roleManager.RoleExistsAsync(ProjectConstants.AdminRoleName)).GetAwaiter().GetResult();
+
+            if (!roleExist)
+            {
+                var role = new IdentityRole
+                {
+                    Name = ProjectConstants.AdminRoleName
+                };
+
+                Task.Run(() => roleManager.CreateAsync(role)).GetAwaiter().GetResult();
+            }
+
+            var admin = Task.Run(() => userManager.FindByEmailAsync(adminEmail)).GetAwaiter().GetResult();
+
+            var isInRole = Task.Run(() => userManager.IsInRoleAsync(admin, ProjectConstants.AdminRoleName)).GetAwaiter().GetResult();
+
+            if (!isInRole)
+            {
+                Task.Run(() => userManager.AddToRoleAsync(admin, ProjectConstants.AdminRoleName)).GetAwaiter().GetResult();
+            }
         }
 
         private static void SeedNewsCategory(AJSDbContext db)
@@ -83,10 +145,8 @@ namespace AJS.Web.Infrastructure.Extensions
 
                     db.NewsCategory.Add(newsCategory);
                     db.SaveChanges();
-                }
-            }
         }
-
+          
         private static void SeedNews(AJSDbContext db)
         {
             var user = db.Users
