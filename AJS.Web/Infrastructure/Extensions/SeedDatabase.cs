@@ -227,7 +227,7 @@ namespace AJS.Web.Infrastructure.Extensions
                                       Language = AdCategoryLanguage.en,
                                       Translation = $"Ad Category {i}"
                                   }
-                              } 
+                              }
                             },
 
                             new AdCategory
@@ -501,9 +501,9 @@ namespace AJS.Web.Infrastructure.Extensions
                                           CategoryId = secondSubCategoryId,
                                           Language = JobCategoryLanguage.en,
                                           Translation = $"Service Category {i}"
-                                      } 
+                                      }
                                }
-                             },     
+                             },
 
                              new JobCategory
                              {
@@ -528,7 +528,7 @@ namespace AJS.Web.Infrastructure.Extensions
                                           Language = JobCategoryLanguage.bg,
                                           Translation = $"Работа Категория {i}"
                                       },
-                                    
+
                                       new JobCategoryTranslation
                                       {
                                           JobCategoryTranslationId = Guid.NewGuid().ToString(),
