@@ -1,0 +1,9 @@
+﻿@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Denied";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <link rel="stylesheet" href="~/css/Denied.css" type="text/css" />
+
+<div class="denied">@Localizer["You do not have the necessary permissions"]</div>
+

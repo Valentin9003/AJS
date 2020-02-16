@@ -12,17 +12,19 @@ namespace AJS.Data.Models
         [Required]
         public string CategoryId { get; set; }
 
-        public string Name { get; set; } 
+        public string Name { get; set; }
 
         public string Description { get; set; }
 
         public string ParentAdCategoryId { get; set; }
 
-      [ForeignKey("ParentAdCategoryId")]
-       public AdCategory ParentAdCategory { get; set; }
+        [ForeignKey("ParentAdCategoryId")]
+        public AdCategory ParentAdCategory { get; set; }
 
         public HashSet<AdCategory> Categories { get; set; } = new HashSet<AdCategory>();
 
         public List<Ad> Ads { get; set; } = new List<Ad>();
-   }
+
+        public ICollection<AdCategoryTranslation> Translations { get; set; } = new HashSet<AdCategoryTranslation>();
+    }
 }

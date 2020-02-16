@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AJS.Data.Migrations
 {
     [DbContext(typeof(AJSDbContext))]
-    [Migration("20200206191945_AddReviewCounterColumn")]
-    partial class AddReviewCounterColumn
+    [Migration("20200216122300_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,6 +76,29 @@ namespace AJS.Data.Migrations
                     b.HasIndex("ParentAdCategoryId");
 
                     b.ToTable("AdCategory");
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.AdCategoryTranslation", b =>
+                {
+                    b.Property<string>("AdCategoryTranslationId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CategoryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Translation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AdCategoryTranslationId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("AdCategoryTranslation");
                 });
 
             modelBuilder.Entity("AJS.Data.Models.AdDescription", b =>
@@ -244,6 +267,29 @@ namespace AJS.Data.Migrations
                     b.ToTable("JobCategory");
                 });
 
+            modelBuilder.Entity("AJS.Data.Models.JobCategoryTranslation", b =>
+                {
+                    b.Property<string>("JobCategoryTranslationId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CategoryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Translation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("JobCategoryTranslationId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("JobCategoryTranslation");
+                });
+
             modelBuilder.Entity("AJS.Data.Models.JobDescription", b =>
                 {
                     b.Property<string>("DescriptionId")
@@ -385,8 +431,9 @@ namespace AJS.Data.Migrations
                     b.Property<string>("NewsId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("Category")
-                        .HasColumnType("int");
+                    b.Property<string>("CategoryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CreatorId")
                         .IsRequired()
@@ -413,9 +460,50 @@ namespace AJS.Data.Migrations
 
                     b.HasKey("NewsId");
 
+                    b.HasIndex("CategoryId");
+
                     b.HasIndex("CreatorId");
 
                     b.ToTable("News");
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.NewsCategory", b =>
+                {
+                    b.Property<string>("CategoryId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("NewsCategory");
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.NewsCategoryTranslation", b =>
+                {
+                    b.Property<string>("NewsCategoryTranslationId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CategoryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Translation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("NewsCategoryTranslationId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("NewsCategoryTranslation");
                 });
 
             modelBuilder.Entity("AJS.Data.Models.Service", b =>
@@ -473,6 +561,29 @@ namespace AJS.Data.Migrations
                     b.HasIndex("ParentServiceCategoryId");
 
                     b.ToTable("ServiceCategory");
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.ServiceCategoryTranslation", b =>
+                {
+                    b.Property<string>("ServiceCategoryTranslationId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CategoryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Translation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ServiceCategoryTranslationId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("ServiceCategoryTranslation");
                 });
 
             modelBuilder.Entity("AJS.Data.Models.ServiceDescription", b =>
@@ -807,6 +918,15 @@ namespace AJS.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
+            modelBuilder.Entity("AJS.Data.Models.AdCategoryTranslation", b =>
+                {
+                    b.HasOne("AJS.Data.Models.AdCategory", "Category")
+                        .WithMany("Translations")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("AJS.Data.Models.AdDescription", b =>
                 {
                     b.HasOne("AJS.Data.Models.Ad", "Ad")
@@ -864,6 +984,15 @@ namespace AJS.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
+            modelBuilder.Entity("AJS.Data.Models.JobCategoryTranslation", b =>
+                {
+                    b.HasOne("AJS.Data.Models.JobCategory", "Category")
+                        .WithMany("Translations")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("AJS.Data.Models.JobDescription", b =>
                 {
                     b.HasOne("AJS.Data.Models.Job", "Job")
@@ -915,9 +1044,24 @@ namespace AJS.Data.Migrations
 
             modelBuilder.Entity("AJS.Data.Models.News", b =>
                 {
+                    b.HasOne("AJS.Data.Models.NewsCategory", "Category")
+                        .WithMany("News")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("AJS.Data.Models.User", "Creator")
                         .WithMany("News")
                         .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.NewsCategoryTranslation", b =>
+                {
+                    b.HasOne("AJS.Data.Models.NewsCategory", "Category")
+                        .WithMany("Translations")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -943,6 +1087,15 @@ namespace AJS.Data.Migrations
                         .WithMany("Categories")
                         .HasForeignKey("ParentServiceCategoryId")
                         .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("AJS.Data.Models.ServiceCategoryTranslation", b =>
+                {
+                    b.HasOne("AJS.Data.Models.ServiceCategory", "Category")
+                        .WithMany("Translations")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AJS.Data.Models.ServiceDescription", b =>
