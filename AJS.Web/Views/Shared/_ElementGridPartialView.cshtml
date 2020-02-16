@@ -1,9 +1,12 @@
-﻿@model AdsGridPartialViewModel
+﻿@model ElementGridPartialViewModel
 @inject IViewLocalizer Localizer
 
-<link rel="stylesheet" href="~/css/AdsGridPartialView.css" type="text/css" />
+<link rel="stylesheet" href="~/css/ElementGridPartialView.css" type="text/css" />
 
-<p class="ads-partial-view-title">@Localizer["Ads"]</p>
+@if (!string.IsNullOrEmpty(Model.Category))
+{
+    <p class="ads-partial-view-title">@Model.Category</p>
+}
 
 <div class="container">
 
@@ -20,10 +23,10 @@
 
                     <div>
                         <img alt="Picture" src="@imgSrc" class="ad-img" /><br />
-                        <span class="ad-title">@Model.AdTitle</span>
+                        <span class="ad-title">@Model.ElementTitle</span>
                         <br />
                         <span class="ad-publication-date">@Model.PublicationDate.ToShortDateString()</span>
-                        <a class="ad-link" asp-action="Ad" asp-controller="Home" asp-area="Ads" asp-id="@Model.AdId">@Localizer["Review"]</a>
+                        <a class="ad-link" asp-action="Ad" asp-controller="Home" asp-area="Ads" asp-id="@Model.ElementId">@Localizer["Review"]</a>
                     </div>
 
                 </div>

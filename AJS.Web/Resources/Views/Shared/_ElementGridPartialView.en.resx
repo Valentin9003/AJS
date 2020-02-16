@@ -117,12 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Ads" xml:space="preserve">
-    <value>Обяви</value>
-    <comment>Ads</comment>
-  </data>
   <data name="Review" xml:space="preserve">
-    <value>Преглед</value>
+    <value>Review</value>
     <comment>Review</comment>
   </data>
 </root>

@@ -30,16 +30,24 @@ namespace AJS.Web
 
         #endregion CategoryNavigationMenuPartialViewModel
 
-        #region AdsGridPartialViewModel
+        #region ElementGridPartialViewModel
 
-        public const int AdsGridPartialViewModelPictureByteArrayMaximumLength = 10 * 124 * 1024;
+        public const int ElementGridPartialViewModelPictureByteArrayMaximumLength = 10 * 124 * 1024;
 
-        public const string AdsGridPartialViewModelDateTimeRequiredErrorMessage = "Publication date for ad in 'AdsGridPartialViewModel' is required.";
+        public const string ElementGridPartialViewModelPublicationDateTimeRequiredErrorMessage = "Publication date for ad in 'AdsGridPartialViewModel' is required.";
 
-        public const string AdsGridPartialViewModelAdTitleRequiredErrorMessage = "'Ad name' for ad in 'AdsGridPartialViewModel' required.";
+        public const string ElementGridPartialViewModelTitleRequiredErrorMessage = "'Ad name' for ad in 'AdsGridPartialViewModel' required.";
 
-        public const string AdsGridPartialViewModelAdIdRequiredErrorMessage = "'Ad id' for ad in 'AdsGridPartialView' is required.";
+        public const string ElementGridPartialViewModelIdRequiredErrorMessage = "'Ad id' for ad in 'AdsGridPartialView' is required.";
 
-        #endregion AdsGridPartialViewModel
+        public const string ElementGridPartialViewUnitRouteModelActionNameRequiredErrorMassage = "Action name in 'ElementGridPartialView' is Required";
+
+        public const string ElementGridPartialViewUnitRouteModelControllerNameRequiredErrorMassage = "Controller name in 'ElementGridPartialView' is Required";
+
+        public const string ElementGridPartialViewUnitRouteModelAreaNameRequiredErrorMassage = "Area name in 'ElementGridPartialView' is Required";
+
+        public const string ElementGridPartialViewUnitRouteModelRequiredErrorMassage = "Element Route Model in 'ElementGridPartialView' is Required";
+
+        #endregion ElementGridPartialViewModel
     }
 }
