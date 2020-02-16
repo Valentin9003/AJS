@@ -23,7 +23,6 @@ namespace AJS.Web.Infrastructure.Extensions
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                var context =  serviceScope.ServiceProvider.GetService<AJSDbContext>();
-
                    context.Database.Migrate();
                    context.Database.EnsureCreated();
             }
