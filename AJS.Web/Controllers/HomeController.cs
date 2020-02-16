@@ -26,8 +26,6 @@ namespace AJS.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var context =  helper.GetCurrentHttpContext();
-            var lang =  helper.GetUserLocalization();
             return View();
         }
 
@@ -42,6 +40,7 @@ namespace AJS.Web.Controllers
             return LocalRedirect(returnUrl);
         }
 
+
         public IActionResult Privacy()
         {
             return View();
@@ -51,6 +50,11 @@ namespace AJS.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Denied()
+        {
+            return View();
         }
     }
 }

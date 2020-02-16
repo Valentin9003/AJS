@@ -1,9 +1,9 @@
 ﻿namespace AJS.Services.Interfaces
 {
     /// <summary>
-    /// News Service Interface
+    /// News API Service Interface
     /// </summary>
-    public interface INewsService
+    public interface INewsApiService
     {
     }
 }

@@ -22,6 +22,6 @@ namespace AJS.Web.Models
         [Required(ErrorMessage = ProjectConstants.CategoryNavigationMenuPartialViewModelCategoryIdRequiredErrorMessage)]
         public string CategoryId { get; set; }
 
-        public List<CategoriesNavigationMenuPartialViewModel> SubCategories { get; set; } = new List<CategoriesNavigationMenuPartialViewModel>();
+        public List<ChildCategoriesNavigationMenuPartialViewModel> SubCategories { get; set; } = new List<ChildCategoriesNavigationMenuPartialViewModel>();
     }
 }
