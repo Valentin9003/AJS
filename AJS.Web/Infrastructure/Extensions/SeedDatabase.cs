@@ -20,11 +20,8 @@ namespace AJS.Web.Infrastructure.Extensions
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<User>>();
-
                 var rolemanager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
                 var db = serviceScope.ServiceProvider.GetRequiredService<AJSDbContext>();
-
                 var configuration = serviceScope.ServiceProvider.GetRequiredService<IConfiguration>();
 
                 AddAdministrator(userManager, rolemanager, configuration);
@@ -53,14 +50,10 @@ namespace AJS.Web.Infrastructure.Extensions
 
         private static void AddAdministrator(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
-            var adminDataSecret = configuration.GetSection(ProjectConstants.AdminConfigSection)
-                                               .GetChildren()
-                                               .ToDictionary(t => t.Key);
+            var adminDataSecret = configuration.GetSection(ProjectConstants.AdminConfigSection).GetChildren().ToDictionary(t => t.Key);
 
             var adminEmail = adminDataSecret[ProjectConstants.AdminEmailKey].Get<string>();
-
             var adminPassword = adminDataSecret[ProjectConstants.AdminPasswordKey].Get<string>();
-
             var adminName = adminDataSecret[ProjectConstants.AdminNameKey].Get<string>();
 
             if (string.IsNullOrEmpty(adminEmail) || string.IsNullOrEmpty(adminName) || string.IsNullOrEmpty(adminPassword))
@@ -95,8 +88,7 @@ namespace AJS.Web.Infrastructure.Extensions
             }
 
             var admin = Task.Run(() => userManager.FindByEmailAsync(adminEmail)).GetAwaiter().GetResult();
-
-            var isInRole = Task.Run(() => userManager.IsInRoleAsync(admin, ProjectConstants.AdminRoleName)).GetAwaiter().GetResult();
+           var isInRole = Task.Run(() => userManager.IsInRoleAsync(admin, ProjectConstants.AdminRoleName)).GetAwaiter().GetResult();
 
             if (!isInRole)
             {
@@ -109,19 +101,16 @@ namespace AJS.Web.Infrastructure.Extensions
             for (int i = 0; i < 10; i++)
             {
                 var categoryName = $"News Category {i}";
-
                 var categoryExist = db.NewsCategory.Any(c => c.Name == categoryName);
 
                 if (!categoryExist)
                 {
                     var categoryId = Guid.NewGuid().ToString();
-
+                    
                     var newsCategory = new NewsCategory()
                     {
                         CategoryId = categoryId,
-
                         Description = $"Some Description {i}",
-
                         Name = categoryName,
 
                         Translations = new List<NewsCategoryTranslation>()
@@ -152,14 +141,9 @@ namespace AJS.Web.Infrastructure.Extensions
 
         private static void SeedNews(AJSDbContext db)
         {
-            var user = db.Users
-                         .FirstOrDefault(u => u.UserType == UserType.Person);
-
-            var isCreated = db.News
-                              .Any();
-
-            var newsCategory = db.NewsCategory
-                                 .FirstOrDefault();
+            var user = db.Users.FirstOrDefault(u => u.UserType == UserType.Person);
+            var isCreated = db.News.Any();
+            var newsCategory = db.NewsCategory.FirstOrDefault();
 
             if (user != null && !isCreated && newsCategory != null)
             {
@@ -168,25 +152,17 @@ namespace AJS.Web.Infrastructure.Extensions
 
                 for (int i = 0; i <= 50; i++)
                 {
-
                     var news = new News()
-                    {
+                       {
                         NewsId = Guid.NewGuid().ToString(),
-
                         Description = $"News Description {i}",
-
                         Location = i % 2 == 0 ? NewsLocation.Bulgaria : NewsLocation.England,
-
                         PublicationDate = DateTime.Now,
-
                         Title = $"News Title {i}",
-
                         CreatorId = userId,
-
                         ReviewCounter = i,
-
                         CategoryId = categoryId,
-                    };
+                       };
 
                     db.News.Add(news);
                     db.SaveChanges();
@@ -199,28 +175,20 @@ namespace AJS.Web.Infrastructure.Extensions
             for (int i = 0; i < 10; i++)
             {
                 var adCategory = $"AdCategory{i}";
-
-                var isCreated = db.AdCategory
-                                  .Any(c => c.Name == adCategory);
+                var isCreated = db.AdCategory.Any(c => c.Name == adCategory);
 
                 if (!isCreated)
                 {
                     var parentCategoryId = Guid.NewGuid().ToString();
-
                     var firstSubCategoryId = Guid.NewGuid().ToString();
-
                     var secondSubCategoryId = Guid.NewGuid().ToString();
-
                     var thirdSubCategoryId = Guid.NewGuid().ToString();
 
                     var category = new AdCategory
                     {
                         CategoryId = parentCategoryId,
-
                         Description = $"Some Text{i}",
-
                         Name = adCategory,
-
                         ParentAdCategory = null,
 
                         Categories = new HashSet<AdCategory>()
@@ -228,15 +196,10 @@ namespace AJS.Web.Infrastructure.Extensions
                             new AdCategory
                             {
                               Name = $"AdSubCategory{i}.1",
-
                               CategoryId = firstSubCategoryId,
-
                               ParentAdCategoryId = parentCategoryId,
-
                               Description = $"Some Description{i}.1",
-
                               Categories = null,
-
                               Ads = null,
 
                               Translations = new HashSet<AdCategoryTranslation>()
@@ -262,15 +225,10 @@ namespace AJS.Web.Infrastructure.Extensions
                             new AdCategory
                             {
                               Name = $"AdSubCategory{i}.2",
-
                               CategoryId = secondSubCategoryId,
-
                               ParentAdCategoryId = parentCategoryId,
-
                               Description = $"Some Description{i}.2",
-
                               Categories = null,
-
                               Ads = null,
 
                               Translations = new List<AdCategoryTranslation>()
@@ -334,27 +292,20 @@ namespace AJS.Web.Infrastructure.Extensions
             for (int i = 0; i < 10; i++)
             {
                 var serviceCategory = $"ServiceCategory{i}";
-
                 var isCreated = db.ServiceCategory.Any(c => c.Name == serviceCategory);
 
                 if (!isCreated)
                 {
                     var parentCategoryId = Guid.NewGuid().ToString();
-
                     var firstSubCategoryId = Guid.NewGuid().ToString();
-
                     var secondSubCategoryId = Guid.NewGuid().ToString();
-
                     var thirdSubCategoryId = Guid.NewGuid().ToString();
 
                     var category = new ServiceCategory
                     {
                         CategoryId = parentCategoryId,
-
                         Description = $"Some Text{i}",
-
                         Name = serviceCategory,
-
                         ParentServiceCategory = null,
 
                         Categories = new HashSet<ServiceCategory>()
@@ -362,15 +313,11 @@ namespace AJS.Web.Infrastructure.Extensions
                            new ServiceCategory
                            {
                              Name = $"ServiceSubCategory{i}.1",
-
                              CategoryId = firstSubCategoryId,
-
                              ParentServiceCategoryId = parentCategoryId,
-
                              Description = $"Some Description{i}.1",
 
                              Categories = null,
-
                              Services = null,
 
                               Translations = new HashSet<ServiceCategoryTranslation>()
@@ -396,15 +343,11 @@ namespace AJS.Web.Infrastructure.Extensions
                            new ServiceCategory
                            {
                              Name = $"ServiceSubCategory{i}.2",
-
                              CategoryId = secondSubCategoryId,
-
                              ParentServiceCategoryId = parentCategoryId,
-
                              Description = $"Some Description{i}.2",
 
                              Categories = null,
-
                              Services = null,
 
                               Translations = new HashSet<ServiceCategoryTranslation>()
@@ -430,15 +373,11 @@ namespace AJS.Web.Infrastructure.Extensions
                            new ServiceCategory
                            {
                              Name = $"ServiceSubCategory{i}.3",
-
                              CategoryId = thirdSubCategoryId,
-
                              ParentServiceCategoryId = parentCategoryId,
-
                              Description = $"Some Description{i}.3",
 
                              Categories = null,
-
                              Services = null,
 
                               Translations = new HashSet<ServiceCategoryTranslation>()
@@ -474,25 +413,19 @@ namespace AJS.Web.Infrastructure.Extensions
             for (int i = 0; i < 10; i++)
             {
                 var JobCategory = $"JobCategory{i}";
-
                 var isCreated = db.JobCategory.Any(c => c.Name == JobCategory);
 
                 if (!isCreated)
                 {
                     var parentCategoryId = Guid.NewGuid().ToString();
-
                     var firstSubCategoryId = Guid.NewGuid().ToString();
-
                     var secondSubCategoryId = Guid.NewGuid().ToString();
-
                     var thirdSubCategoryId = Guid.NewGuid().ToString();
 
                     var category = new JobCategory
                     {
                         CategoryId = parentCategoryId,
-
                         Description = $"Some Text{i}",
-
                         Name = JobCategory,
 
                         ParentJobCategory = null,
@@ -502,15 +435,11 @@ namespace AJS.Web.Infrastructure.Extensions
                              new JobCategory
                              {
                                Name = $"JobSubCategory{i}.1",
-
                                CategoryId = Guid.NewGuid().ToString(),
-
                                ParentJobCategoryId = parentCategoryId,
-
                                Description = $"Some Description{i}.1",
 
                                Categories = null,
-
                                Jobs = null,
 
                                 Translations = new HashSet<JobCategoryTranslation>()
@@ -536,15 +465,11 @@ namespace AJS.Web.Infrastructure.Extensions
                              new JobCategory
                              {
                                Name = $"JobSubCategory{i}.2",
-
                                CategoryId = secondSubCategoryId,
-
                                ParentJobCategoryId = parentCategoryId,
-
                                Description = $"Some Description{i}.2",
-
+  
                                Categories = null,
-
                                Jobs = null,
 
                                Translations = new HashSet<JobCategoryTranslation>()
@@ -570,15 +495,11 @@ namespace AJS.Web.Infrastructure.Extensions
                              new JobCategory
                              {
                                Name = $"JobSubCategory{i}.3",
-
                                CategoryId = thirdSubCategoryId,
-
                                ParentJobCategoryId = parentCategoryId,
-
                                Description = $"Some Description{i}.3",
 
                                Categories = null,
-
                                Jobs = null,
 
                                 Translations = new HashSet<JobCategoryTranslation>()
@@ -615,14 +536,11 @@ namespace AJS.Web.Infrastructure.Extensions
             {
                 var email = $"mail{i}@abv.bg";
 
-                var user = userManager.FindByEmailAsync(email)
-                                      .GetAwaiter()
-                                      .GetResult();
+                var user = userManager.FindByEmailAsync(email).GetAwaiter().GetResult();
 
                 if (user == null)
                 {
                     var phoneNumber = $"089000000{i}";
-
                     var userName = $"User{i}";
 
                     var currentUser = new User
@@ -641,31 +559,16 @@ namespace AJS.Web.Infrastructure.Extensions
 
         private static void SeedAd(AJSDbContext db)
         {
-            var usersExist = db.Users
-                               .Any(u => u.UserType == UserType.Person) && db.Users.Any(u => u.UserType == UserType.Company);
-
-            var categoriesExist = db.AdCategory
-                                    .Any(p => p.ParentAdCategory == null) && db.AdCategory.Any(p => p.ParentAdCategory != null);
-
+            var usersExist = db.Users.Any(u => u.UserType == UserType.Person) && db.Users.Any(u => u.UserType == UserType.Company);
+            var categoriesExist = db.AdCategory.Any(p => p.ParentAdCategory == null) && db.AdCategory.Any(p => p.ParentAdCategory != null);
             var adExist = db.Ad.Any();
 
             if (usersExist && categoriesExist && !adExist)
             {
-                var userId = db.Users
-                               .FirstOrDefault(u => u.UserType == UserType.Person)
-                               .Id;
-
-                var companyId = db.Users
-                                  .FirstOrDefault(c => c.UserType == UserType.Company)
-                                  .Id;
-
-                var parentCategoryId = db.AdCategory
-                                         .FirstOrDefault(p => p.ParentAdCategory == null)
-                                         .CategoryId;
-
-                var subCategoryId = db.AdCategory
-                                      .FirstOrDefault(p => p.ParentAdCategory != null)
-                                      .CategoryId;
+                var userId = db.Users.FirstOrDefault(u => u.UserType == UserType.Person).Id;
+                var companyId = db.Users.FirstOrDefault(c => c.UserType == UserType.Company).Id;
+                var parentCategoryId = db.AdCategory.FirstOrDefault(p => p.ParentAdCategory == null).CategoryId;
+                var subCategoryId = db.AdCategory.FirstOrDefault(p => p.ParentAdCategory != null).CategoryId;
 
                 for (int i = 0; i < 10; i++)
                 {
@@ -674,17 +577,11 @@ namespace AJS.Web.Infrastructure.Extensions
                     var ad = new Ad
                     {
                         AdId = adId,
-
                         CategoryId = i % 2 == 0 ? parentCategoryId : subCategoryId,
-
                         CreatorId = i % 2 == 0 ? userId : companyId,
-
                         ReviewCounter = i,
-
                         Language = i % 2 == 0 ? AdLanguage.BG : AdLanguage.EN,
-
                         PublicationDate = DateTime.Now,
-
                         Title = $"Some Title {i}",
 
                         Pictures = new List<AdPicture>()
@@ -737,31 +634,16 @@ namespace AJS.Web.Infrastructure.Extensions
 
         private static void SeedJob(AJSDbContext db)
         {
-            var usersExist = db.Users
-                               .Any(u => u.UserType == UserType.Person) && db.Users.Any(u => u.UserType == UserType.Company);
-
-            var categoriesExist = db.AdCategory
-                                    .Any(p => p.ParentAdCategory == null) && db.AdCategory.Any(p => p.ParentAdCategory != null);
-
+            var usersExist = db.Users.Any(u => u.UserType == UserType.Person) && db.Users.Any(u => u.UserType == UserType.Company);
+            var categoriesExist = db.AdCategory.Any(p => p.ParentAdCategory == null) && db.AdCategory.Any(p => p.ParentAdCategory != null);
             var jobExist = db.Job.Any();
 
             if (usersExist && categoriesExist && !jobExist)
             {
-                var userId = db.Users
-                               .FirstOrDefault(u => u.UserType == UserType.Person)
-                               .Id;
-
-                var companyId = db.Users
-                                  .FirstOrDefault(c => c.UserType == UserType.Company)
-                                  .Id;
-
-                var parentCategoryId = db.JobCategory
-                                         .FirstOrDefault(p => p.ParentJobCategory == null)
-                                         .CategoryId;
-
-                var subCategoryId = db.JobCategory
-                                      .FirstOrDefault(p => p.ParentJobCategory != null)
-                                      .CategoryId;
+                var userId = db.Users.FirstOrDefault(u => u.UserType == UserType.Person).Id;
+                var companyId = db.Users.FirstOrDefault(c => c.UserType == UserType.Company).Id;
+                var parentCategoryId = db.JobCategory.FirstOrDefault(p => p.ParentJobCategory == null).CategoryId;
+                var subCategoryId = db.JobCategory.FirstOrDefault(p => p.ParentJobCategory != null).CategoryId;
 
                 for (int i = 0; i < 10; i++)
                 {
@@ -770,17 +652,11 @@ namespace AJS.Web.Infrastructure.Extensions
                     var job = new Job
                     {
                         JobId = jobId,
-
                         CategoryId = i % 2 == 0 ? parentCategoryId : subCategoryId,
-
                         CreatorId = i % 2 == 0 ? userId : companyId,
-
                         Language = i % 2 == 0 ? JobLanguage.BG : JobLanguage.EN,
-
                         PublicationDate = DateTime.Now,
-
                         Title = $"Some Title {i}",
-
                         ReviewCounter = i,
 
                         Picture = new JobPicture
@@ -827,31 +703,16 @@ namespace AJS.Web.Infrastructure.Extensions
         }
         private static void SeedService(AJSDbContext db)
         {
-            var usersExist = db.Users
-                               .Any(u => u.UserType == UserType.Person) && db.Users.Any(u => u.UserType == UserType.Company);
-
-            var categoriesExist = db.AdCategory
-                                    .Any(p => p.ParentAdCategory == null) && db.AdCategory.Any(p => p.ParentAdCategory != null);
-
+            var usersExist = db.Users.Any(u => u.UserType == UserType.Person) && db.Users.Any(u => u.UserType == UserType.Company);
+            var categoriesExist = db.AdCategory.Any(p => p.ParentAdCategory == null) && db.AdCategory.Any(p => p.ParentAdCategory != null);
             var serviceExist = db.Service.Any();
 
             if (usersExist && categoriesExist && !serviceExist)
             {
-                var userId = db.Users
-                               .FirstOrDefault(u => u.UserType == UserType.Person)
-                               .Id;
-
-                var companyId = db.Users
-                                  .FirstOrDefault(c => c.UserType == UserType.Company)
-                                  .Id;
-
-                var parentCategoryId = db.ServiceCategory
-                                         .FirstOrDefault(p => p.ParentServiceCategory == null)
-                                         .CategoryId;
-
-                var subCategoryId = db.ServiceCategory
-                                      .FirstOrDefault(p => p.ParentServiceCategory != null)
-                                      .CategoryId;
+                var userId = db.Users.FirstOrDefault(u => u.UserType == UserType.Person).Id;
+                var companyId = db.Users.FirstOrDefault(c => c.UserType == UserType.Company).Id;
+                var parentCategoryId = db.ServiceCategory.FirstOrDefault(p => p.ParentServiceCategory == null).CategoryId;
+                var subCategoryId = db.ServiceCategory.FirstOrDefault(p => p.ParentServiceCategory != null).CategoryId;
 
                 for (int i = 0; i < 10; i++)
                 {
@@ -860,17 +721,11 @@ namespace AJS.Web.Infrastructure.Extensions
                     var service = new Service
                     {
                         ServiceId = serviceId,
-
                         CategoryId = i % 2 == 0 ? parentCategoryId : subCategoryId,
-
                         CreatorId = i % 2 == 0 ? userId : companyId,
-
                         Language = i % 2 == 0 ? ServiceLanguage.BG : ServiceLanguage.EN,
-
                         PublicationDate = DateTime.Now,
-
                         Title = $"Some Title {i}",
-
                         ReviewCounter = i,
 
                         Pictures = new List<ServicePicture>()
