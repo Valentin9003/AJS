@@ -18,18 +18,13 @@ namespace AJS.Web.Infrastructure.Attributes
 
         public Task OnAuthorizationAsync(AuthorizationFilterContext context)
         {
-            var userIsAuthenticated = context.HttpContext
-                                             .User
-                                             .Identity
-                                             .IsAuthenticated;
+            var userIsAuthenticated = context.HttpContext.User.Identity.IsAuthenticated;
 
             if (userIsAuthenticated)
             {
                 for (int i = 0; i < allowedRoles.Length; i++)
                 {
-                    var isInRole = context.HttpContext
-                                          .User
-                                          .IsInRole(allowedRoles[i]);
+                    var isInRole = context.HttpContext.User.IsInRole(allowedRoles[i]);
 
                     if (isInRole)
                     {
