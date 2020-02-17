@@ -484,10 +484,10 @@ namespace AJS.Web.Infrastructure.Extensions
 
                                       new JobCategoryTranslation
                                       {
-                                          JobCategoryTranslationId = Guid.NewGuid().ToString(),
-                                          CategoryId = secondSubCategoryId,
-                                          Language = JobCategoryLanguage.en,
-                                          Translation = $"Service Category {i}"
+                                        JobCategoryTranslationId = Guid.NewGuid().ToString(),
+                                        CategoryId = secondSubCategoryId,
+                                        Language = JobCategoryLanguage.en,
+                                        Translation = $"Service Category {i}"
                                       }
                                }
                              },
