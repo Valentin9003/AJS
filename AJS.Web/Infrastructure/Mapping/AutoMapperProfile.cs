@@ -13,8 +13,8 @@ namespace AJS.Web.Infrastructure.Mapping
         public AutoMapperProfile()
         {
             var AllTypes = AppDomain
-                .CurrentDomain.
-                GetAssemblies()
+                .CurrentDomain
+                .GetAssemblies()
                 .Where(a => a.GetName().Name.Contains("AJS"))
                 .SelectMany(a => a.GetTypes());
 
