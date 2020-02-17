@@ -31,7 +31,6 @@ namespace AJS.Web.Areas.Api
         public async Task<IActionResult> GetById()
         {
             return new JsonResult("");
-
         }
 
         [HttpGet]
