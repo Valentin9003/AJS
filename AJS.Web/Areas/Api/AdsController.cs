@@ -1,5 +1,7 @@
 ﻿using AJS.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace AJS.Web.Areas.Api
@@ -19,37 +21,32 @@ namespace AJS.Web.Areas.Api
             this.adsApiService = adsApiService;
         }
 
-        [HttpGet]
-        [Route("Get")]
+        [HttpGet("Get")]
         public async Task<IActionResult> Get()
         {
             return new JsonResult("");
         }
 
-        [HttpGet]
-        [Route("GetById")]
-        public async Task<IActionResult> GetById()
+        [HttpGet("GetById/{id}")]
+        public async Task<IActionResult> GetById(string id)
         {
             return new JsonResult("");
         }
 
-        [HttpGet]
-        [Route("GetByCategory")]
-        public async Task<IActionResult> GetByCategory()
+        [HttpGet("GetByCategory/{categoryName}")]
+        public async Task<IActionResult> GetByCategory(string categoryName)
         {
             return new JsonResult("");
         }
 
-        [HttpGet]
-        [Route("GetByDate")]
-        public async Task<IActionResult> GetByDate()
+        [HttpGet("GetByDate/{publicationDate:datetime}")]
+        public async Task<IActionResult> GetByDate(DateTime publicationDate)
         {
             return new JsonResult("");
         }
 
-        [HttpGet]
-        [Route("GetByLastDateSync")]
-        public async Task<IActionResult> GetByLastDateSync()
+        [HttpGet("GetByLastDateSync/{syncDatetime:datetime}")]
+        public async Task<IActionResult> GetByLastDateSync(DateTime syncDatetime)
         {
             return  new JsonResult("");
         }
