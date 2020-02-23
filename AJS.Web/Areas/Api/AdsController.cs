@@ -45,8 +45,8 @@ namespace AJS.Web.Areas.Api
             return new JsonResult("");
         }
 
-        [HttpGet("GetByLastDateSync/{syncDatetime:datetime}")]
-        public async Task<IActionResult> GetByLastDateSync(DateTime syncDatetime)
+        [HttpGet("GetByLastDateSync/{lastSyncDate:datetime}")]
+        public async Task<IActionResult> GetByLastDateSync(DateTime lastSyncDate)
         {
             return  new JsonResult("");
         }
