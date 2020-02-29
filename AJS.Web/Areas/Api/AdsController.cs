@@ -1,4 +1,6 @@
 ﻿using AJS.Services.Interfaces;
+using AJS.Web.Areas.Api.Models;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -14,16 +16,20 @@ namespace AJS.Web.Areas.Api
     public class AdsController : ControllerBase
     {
         private readonly IAdsApiService adsApiService;
+        private readonly IMapper mapper;
 
-        public AdsController(IAdsApiService adsApiService)
+        public AdsController(IAdsApiService adsApiService, IMapper mapper)
         {
             this.adsApiService = adsApiService;
+            this.mapper = mapper;
         }
 
         [HttpGet("Get")]
         public async Task<IActionResult> Get()
         {
-            return new JsonResult("");
+            var ads = await adsApiService.GetAllAds();
+            var result = mapper.Map<AdApiModel>(ads);
+            return new JsonResult(result);
         }
 
         [HttpGet("GetById/{id}")]
